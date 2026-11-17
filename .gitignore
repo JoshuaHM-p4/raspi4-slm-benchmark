@@ -1,0 +1,14 @@
+models/*
+!models/.gitkeep
+vendor/*
+!vendor/.gitkeep
+results/raw/*
+!results/raw/.gitkeep
+__pycache__/
+*.pyc
+.venv/
+.last.log
+# Agent instructions: kept local, untracked for now
+CLAUDE.md
+AGENTS.md
+.claude/

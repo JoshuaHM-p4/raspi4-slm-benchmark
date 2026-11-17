@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# Edit locally, run on the Pi. The Pi copy lives at bagwis-core:~/raspi4bench-slm.
+#
+#   ./pi sync          rsync repo -> Pi (models/, vendor/, results/raw/ are Pi-owned, never touched)
+#   ./pi run 'cmd'     sync, then run cmd in the Pi repo; prints the last PI_TAIL lines
+#                      (full output: Pi ~/raspi4bench-slm/.last.log)
+#   ./pi pull          copy Pi results/raw/ -> local results/raw/ (never overwrites local files)
+#   ./pi status        throttle flags, temperature, clock, memory, swap, top processes
+#
+# Env: PI_TAIL=40  PI_DRY=1 (sync dry-run)
+set -euo pipefail
+
+HOST=bagwis-core
+REMOTE=raspi4bench-slm
+ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+TAIL=${PI_TAIL:-40}
+
+die() { echo "pi: $*" >&2; exit 1; }
+
+sync_repo() {
+  local -a opts=(-az --delete -i --exclude=/.git --exclude=/models/ --exclude=/vendor/
+    --exclude=/results/raw/ --exclude=/.claude/ --exclude=/CLAUDE.md --exclude=/AGENTS.md
+    --exclude=/.last.log --exclude=__pycache__/)
+  [[ -n ${PI_DRY:-} ]] && opts+=(-n)
+  local out n
+  out=$(rsync "${opts[@]}" "$ROOT/" "$HOST:$REMOTE/")
+  out=$(grep -E '^[<c*]' <<<"$out" || true)
+  n=$(grep -c . <<<"$out" || true)
+  echo "sync: $n changed${PI_DRY:+ [dry-run]}"
+  [[ $n -eq 0 ]] || head -n 20 <<<"$out"
+  [[ $n -le 20 ]] || echo "... $((n - 20)) more"
+}
+
+cmd=${1:-}; shift || true
+case $cmd in
+  sync) sync_repo ;;
+  run)
+    (($#)) || die "usage: ./pi run 'command'"
+    sync_repo
+    ssh "$HOST" "set -o pipefail; cd $REMOTE && { $*; } 2>&1 | tee .last.log | tail -n $TAIL" ;;
+  pull)
+    mkdir -p "$ROOT/results/raw"
+    rsync -az --ignore-existing -i "$HOST:$REMOTE/results/raw/" "$ROOT/results/raw/" \
+      | grep -E '^>f' | sed 's/^[^ ]* /pulled /' || true ;;
+  status)
+    ssh "$HOST" 'vcgencmd get_throttled; vcgencmd measure_temp; vcgencmd measure_clock arm
+free -m | sed -n "1,3p"; grep -E "^(SwapTotal|SwapFree)" /proc/meminfo
+ps -eo pid,pcpu,rss,comm --sort=-pcpu | sed -n "2,6p"' ;;
+  *) sed -n '2,11p' "${BASH_SOURCE[0]}"; [[ -z $cmd ]] || exit 1 ;;
+esac
