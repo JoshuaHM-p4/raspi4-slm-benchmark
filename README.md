@@ -58,14 +58,18 @@ sudo apt install git cmake build-essential python3 time coreutils
 git clone https://github.com/ggml-org/llama.cpp vendor/llama.cpp
 ```
 
-Choose a known-working llama.cpp commit after the compatibility pilot, record its full SHA, and use it for every model. Do not assume that an arbitrary old release supports these architectures.
+Choose a known-working llama.cpp commit after the compatibility pilot, record its full SHA, and use it for every model. Do not assume that an arbitrary old release supports these architectures. This study uses tag `v1.0.0`, commit `b1b770d90d94cad9e9ea5b993bdbc383a522fb28`.
 
 ```bash
-git -C vendor/llama.cpp checkout <recorded-full-commit-sha>
-cmake -S vendor/llama.cpp -B vendor/llama.cpp/build -DCMAKE_BUILD_TYPE=Release
-cmake --build vendor/llama.cpp/build --config Release -j 2
-python3 scripts/capture_environment.py --output results/raw/environment.json
+git clone --depth 1 --branch v1.0.0 https://github.com/ggml-org/llama.cpp vendor/llama.cpp
+cmake -S vendor/llama.cpp -B vendor/llama.cpp/build -DCMAKE_BUILD_TYPE=Release \
+  -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_OPENSSL=OFF \
+  -DLLAMA_USE_PREBUILT_UI=OFF -DLLAMA_BUILD_UI=OFF
+cmake --build vendor/llama.cpp/build --config Release -j 2 --target llama-bench llama-server llama-cli
+python3 scripts/capture_environment.py --output results/raw/environment-<date>.json
 ```
+
+The web UI is disabled: answers are collected through the server API, and in a shallow clone the prebuilt-UI download resolves the wrong asset version and fails the build. The server therefore reports version `1.0.0-dev (build 1, commit b1b770d)`; the commit SHA is the identity to record.
 
 Replace angle-bracket placeholders before executing commands. Build with fewer jobs if RAM is limited. Keep the same build options for all models and inspect the build log to confirm CPU execution. Consult upstream build instructions [4] if your OS needs different dependencies.
 
@@ -105,7 +109,7 @@ Start one server for one model; stop it before loading the next. Default command
 ```bash
 vendor/llama.cpp/build/bin/llama-server \
   -m models/<exact-model-filename>.gguf \
-  -c 2048 -t 4 -b 128 -ub 128 -ngl 0 \
+  -c 2048 -t 4 -b 128 -ub 128 -ngl 0 -np 1 \
   --host 127.0.0.1 --port 8080
 ```
 

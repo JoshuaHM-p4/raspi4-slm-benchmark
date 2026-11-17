@@ -16,9 +16,9 @@ Link the filled hardware record, manifest, frozen prompt-set checksum, runtime c
 
 | Configuration | Loads | Completes pilot | Swap observations | Status / failure evidence |
 | --- | --- | --- | --- | --- |
-| Qwen3.5-0.8B / TBD | TBD | TBD | TBD | Not run |
-| LFM2.5-1.2B-Instruct / TBD | TBD | TBD | TBD | Not run |
-| Gemma 4 E2B / TBD | TBD | TBD | TBD | Not run |
+| Qwen3.5-0.8B / unsloth Q4_K_M | Yes, 3.1 s (r2) | Pilot not run; gate chat completed (`stop`, 23 tokens) | None (r1, r2) | Ready. Server VmHWM 687268 KiB with `-np 1` (r2); 751048 KiB with default 4 slots (r1) |
+| LFM2.5-1.2B-Instruct / official Q4_K_M | Yes, 2.1 s (r1) | Pilot not run; gate chat completed (`stop`, 31 tokens) | None | Ready. Server VmHWM 779560 KiB |
+| Gemma 4 E2B-it / ggml-org Q4_0 | Yes; 80.3 s first load (r1), 8.1 s warm (r2) | Pilot not run; gate chat completed (`stop`, 26 tokens) | r1: 56921 pages swapped out during load only, server VmSwap peak 81368 KiB, ~33 MB swapped back in during generation. r2: no swap-out | Ready with restrictions: VmHWM 2915456 KiB (r2) of 3886836 KiB total; first load from a full page cache swaps to zram. Quantization differs (Q4_0) |
 
 ## 4. Performance and resources
 

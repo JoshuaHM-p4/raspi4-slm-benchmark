@@ -157,11 +157,11 @@ def main():
     result = {"model_label": args.label, "model_path": str(args.model.resolve()),
               "model_file_bytes": args.model.stat().st_size, "model_sha256": sha256(args.model),
               "settings": {"ctx": args.ctx, "threads": args.threads, "batch": 128, "ubatch": 128, "ngl": 0,
-                           "temperature": 0, "max_tokens": args.max_tokens, "enable_thinking": False,
-                           "jinja": True, "load_timeout_s": args.load_timeout},
+                           "parallel_slots": 1, "temperature": 0, "max_tokens": args.max_tokens,
+                           "enable_thinking": False, "jinja": True, "load_timeout_s": args.load_timeout},
               "before": board()}
     command = [str(args.server.resolve()), "-m", str(args.model.resolve()), "-c", str(args.ctx),
-               "-t", str(args.threads), "-b", "128", "-ub", "128", "-ngl", "0", "--jinja",
+               "-t", str(args.threads), "-b", "128", "-ub", "128", "-ngl", "0", "-np", "1", "--jinja",
                "--host", "127.0.0.1", "--port", str(args.port)]
     result["command"] = command
 
