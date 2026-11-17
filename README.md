@@ -104,18 +104,14 @@ Use the same monitoring setup for every model. The script samples temperature, t
 
 ## Collect task answers
 
-Start one server for one model; stop it before loading the next. Default commands are examples for a compatible pinned build; verify available options using `--help` [6].
+Answers are collected through the llama-server chat API, one model resident at a time, with the frozen settings in [docs/PROTOCOL_FREEZE.md](docs/PROTOCOL_FREEZE.md): a fresh single-turn chat per prompt containing the **prompt field only**, greedy decoding, 128 generated tokens, thinking disabled through `chat_template_kwargs`, prompt cache off. Qwen's official documentation warns that `/nothink` is not the supported switching mechanism [2]; the template kwarg is used instead and verified in each saved rendered prompt.
 
 ```bash
-vendor/llama.cpp/build/bin/llama-server \
-  -m models/<exact-model-filename>.gguf \
-  -c 2048 -t 4 -b 128 -ub 128 -ngl 0 -np 1 \
-  --host 127.0.0.1 --port 8080
+scripts/session.sh speed   qwen35-08b-q4km models/Qwen3.5-0.8B-Q4_K_M.gguf
+scripts/session.sh quality qwen35-08b-q4km models/Qwen3.5-0.8B-Q4_K_M.gguf
 ```
 
-Use its local chat interface at `http://127.0.0.1:8080`. A browser on your laptop needs an SSH tunnel to that localhost address. Confirm the model's native template is loaded. Set temperature to zero and the output limit to 128 in the client; record the actual submitted settings. Disable optional thinking using the supported template configuration for that model and runtime. Qwen's official documentation warns that `/nothink` is not the supported switching mechanism [2]. If the UI does not expose the required settings, use the documented chat API [6] or record a failed configuration pilot before collecting answers.
-
-This starter deliberately leaves task execution manual. Paste the **prompt field only** from `data/prompts.jsonl`, start a fresh conversation for every item, and save the complete answer and settings under `results/raw/`. Never send the answer key to the model. Score using `data/quality_scores.csv` and [docs/EVALUATION.md](docs/EVALUATION.md). API-based collection can be added later once the first comparison is working.
+`session.sh quality` verifies the frozen prompt checksum, waits for a comparable start temperature, and runs `scripts/collect_answers.py`, which saves each request, rendered prompt, full response, finish reason, token counts, and client-observed wall time under `results/raw/quality/<label>/`. Never send the answer key to the model. Score using `data/quality_scores.csv` and [docs/EVALUATION.md](docs/EVALUATION.md).
 
 ## Repository contents
 
@@ -126,6 +122,9 @@ This starter deliberately leaves task execution manual. Paste the **prompt field
 | `configs/hardware.md` | Hardware and software recording sheet |
 | `configs/models.csv` | Exact artifact manifest; initially unfilled |
 | `data/prompts.jsonl` | 20 original prompts with reference answers and criteria |
+| `data/pilot_prompts.jsonl` | Two non-scored pilot prompts (format check, output-cap check) |
+| `data/prompts.jsonl.sha256` | Frozen checksum of the scored prompt set |
+| `docs/PROTOCOL_FREEZE.md` | Frozen settings, pilot findings, and the deviation log |
 | `data/quality_scores.csv` | Empty scoring table with documented columns |
 | `docs/EVALUATION.md` | Run order, metrics, scoring, and interpretation |
 | `docs/TITLES.md` | Academic title alternatives |
@@ -135,6 +134,10 @@ This starter deliberately leaves task execution manual. Paste the **prompt field
 | `scripts/monitor.py` | Optional Pi telemetry sampler |
 | `scripts/fetch_model.sh` | Download a GGUF from a pinned Hugging Face revision and verify its SHA-256 |
 | `scripts/feasibility.py` | Feasibility gate: load in llama-server, one non-scored chat, telemetry, provisional status |
+| `scripts/collect_answers.py` | API answer collection: one fresh chat per prompt, saves request, response, status, wall time |
+| `scripts/common.py` | Shared llama-server lifecycle, chat request, and telemetry for the two scripts above |
+| `scripts/pilot.sh` | Phase 4 pilot: short llama-bench run plus the two pilot prompts |
+| `scripts/session.sh` | Measured speed or quality session for one model: cooldown, checksum check, telemetry, throttle flags |
 | `pi` | Sync the repo to the Pi (`bagwis-core`), run commands there, pull raw results back |
 | `results/raw/` | Local raw outputs; ignored by Git |
 | `results/processed/` | Curated tables to commit |
