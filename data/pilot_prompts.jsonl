@@ -1,0 +1,2 @@
+{"id": "P01", "category": "pilot", "prompt": "List the three primary colors of light as one comma-separated line only.", "reference": "red, green, blue", "criteria": "Pilot only (not scored): checks format adherence and that no reasoning text appears."}
+{"id": "P02", "category": "pilot", "prompt": "Write a numbered list of 60 different fruits, one per line.", "reference": "Any 60-item list", "criteria": "Pilot only (not scored): designed to exceed 128 generated tokens to confirm finish_reason=length and that the cap counts generated tokens only."}

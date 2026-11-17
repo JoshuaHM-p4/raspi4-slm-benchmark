@@ -10,7 +10,7 @@ Fill before collecting scored results. Keep a snapshot for each session if anyth
 | Kernel / firmware | 6.18.50+rpt-rpi-v8 / VideoCore firmware Sep 7 2026 10:23:43 |
 | CPU clock / governor / overclock | 1.8 GHz max / `ondemand` / none (no `arm_freq`/`over_voltage` in config.txt) |
 | Cooling / fan configuration / case | Heatsink with fan on 5 V GPIO pins (always on, not software-controlled; no fan device visible to Linux) |
-| Power supply model and rating | 5 V 2 A adapter (below the 5 V 3 A official spec; not the usual adapter). Fan draws from the same supply |
+| Power supply model and rating | 5 V 2 A adapter (below the 5 V 3 A official spec; the usual adapter has the same rating). Fan draws from the same supply |
 | Storage type and model / free disk | microSD 29.7 GB (mmcblk0); 11.4 GB free on / |
 | Swap/zram configuration | 2 GiB zram0 swap, priority 100; no disk swap; unchanged for the study |
 | Ambient temperature if available | Not measured |
