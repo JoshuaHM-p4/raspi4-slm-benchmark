@@ -138,6 +138,7 @@ scripts/session.sh quality qwen35-08b-q4km models/Qwen3.5-0.8B-Q4_K_M.gguf
 | `scripts/common.py` | Shared llama-server lifecycle, chat request, and telemetry for the two scripts above |
 | `scripts/pilot.sh` | Phase 4 pilot: short llama-bench run plus the two pilot prompts |
 | `scripts/session.sh` | Measured speed or quality session for one model: cooldown, checksum check, telemetry, throttle flags |
+| `scripts/score_tools.py` | Blinded scoring on the workstation: coded sheets, isolated code tests, unblind, category totals |
 | `pi` | Sync the repo to the Pi (`bagwis-core`), run commands there, pull raw results back |
 | `results/raw/` | Local raw outputs; ignored by Git |
 | `results/processed/` | Curated tables to commit |

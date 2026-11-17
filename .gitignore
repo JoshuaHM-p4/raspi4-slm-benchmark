@@ -7,6 +7,8 @@ results/raw/*
 __pycache__/
 *.pyc
 .venv/
+# Blind sheets and the code->model key; final scores go to data/quality_scores.csv
+results/scoring/
 .last.log
 # Agent instructions: kept local, untracked for now
 CLAUDE.md
