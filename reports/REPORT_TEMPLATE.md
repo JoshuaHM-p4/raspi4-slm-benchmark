@@ -24,9 +24,21 @@ Link the filled hardware record, manifest, frozen prompt-set checksum, runtime c
 
 | Configuration / run | pp128 token/s mean ± SD | pp512 token/s mean ± SD | tg64 token/s mean ± SD | Benchmark peak RSS KiB | Sampled max temp C | Throttle / swap notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| TBD | Not measured | Not measured | Not measured | Not measured | Not measured | TBD |
+| Qwen3.5-0.8B Q4_K_M / `speed/qwen35-08b-q4km` | 19.61 ± 0.05 | 19.31 ± 0.01 | 5.24 ± 0.00 | 640292 | 56.5 | `0x0` throughout (214 samples); start 38.9 °C; no swap activity |
+| LFM2.5-1.2B-Instruct Q4_K_M / `speed/lfm25-12b-q4km` | 12.29 ± 0.01 | 12.23 ± 0.01 | 5.00 ± 0.00 | 767292 | 57.0 | `0x0` throughout (312 samples); start 43.3 °C; system SwapFree dipped ≤ 16 MB |
+| Gemma 4 E2B-it Q4_0 / `speed/gemma4-e2b-q4_0` | 15.45 ± 0.01 | 14.86 ± 0.01 | 2.35 ± 0.00 | 2906572 | 55.0 | `0x0` throughout (384 samples); start 43.8 °C; no swap-out |
 
-Peak RSS is for the timed benchmark process. Report chat-server resource measurements separately if collected. Add latency only if its measurement method was implemented and recorded.
+llama-bench, 4 threads, batch/microbatch 128, one excluded warm-up then 3 measured repetitions per condition; order Qwen → LFM → Gemma, each session started at ≤ 45 °C. Peak RSS is GNU time `%M` of the measured llama-bench process and includes resident file-backed (mmap) weight pages. The `ondemand` governor sampled 700–1800 MHz across idle gaps and load; no throttle or undervoltage flag was ever set on the 5 V 2 A supply.
+
+**Chat-server memory (quality sessions, 20 requests each).** Server VmHWM: Qwen 1432168 KiB, LFM 803788 KiB, Gemma 2932480 KiB. These include llama-server's default host-RAM prompt cache (`--cache-ram`, default 8192 MiB), which stores each finished request's state even with `cache_prompt: false`; Qwen's grew about 40 MB per request. A labelled diagnostic rerun of Qwen with `--cache-ram 0` peaked at 689340 KiB with no swap and produced 20/20 byte-identical answers (`results/raw/diagnostic/qwen35-08b-q4km-cache-ram-0`). For deployment sizing, use the benchmark RSS or a server with the cache capped, not the default-server VmHWM.
+
+**Client-observed answer time** (non-streaming, warm model, prompt cache off; includes prompt processing and generation; not TTFT), 20 scored prompts per model, against the pre-declared 10 s personal budget:
+
+| Configuration | Median s | Max s | Answers ≤ 10 s | Median generated tokens | Truncated at 128 |
+| --- | --- | --- | --- | --- | --- |
+| Qwen3.5-0.8B Q4_K_M | 6.88 | 26.95 | 17 / 20 | 25 | R04 |
+| LFM2.5-1.2B-Instruct Q4_K_M | 6.93 | 29.37 | 17 / 20 | 20 | R04 |
+| Gemma 4 E2B-it Q4_0 | 10.96 | 58.55 | 8 / 20 | 20 | R04 |
 
 ## 5. Quality
 

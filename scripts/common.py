@@ -147,6 +147,9 @@ def add_server_args(parser):
     parser.add_argument("--port", type=int, default=8080)
     parser.add_argument("--load-timeout", type=float, default=900)
     parser.add_argument("--chat-timeout", type=float, default=600)
+    parser.add_argument("--server-arg", action="append", default=[], metavar="ARG",
+                        help="extra llama-server argument (repeatable); deviates from the frozen baseline, "
+                             "so use only for labelled diagnostic runs")
 
 
 def preflight(parser, args):
@@ -165,7 +168,8 @@ def base_result(args):
             "model_file_bytes": args.model.stat().st_size, "model_sha256": sha256(args.model),
             "settings": {"ctx": args.ctx, "threads": args.threads, "batch": BATCH, "ubatch": UBATCH, "ngl": 0,
                          "parallel_slots": PARALLEL_SLOTS, "temperature": 0, "max_tokens": args.max_tokens,
-                         **THINKING, "jinja": True, "load_timeout_s": args.load_timeout},
+                         **THINKING, "jinja": True, "load_timeout_s": args.load_timeout,
+                         "extra_server_args": args.server_arg},
             "before": board()}
 
 
@@ -178,7 +182,8 @@ class LlamaServer:
         self.log_path = args.out / "server.log"
         self.command = [str(args.server.resolve()), "-m", str(args.model.resolve()), "-c", str(args.ctx),
                         "-t", str(args.threads), "-b", str(BATCH), "-ub", str(UBATCH), "-ngl", "0",
-                        "-np", str(PARALLEL_SLOTS), "--jinja", "--host", "127.0.0.1", "--port", str(args.port)]
+                        "-np", str(PARALLEL_SLOTS), "--jinja", "--host", "127.0.0.1", "--port", str(args.port),
+                        *args.server_arg]
         self.exited_on_its_own = False
 
     def __enter__(self):
