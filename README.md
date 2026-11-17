@@ -129,6 +129,8 @@ This starter deliberately leaves task execution manual. Paste the **prompt field
 | `scripts/capture_environment.py` | Best-effort environment snapshot |
 | `scripts/benchmark.py` | Timed synthetic benchmark wrapper |
 | `scripts/monitor.py` | Optional Pi telemetry sampler |
+| `scripts/fetch_model.sh` | Download a GGUF from a pinned Hugging Face revision and verify its SHA-256 |
+| `scripts/feasibility.py` | Feasibility gate: load in llama-server, one non-scored chat, telemetry, provisional status |
 | `pi` | Sync the repo to the Pi (`bagwis-core`), run commands there, pull raw results back |
 | `results/raw/` | Local raw outputs; ignored by Git |
 | `results/processed/` | Curated tables to commit |
