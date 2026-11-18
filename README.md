@@ -1,64 +1,62 @@
 # Small Language Models on Raspberry Pi 4B
 
-**Suggested academic title:** *A Comparative Evaluation of Quantized Small Language Models on Raspberry Pi 4B: Inference Performance, Resource Usage, and Task Quality*
+[![Read the Paper](https://img.shields.io/badge/Read_the_Paper-IEEE_PDF-b31b1b?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](reports/paper/paper.pdf)
+[![Full Report](https://img.shields.io/badge/Full_Report-Markdown-0969da?style=for-the-badge&logo=markdown&logoColor=white)](reports/REPORT.md)
+[![Raw Data](https://img.shields.io/badge/Raw_Data-SHA--256_verified-2da44e?style=for-the-badge&logo=databricks&logoColor=white)](results/README.md)
 
-A personal, reproducible evaluation of selected Gemma 4, Qwen3.5, and Liquid AI LFM2.5 deployments. The goal is to find which model is useful on **my actual Raspberry Pi 4B**, and understand the trade-offs behind that choice.
+![Raspberry Pi 4B](https://img.shields.io/badge/Raspberry_Pi_4B-4_GB-C51A4A?logo=raspberrypi&logoColor=white)
+![llama.cpp](https://img.shields.io/badge/llama.cpp-v1.0.0_%C2%B7_CPU_only-555?logo=cplusplus)
+![Models](https://img.shields.io/badge/models-Qwen3.5_%C2%B7_LFM2.5_%C2%B7_Gemma_4-6f42c1)
 
-**Status:** first comparison complete (18 November 2026): feasibility, speed, and a blinded 20-prompt quality evaluation of three models on one Pi 4B (4 GB). Findings and the personal recommendation are in [reports/REPORT.md](reports/REPORT.md) (IEEE-format PDF: [reports/paper/paper.pdf](reports/paper/paper.pdf)); the frozen protocol is in [docs/PROTOCOL_FREEZE.md](docs/PROTOCOL_FREEZE.md). Settings are the declared experiment choices, not measured optimal settings.
+A reproducible comparison of three quantized small language models running locally on one Raspberry Pi 4B: **Qwen3.5-0.8B**, **LFM2.5-1.2B-Instruct**, and **Gemma 4 E2B-it**. Feasibility, speed, memory, thermals, and blind-scored answer quality are measured separately, and every raw log, answer, and score sheet is published.
 
-## Start here
+## Results at a glance
 
-1. Identify the Pi's RAM capacity, OS architecture, cooling, power supply, and storage.
-2. Read [PROJECT_PLAN.md](PROJECT_PLAN.md) and complete [configs/hardware.md](configs/hardware.md).
-3. Build a pinned version of llama.cpp and load **one** small model successfully.
-4. Complete the feasibility checklist before downloading the remaining candidates.
-5. Freeze the prompt set and settings, benchmark each supported model, then score its answers.
-6. Write the findings in [reports/REPORT.md](reports/REPORT.md), including unsuccessful attempts.
+| Model (quantization) | Generation | Prompt processing (pp512) | Peak RAM | Median answer | Answers ≤ 10 s | Correctness | Adherence |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Qwen3.5-0.8B (Q4_K_M) | 5.24 tok/s | 19.31 tok/s | 625 MiB | 6.75 s | 17 / 20 | 32 / 40 | 31 / 40 |
+| LFM2.5-1.2B-Instruct (Q4_K_M) | 5.00 tok/s | 12.23 tok/s | 749 MiB | 6.72 s | 17 / 20 | 34 / 40 | 34 / 40 |
+| Gemma 4 E2B-it (Q4_0) | 2.35 tok/s | 14.86 tok/s | 2,838 MiB | 10.92 s | 8 / 20 | 37 / 40 | 39 / 40 |
 
-## Candidate deployments
+Speed from llama-bench (mean of 3 runs, SD ≤ 0.05 tok/s); peak RAM of the benchmark process; quality on 20 hand-written prompts scored 0–2 per dimension, greedy decoding. No throttling or undervoltage occurred at any point.
 
-| Candidate | Initial role | Artifact choice |
-| --- | --- | --- |
-| Qwen3.5-0.8B | Small starting candidate | Instruction/chat checkpoint; compatible GGUF; approximately 4-bit |
-| LFM2.5-1.2B-Instruct | Second starting candidate | Official GGUF, initially Q4_K_M |
-| Gemma 4 E2B instruction-tuned | Conditional third candidate | Compatible approximately 4-bit GGUF, subject to actual RAM and runtime support |
-| Qwen3.5-2B | Optional extension | Add only after the initial comparison works |
+**Recommendation for this board:** LFM2.5-1.2B-Instruct as the interactive default (fast, small, and stable across decoding settings); Gemma 4 E2B when accuracy matters more than a 10–60 s wait. Qwen3.5-0.8B loops on long lists under greedy decoding; its vendor-recommended sampling fixes that but lowered its correctness to 25/40 in the follow-up. Details, caveats, and the vendor-sampling follow-up are in the [paper](reports/paper/paper.pdf) and [report](reports/REPORT.md).
 
-Use exact checkpoint names, not just family names, in the results. The Qwen 0.8B and 2B variants appear in its official model documentation [2]. Liquid provides an official GGUF repository [3]. Google describes E2B as an effective-parameter model: its memory footprint is not equivalent to a conventional dense 2B model [1].
+## Setup
 
-The official LFM2.5 Q4_K_M artifact is about **731 MB on disk** at the checked revision [3]. That is a download size, not total runtime RAM. Do not infer Pi throughput from vendor measurements on phones, desktops, or Pi 5 hardware.
-
-This is a comparison of **deployable configurations with different sizes and architectures**, not an experiment that isolates architecture or parameter count as the only variable.
-
-## Minimal experiment
-
-| Aspect | Initial choice |
+| | |
 | --- | --- |
-| Hardware | One Raspberry Pi 4B; record RAM and stock operating conditions |
-| Runtime | One pinned llama.cpp commit, CPU only |
-| Parallelism | 4 CPU threads initially; one request at a time |
-| Quantization | Prefer Q4_K_M when available; disclose every difference |
-| Quality context | 2,048 tokens; batch and microbatch 128 |
-| Quality generation | Greedy baseline, maximum 128 generated tokens |
-| Reasoning mode | Disable optional thinking through supported template settings; verify in a pilot |
-| Speed | Synthetic prompt processing at 128 and 512 tokens; generation at 64 tokens |
-| Repetitions | Three measured speed repetitions per condition, after a separate warm-up |
-| Quality | 20 fixed prompts across five categories; one response per prompt |
-| Scoring | 0–2 correctness and 0–2 instruction adherence; preserve all raw answers |
+| Board | Raspberry Pi 4 Model B Rev 1.5, 4 GB, heatsink + 5 V fan, 5 V 2 A supply |
+| OS | Debian 13 (aarch64), kernel 6.18, 2 GiB zram swap |
+| Runtime | llama.cpp `v1.0.0` (`b1b770d`), CPU backend only, 4 threads |
+| Models | Pinned by revision and SHA-256 in [configs/models.csv](configs/models.csv) |
+| Protocol | Feasibility gate → pilot → frozen settings ([docs/PROTOCOL_FREEZE.md](docs/PROTOCOL_FREEZE.md)) → speed → answers → blind scoring |
 
-Greedy decoding is a reproducible starting condition, not a claim that every model performs best with it. Keep model-specific recommended sampling as a separately labelled follow-up. Every model gets its own correct native chat template, while receiving the same user prompt. If reasoning cannot be disabled consistently, disclose that and do not silently mix reasoning modes.
+## Try the models yourself
 
-## Setup on the Pi
-
-Use a 64-bit OS and check that `uname -m` reports `aarch64`. The commands below assume a Debian-based Raspberry Pi OS with Git, CMake, a compiler, Python 3, GNU time, and coreutils available. Install missing prerequisites through your OS package manager.
+On the Pi, from `~/raspi4bench-slm` (one model at a time; 4 GB does not fit two):
 
 ```bash
-sudo apt update
-sudo apt install git cmake build-essential python3 time coreutils
-git clone https://github.com/ggml-org/llama.cpp vendor/llama.cpp
+# Interactive chat (Ctrl+C to quit); add -st -p "question" for a single answer
+vendor/llama.cpp/build/bin/llama-cli -m models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf \
+  -t 4 -c 2048 --temp 0 --chat-template-kwargs '{"enable_thinking":false}'
+
+# OpenAI-compatible server; from a laptop: ssh -L 8080:127.0.0.1:8080 <pi>
+vendor/llama.cpp/build/bin/llama-server -m models/gemma-4-E2B-it-Q4_0.gguf \
+  -t 4 -c 2048 -np 1 --cache-ram 0 --host 127.0.0.1 --port 8080
 ```
 
-Choose a known-working llama.cpp commit after the compatibility pilot, record its full SHA, and use it for every model. Do not assume that an arbitrary old release supports these architectures. This study uses tag `v1.0.0`, commit `b1b770d90d94cad9e9ea5b993bdbc383a522fb28`.
+```bash
+curl -s localhost:8080/v1/chat/completions -H "Content-Type: application/json" -d '{
+  "messages":[{"role":"user","content":"Name two output devices."}],
+  "max_tokens":128, "temperature":0, "chat_template_kwargs":{"enable_thinking":false}}'
+```
+
+`--cache-ram 0` keeps llama-server's prompt cache from growing memory per request. Vendor-recommended sampling settings per model are in [configs/vendor_sampling.json](configs/vendor_sampling.json).
+
+## Reproduce the study
+
+**1. Build llama.cpp on the Pi** (needs `git cmake build-essential python3 time`):
 
 ```bash
 git clone --depth 1 --branch v1.0.0 https://github.com/ggml-org/llama.cpp vendor/llama.cpp
@@ -66,90 +64,52 @@ cmake -S vendor/llama.cpp -B vendor/llama.cpp/build -DCMAKE_BUILD_TYPE=Release \
   -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_OPENSSL=OFF \
   -DLLAMA_USE_PREBUILT_UI=OFF -DLLAMA_BUILD_UI=OFF
 cmake --build vendor/llama.cpp/build --config Release -j 2 --target llama-bench llama-server llama-cli
-python3 scripts/capture_environment.py --output results/raw/environment-<date>.json
 ```
 
-The web UI is disabled: answers are collected through the server API, and in a shallow clone the prebuilt-UI download resolves the wrong asset version and fails the build. The server therefore reports version `1.0.0-dev (build 1, commit b1b770d)`; the commit SHA is the identity to record.
+The web UI is disabled: in a shallow clone its prebuilt-asset download resolves the wrong version and fails the build, and all answers go through the API.
 
-Replace angle-bracket placeholders before executing commands. Build with fewer jobs if RAM is limited. Keep the same build options for all models and inspect the build log to confirm CPU execution. Consult upstream build instructions [4] if your OS needs different dependencies.
-
-Download one selected GGUF per candidate from a documented source and place it under `models/`. No model weights are included. Record its repository revision, filename, license, byte size, and checksum in `configs/models.csv`.
+**2. Fetch the pinned models** (revision and checksum from [configs/models.csv](configs/models.csv)):
 
 ```bash
-sha256sum models/<exact-model-filename>.gguf
-vendor/llama.cpp/build/bin/llama-bench --help
-vendor/llama.cpp/build/bin/llama-server --help
+scripts/fetch_model.sh LiquidAI/LFM2.5-1.2B-Instruct-GGUF 8ed288026e23958ad9dfa92d53ed773a8eee7125 \
+  LFM2.5-1.2B-Instruct-Q4_K_M.gguf b1b3de114215d9507409a662a501a631095a479a419584e8a2ded6304b19b4f5
 ```
 
-## Run a speed benchmark
+**3. Run the measured sessions** (each waits for ≤ 45 °C and records telemetry and throttle flags):
 
 ```bash
-python3 scripts/benchmark.py \
-  --model models/<exact-model-filename>.gguf \
-  --label qwen35-08b-q4 \
-  --out results/raw/qwen35-08b-speed
+scripts/feasibility.py --model models/<file>.gguf --label <label> --out results/raw/feasibility/<label>-r1
+scripts/session.sh speed          <label> models/<file>.gguf   # llama-bench pp128, pp512, tg64
+scripts/session.sh quality        <label> models/<file>.gguf   # 20 frozen prompts, greedy
+scripts/session.sh quality-vendor <label> models/<file>.gguf   # same, vendor sampling, seed 42
 ```
 
-The wrapper runs an excluded warm-up followed by one llama-bench invocation with three internal repetitions per condition. It saves JSONL, logs, GNU time output, the exact command, file checksum, and success/failure metadata. By default, each invocation has a 30-minute ceiling; change `--timeout` only under a documented policy applied equally to all candidates. It refuses to overwrite an existing run directory.
-
-Synthetic `pp` and `tg` are separate tests. `tg64` is not the same as decoding an answer after a 512-token user prompt. These tests provide runtime microbenchmarks, not application latency or answer quality [5]. The batch size is 128; no claim is made that it is optimal.
-
-For optional thermal monitoring, run this in a second terminal before the benchmark and stop it with Ctrl+C afterwards:
+**4. Score blind and build the outputs** (on a workstation; coding answers run in a network-less container):
 
 ```bash
-python3 scripts/monitor.py --output results/raw/qwen35-08b-telemetry.csv
+python3 scripts/score_tools.py sheets            # then fill results/scoring/blind_scores.csv
+python3 scripts/score_tools.py unblind
+reports/paper/build.sh                           # processed tables, figures, paper PDF
+sha256sum -c results/SHA256SUMS                  # verify every raw and scoring file
 ```
 
-Use the same monitoring setup for every model. The script samples temperature, throttling, CPU clock, and system memory. It does not measure process peak RAM or electrical power. GNU time reports the benchmark process peak RSS separately.
+From a separate machine, `./pi run '<command>'` syncs the repository to the Pi and runs a command there; `./pi pull` copies raw results back.
 
-## Collect task answers
+## Repository layout
 
-Answers are collected through the llama-server chat API, one model resident at a time, with the frozen settings in [docs/PROTOCOL_FREEZE.md](docs/PROTOCOL_FREEZE.md): a fresh single-turn chat per prompt containing the **prompt field only**, greedy decoding, 128 generated tokens, thinking disabled through `chat_template_kwargs`, prompt cache off. Qwen's official documentation warns that `/nothink` is not the supported switching mechanism [2]; the template kwarg is used instead and verified in each saved rendered prompt.
-
-```bash
-scripts/session.sh speed   qwen35-08b-q4km models/Qwen3.5-0.8B-Q4_K_M.gguf
-scripts/session.sh quality qwen35-08b-q4km models/Qwen3.5-0.8B-Q4_K_M.gguf
-```
-
-`session.sh quality` verifies the frozen prompt checksum, waits for a comparable start temperature, and runs `scripts/collect_answers.py`, which saves each request, rendered prompt, full response, finish reason, token counts, and client-observed wall time under `results/raw/quality/<label>/`. Never send the answer key to the model. Score using `data/quality_scores.csv` and [docs/EVALUATION.md](docs/EVALUATION.md).
-
-## Repository contents
-
-| Path | Purpose |
+| Path | Contents |
 | --- | --- |
-| `README.md` | Project overview and quick start |
-| `PROJECT_PLAN.md` | Scope, research questions, controls, and decision rules |
-| `configs/hardware.md` | Hardware and software recording sheet |
-| `configs/models.csv` | Exact artifact manifest; initially unfilled |
-| `data/prompts.jsonl` | 20 original prompts with reference answers and criteria |
-| `data/pilot_prompts.jsonl` | Two non-scored pilot prompts (format check, output-cap check) |
-| `data/prompts.jsonl.sha256` | Frozen checksum of the scored prompt set |
-| `docs/PROTOCOL_FREEZE.md` | Frozen settings, pilot findings, and the deviation log |
-| `data/quality_scores.csv` | Empty scoring table with documented columns |
-| `docs/EVALUATION.md` | Run order, metrics, scoring, and interpretation |
-| `docs/TITLES.md` | Academic title alternatives |
-| `docs/REFERENCES.md` | Official documentation checked for this plan |
-| `scripts/capture_environment.py` | Best-effort environment snapshot |
-| `scripts/benchmark.py` | Timed synthetic benchmark wrapper |
-| `scripts/monitor.py` | Optional Pi telemetry sampler |
-| `scripts/fetch_model.sh` | Download a GGUF from a pinned Hugging Face revision and verify its SHA-256 |
-| `scripts/feasibility.py` | Feasibility gate: load in llama-server, one non-scored chat, telemetry, provisional status |
-| `scripts/collect_answers.py` | API answer collection: one fresh chat per prompt, saves request, response, status, wall time |
-| `scripts/common.py` | Shared llama-server lifecycle, chat request, and telemetry for the two scripts above |
-| `scripts/pilot.sh` | Phase 4 pilot: short llama-bench run plus the two pilot prompts |
-| `scripts/session.sh` | Measured speed or quality session for one model: cooldown, checksum check, telemetry, throttle flags |
-| `scripts/score_tools.py` | Blinded scoring on the workstation: coded sheets, isolated code tests, unblind, category totals |
-| `pi` | Sync the repo to the Pi (`bagwis-core`), run commands there, pull raw results back |
-| `results/raw/` | Unmodified raw outputs from the Pi (committed; see [results/README.md](results/README.md)) |
-| `results/processed/` | Curated tables, regenerated by `scripts/process_results.py`; `results/SHA256SUMS` covers all raw and scoring files |
-| `reports/REPORT.md` | Full report: method, feasibility, speed, quality, recommendation, limitations |
-| `reports/paper/` | IEEE conference-format LaTeX paper (`paper.tex`, `paper.pdf`), figures; rebuild everything with `reports/paper/build.sh` |
-| `models/`, `vendor/` | Local weights and runtime source; ignored by Git |
+| [`reports/paper/`](reports/paper) | IEEE conference paper (`paper.pdf`, `paper.tex`), figures, build script |
+| [`reports/REPORT.md`](reports/REPORT.md) | Full report with per-category tables and representative answers |
+| [`results/`](results/README.md) | Raw logs, answers, telemetry, blind score sheets and keys, curated tables, checksums |
+| [`data/`](data) | Frozen prompt set and checksum, pilot prompts, final score tables |
+| [`configs/`](configs) | Hardware record, model manifest, vendor sampling presets |
+| [`docs/`](docs) | Project plan details, evaluation rubric, protocol freeze and deviation log, references |
+| [`scripts/`](scripts) | Fetch, feasibility gate, benchmark, answer collection, sessions, scoring, processing |
+| [`PROJECT_PLAN.md`](PROJECT_PLAN.md) | Scope, research questions, controls, and decision rules |
 
-## Scope and limits
+Model weights and the llama.cpp source are not included (`models/`, `vendor/`).
 
-No training, fine-tuning, vision/audio inputs, retrieval system, agents, web access, or accelerator hardware is required. Energy measurement is optional and requires an external meter; CPU usage is not a power measurement. Twenty hand-authored prompts establish personal usefulness, not a comprehensive standardized intelligence ranking. Keep speed, resource usage, and task quality separate when making the final recommendation.
+## Limitations
 
-## References
-
-Numbered links and access date: [docs/REFERENCES.md](docs/REFERENCES.md).
+One board, one runtime build, and one quantization per model (Gemma at Q4_0, the others at Q4_K_M). Twenty prompts with one answer each and a single scorer support descriptive comparisons, not statistical ones; part of the scoring was revised after unblinding, as documented in the report. Speeds are synthetic and warm; answer times are non-streaming. Energy was not measured.
