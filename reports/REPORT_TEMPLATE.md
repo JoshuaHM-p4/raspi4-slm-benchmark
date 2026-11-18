@@ -2,15 +2,22 @@
 
 ## Abstract
 
-TODO after measurements: objective, device/RAM, exact candidates, method, key measured trade-offs, and limitations. Do not insert expected results as observations.
+Three quantized small language models were deployed with one pinned llama.cpp build (CPU only) on one Raspberry Pi 4 Model B (4 GB RAM, 64-bit Debian 13, stock clocks, heatsink and 5 V fan, 5 V 2 A supply): Qwen3.5-0.8B (Q4_K_M), LFM2.5-1.2B-Instruct (Q4_K_M), and Gemma 4 E2B-it (Q4_0). All three loaded at a 2,048-token context; Gemma used about 2.9 GB of the board's 3.8 GB and swapped to zram on its first load. Synthetic generation ran at 5.24 ± 0.00 (Qwen), 5.00 ± 0.00 (LFM), and 2.35 ± 0.00 (Gemma) tokens/s; prompt processing at pp512 ran at 19.31, 12.23, and 14.86 tokens/s. On a 20-prompt personal suite scored 0–2 for correctness and adherence, Gemma scored 38/40 and 39/40, LFM 33/40 and 34/40, and Qwen 32/40 and 31/40, while only Qwen and LFM answered most prompts within the pre-declared 10 s wait (17/20 each, against 8/20 for Gemma). No throttling or undervoltage was observed. Results describe these deployments on this board with a small, single-scorer suite; they do not rank models in general.
 
 ## 1. Introduction
 
-Motivation: a useful local assistant on affordable hardware. Explain why this personal evaluation focuses on feasibility, speed, resource use, and task quality.
+The goal is a useful local text assistant on hardware already owned: a Raspberry Pi 4B that also serves other projects. The questions are practical: which candidate fits in memory, how long an answer takes, and whether the answers are right and follow instructions. Feasibility, speed and resources, and task quality are kept as separate evidence, and the recommendation weighs them for one stated use case rather than through a combined score.
 
 ## 2. Method
 
-Link the filled hardware record, manifest, frozen prompt-set checksum, runtime commit, exact commands, and run identifiers. Declare quantization, native templates, reasoning mode, decoding, context/output caps, warm-up, and scoring method. Explain any deviation from the initial plan.
+- **Hardware and software:** [configs/hardware.md](../configs/hardware.md); environment snapshot `results/raw/environment-20261118.json`.
+- **Runtime:** llama.cpp `b1b770d90d94cad9e9ea5b993bdbc383a522fb28` (tag v1.0.0), CPU backend only (`-mcpu=cortex-a72`, no dot-product), web UI disabled; build logs in `results/raw/build/`.
+- **Artifacts:** exact repositories, revisions, SHA-256 checksums, licenses, and template/thinking handling in [configs/models.csv](../configs/models.csv). Qwen is a third-party (unsloth) GGUF; Gemma is Q4_0, not Q4_K_M like the other two.
+- **Frozen protocol:** [docs/PROTOCOL_FREEZE.md](../docs/PROTOCOL_FREEZE.md), frozen after a two-prompt pilot and before any scored answer. Prompt set `data/prompts.jsonl`, SHA-256 `caec2891…cbb3b6`.
+- **Speed:** llama-bench via `scripts/benchmark.py`, 4 threads, batch/microbatch 128, excluded warm-up, then pp128, pp512, and tg64 with 3 repetitions each; `scripts/monitor.py` at 1 Hz; sessions run Qwen → LFM → Gemma, each starting at ≤ 45 °C.
+- **Answers:** `scripts/collect_answers.py` through llama-server (`-c 2048 -np 1 --jinja`, one model resident): one fresh single-turn chat per prompt containing only the prompt text, greedy decoding (temperature 0), at most 128 generated tokens, thinking disabled with `chat_template_kwargs` (verified in every saved rendered prompt), prompt cache off. Every request, rendered prompt, response, finish reason, token count, and wall time is in `results/raw/quality/<label>/`.
+- **Scoring:** one scorer (the author) on a blinded sheet (`scripts/score_tools.py`): answers grouped by prompt, shuffled behind random codes, rubric in [docs/EVALUATION.md](../docs/EVALUATION.md). Coding answers were executed against the prompts' test cases in a network-less throwaway container on a separate workstation; correctness for coding is behaviour-based, adherence is manual review.
+- **Deviations from the starter plan:** `-np 1` added after the feasibility gate (single request slot, matching the plan's one-request policy); web UI disabled at build time; answers collected through the API instead of the manual web UI; chat-server memory reported with the prompt-cache caveat in section 4.
 
 ## 3. Feasibility
 
@@ -42,28 +49,61 @@ llama-bench, 4 threads, batch/microbatch 128, one excluded warm-up then 3 measur
 
 ## 5. Quality
 
-| Configuration | Category | Completed / attempted | Correctness / 8 | Adherence / 8 | Failure or truncation notes |
-| --- | --- | --- | --- | --- | --- |
-| TBD | Instruction following | Not run | — | — | TBD |
-| TBD | Extraction/classification | Not run | — | — | TBD |
-| TBD | Reasoning | Not run | — | — | TBD |
-| TBD | Summarization | Not run | — | — | TBD |
-| TBD | Coding | Not run | — | — | TBD |
+All-attempts view: every model completed 19 of 20 prompts and was truncated at 128 tokens on R04; no timeouts or runtime errors, so the completed-only view differs only by R04 (scored as received and flagged).
 
-Include a few representative saved answers and explain scoring judgments. State whether code was executed or reviewed manually. Clearly label all-attempts versus completed-only scores.
+| Configuration | Category | Completed / attempted (truncated) | Correctness / 8 | Adherence / 8 | Failure or truncation notes |
+| --- | --- | --- | --- | --- | --- |
+| Qwen3.5-0.8B Q4_K_M | Instruction following | 4 / 4 (0) | 8 | 8 | — |
+| Qwen3.5-0.8B Q4_K_M | Extraction/classification | 4 / 4 (0) | 6 | 7 | E02: "positive" for a neutral sentence |
+| Qwen3.5-0.8B Q4_K_M | Reasoning | 3 / 4 (1) | 4 | 5 | R02 answered from world knowledge, not the premises; R04 truncated without a conclusion |
+| Qwen3.5-0.8B Q4_K_M | Summarization | 4 / 4 (0) | 6 | 4 | S02 three bullets for "exactly two"; S04 22 words for "at most 20"; S03 invented a cause |
+| Qwen3.5-0.8B Q4_K_M | Coding | 4 / 4 (0) | 8 | 7 | All tests pass; C04 added an explanation |
+| LFM2.5-1.2B-Instruct Q4_K_M | Instruction following | 4 / 4 (0) | 8 | 8 | — |
+| LFM2.5-1.2B-Instruct Q4_K_M | Extraction/classification | 4 / 4 (0) | 8 | 8 | — |
+| LFM2.5-1.2B-Instruct Q4_K_M | Reasoning | 3 / 4 (1) | 3 | 5 | R01 "9 pens" (correct: 14); R02 not derived from premises; R04 truncated |
+| LFM2.5-1.2B-Instruct Q4_K_M | Summarization | 4 / 4 (0) | 6 | 7 | S01 omitted the Monday resumption; S02 overlong bullets |
+| LFM2.5-1.2B-Instruct Q4_K_M | Coding | 4 / 4 (0) | 8 | 6 | All tests pass; C03 and C04 wrapped in Markdown fences |
+| Gemma 4 E2B-it Q4_0 | Instruction following | 4 / 4 (0) | 8 | 8 | — |
+| Gemma 4 E2B-it Q4_0 | Extraction/classification | 4 / 4 (0) | 8 | 8 | — |
+| Gemma 4 E2B-it Q4_0 | Reasoning | 3 / 4 (1) | 7 | 7 | R04 listed the five times but was truncated before stating the count |
+| Gemma 4 E2B-it Q4_0 | Summarization | 4 / 4 (0) | 7 | 8 | S02 omitted Fan B |
+| Gemma 4 E2B-it Q4_0 | Coding | 4 / 4 (0) | 8 | 8 | All tests pass |
+
+Totals out of 40 (correctness / adherence): Gemma 38 / 39, LFM 33 / 34, Qwen 32 / 31.
+
+Representative answers (full text in `results/raw/quality/<label>/answers/`):
+
+- **R01** (12 pens, remove 3, add 5): Qwen "12 minus 3 equals 9, and 9 plus 5 equals 14. So, 14 pens remain." (2/2); Gemma "14 pens remain. Three were removed and five were added to the original 12." (2/2); LFM "There are 9 pens remaining. The addition of five pens increases the total." (0/1: wrong result, explanation contradicts it).
+- **E02** ("The package arrived on Tuesday."): LFM and Gemma "neutral"; Qwen "positive" (0/1: correct format, wrong label).
+- **S04** (at most 20 words): Gemma and LFM stayed within the limit; Qwen kept the facts in 22 words (2/0: correct content, constraint violated).
+- **R04** (count samples from 0 to 20 s inclusive): all three began a step-by-step explanation and reached the 128-token cap before stating the count, so this item mostly measures verbosity under the cap.
 
 ## 6. Discussion and personal recommendation
 
-Which configuration is useful for which task? How much waiting is acceptable to me? Do smaller models sacrifice correctness for speed? Did a candidate fail due to RAM, unsupported runtime, or another cause? Avoid claiming to isolate architecture effects.
+**Use case and constraint.** A local assistant for short instructions, extraction, small summaries, and small code snippets, where I want an answer within 10 s (declared after the pilot, before scoring).
+
+**What the evidence shows.**
+
+- **Gemma 4 E2B** gave the most correct and best-formatted answers (38/40, 39/40; its only correctness losses were R04 truncation and one omitted detail). It costs speed and memory: 2.35 tokens/s generation, a median answer of 10.96 s with only 8/20 answers inside 10 s and up to 58.6 s, and about 2.9 GB resident, which leaves under 1 GB for everything else on a 4 GB board and swapped on a cold first load.
+- **Qwen3.5-0.8B and LFM2.5-1.2B** are equally fast for answers on this suite (median 6.88 vs 6.93 s, 17/20 within 10 s each) and fit in under 0.8 GB. Their quality totals differ by one or three points, which this suite cannot distinguish. They fail differently: LFM makes reasoning errors (R01 wrong arithmetic) and wraps code in fences; Qwen misses explicit format limits (bullet count, word count) and, in the pilot, looped under greedy decoding on a long list. Qwen processes prompts about 1.6× faster (19.3 vs 12.2 tokens/s at pp512) and uses the least memory, which matters for longer inputs than this suite contains.
+- **Smaller is faster here, but not proportionally more accurate.** Gemma is the slowest generator and the most accurate; the two faster models trade accuracy in reasoning and constraint-following, not in simple instructions or extraction, where all three were near ceiling.
+- **No candidate failed** on RAM, runtime support, or thermals; Gemma's restriction is memory headroom, not a failure.
+
+**Recommendation (for this board and use case).** Run **LFM2.5-1.2B-Instruct (Q4_K_M)** as the default interactive assistant: it meets the 10 s budget for most short answers, needs under 0.8 GB, followed instructions and extraction perfectly on this suite, and its code passed every test despite the fences. Keep **Gemma 4 E2B** for non-interactive or accuracy-critical requests where a 10–60 s wait is acceptable and nothing else memory-heavy is running. Qwen3.5-0.8B is an equally fast alternative, worth preferring if inputs are long (faster prompt processing) or RAM is tight, but only with its recommended sampling settings tested, given the greedy looping. The choice between LFM and Qwen is a judgment about failure types, not a measured quality gap.
 
 ## 7. Limitations
 
-One board; small custom prompt set; manual scorer; differing sizes/architectures/tokenizers; selected quantizations and runtime; warm-cache microbenchmarks; sampling/thermal effects; no measured electrical energy unless added.
+- One board, one runtime build, one quantization per model (Gemma at Q4_0, the others at Q4_K_M); different sizes, architectures, and tokenizers, so no architecture effect is isolated.
+- 20 hand-written prompts with one answer each, scored by one person; a few points per category are not a statistically established difference. Coding correctness is from executed tests; all other scores are manual.
+- The first scoring pass was blind. The correctness/adherence split was revised after a consistency check that displayed model labels, so the revision was not blind; per-model correctness totals were identical in both passes (38, 33, 32) and only adherence points moved.
+- Greedy decoding for all models, which is not every vendor's recommended setting (Qwen's card recommends sampling with a presence penalty for non-thinking mode); R04 shows the 128-token cap penalizes verbose step-by-step answers.
+- Speed is synthetic, warm, and single-request; answer times are client-observed, non-streaming, warm-model times, not time to first token. Clock sampled with the `ondemand` governor; ambient temperature not measured; no electrical energy measured.
+- Chat-server memory includes llama-server's default prompt cache (section 4).
 
 ## 8. Conclusion
 
-TODO after results: concise evidence-based recommendation and one useful next experiment.
+On a 4 GB Raspberry Pi 4B, all three candidates run with llama.cpp on the CPU. LFM2.5-1.2B-Instruct and Qwen3.5-0.8B deliver most short answers within 10 s in under 0.8 GB, while Gemma 4 E2B gives clearly better answers at less than half the generation speed and nearly 3 GB of RAM. The personal default is LFM2.5-1.2B for interactive use, with Gemma 4 E2B for accuracy-critical requests. The most useful next experiment is a labelled rerun with each vendor's recommended sampling settings (fixed seeds), to test whether Qwen's format and looping problems and LFM's reasoning errors persist outside greedy decoding.
 
 ## References
 
-See [references](../docs/REFERENCES.md); add exact revisions used.
+See [references](../docs/REFERENCES.md). Exact artifact revisions and checksums: [configs/models.csv](../configs/models.csv); runtime commit `b1b770d90d94cad9e9ea5b993bdbc383a522fb28`.

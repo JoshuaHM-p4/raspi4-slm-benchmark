@@ -4,7 +4,7 @@
 
 A personal, reproducible evaluation of selected Gemma 4, Qwen3.5, and Liquid AI LFM2.5 deployments. The goal is to find which model is useful on **my actual Raspberry Pi 4B**, and understand the trade-offs behind that choice.
 
-**Status:** starter project; no Raspberry Pi inference results have been collected. Model information was checked on 17 November 2026. Example settings are proposed experiment choices, not measured optimal settings.
+**Status:** first comparison complete (18 November 2026): feasibility, speed, and a blinded 20-prompt quality evaluation of three models on one Pi 4B (4 GB). Findings and the personal recommendation are in [reports/REPORT_TEMPLATE.md](reports/REPORT_TEMPLATE.md); the frozen protocol is in [docs/PROTOCOL_FREEZE.md](docs/PROTOCOL_FREEZE.md). Settings are the declared experiment choices, not measured optimal settings.
 
 ## Start here
 
