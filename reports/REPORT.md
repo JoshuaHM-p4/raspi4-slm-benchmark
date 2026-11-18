@@ -43,9 +43,11 @@ llama-bench, 4 threads, batch/microbatch 128, one excluded warm-up then 3 measur
 
 | Configuration | Median s | Max s | Answers ≤ 10 s | Median generated tokens | Truncated at 128 |
 | --- | --- | --- | --- | --- | --- |
-| Qwen3.5-0.8B Q4_K_M | 6.88 | 26.95 | 17 / 20 | 25 | R04 |
-| LFM2.5-1.2B-Instruct Q4_K_M | 6.93 | 29.37 | 17 / 20 | 20 | R04 |
-| Gemma 4 E2B-it Q4_0 | 10.96 | 58.55 | 8 / 20 | 20 | R04 |
+| Qwen3.5-0.8B Q4_K_M | 6.75 | 26.95 | 17 / 20 | 24 | R04 |
+| LFM2.5-1.2B-Instruct Q4_K_M | 6.72 | 29.37 | 17 / 20 | 19 | R04 |
+| Gemma 4 E2B-it Q4_0 | 10.92 | 58.55 | 8 / 20 | 19.5 | R04 |
+
+Medians are over 20 values (mean of the 10th and 11th), computed from `results/processed/answer_times.csv`.
 
 ## 5. Quality
 
@@ -78,18 +80,30 @@ Representative answers (full text in `results/raw/quality/<label>/answers/`):
 - **S04** (at most 20 words): Gemma and LFM stayed within the limit; Qwen kept the facts in 22 words (2/0: correct content, constraint violated).
 - **R04** (count samples from 0 to 20 s inclusive): all three began a step-by-step explanation and reached the 128-token cap before stating the count, so this item mostly measures verbosity under the cap.
 
+## 5a. Follow-up: vendor-recommended sampling
+
+The pilot and the 20 frozen prompts were rerun with each vendor's recommended non-thinking sampling (`configs/vendor_sampling.json`; unset parameters neutral), seed 42, one answer per prompt, everything else unchanged. Raw files: `results/raw/pilot-vendor/`, `results/raw/quality-vendor/`.
+
+| Configuration | Sampling | P02 distinct / listed (greedy → vendor) | Answers identical to greedy | Code tests passed (greedy → vendor) | Median answer s | Answers ≤ 10 s |
+| --- | --- | --- | --- | --- | --- | --- |
+| Qwen3.5-0.8B | T 1.0, top-k 20, presence 2.0 | 3/25 → 23/23 | 9 / 20 | 9/9 → 6/9 | 7.08 | 18 / 20 |
+| LFM2.5-1.2B | T 0.1, top-k 50, repeat 1.05 | 22/26 → 22/25 | 11 / 20 | 9/9 → 9/9 | 7.06 | 18 / 20 |
+| Gemma 4 E2B | T 1.0, top-p 0.95, top-k 64 | 24/24 → 26/26 | 10 / 20 | 9/9 → 9/9 | 10.88 | 9 / 20 |
+
+Qwen's presence penalty removes the greedy looping, but the same settings cost three of nine executed code tests. Answer times, memory, and thermals were essentially unchanged; throttle flags stayed `0x0`. Blind quality scores for this set go to `data/quality_scores_vendor.csv` (`python3 scripts/score_tools.py unblind --set vendor`); they are reported separately and do not change the greedy comparison above.
+
 ## 6. Discussion and personal recommendation
 
 **Use case and constraint.** A local assistant for short instructions, extraction, small summaries, and small code snippets, where I want an answer within 10 s (declared after the pilot, before scoring).
 
 **What the evidence shows.**
 
-- **Gemma 4 E2B** gave the most correct and best-formatted answers (38/40, 39/40; its only correctness losses were R04 truncation and one omitted detail). It costs speed and memory: 2.35 tokens/s generation, a median answer of 10.96 s with only 8/20 answers inside 10 s and up to 58.6 s, and about 2.9 GB resident, which leaves under 1 GB for everything else on a 4 GB board and swapped on a cold first load.
-- **Qwen3.5-0.8B and LFM2.5-1.2B** are equally fast for answers on this suite (median 6.88 vs 6.93 s, 17/20 within 10 s each) and fit in under 0.8 GB. Their quality totals differ by one or three points, which this suite cannot distinguish. They fail differently: LFM makes reasoning errors (R01 wrong arithmetic) and wraps code in fences; Qwen misses explicit format limits (bullet count, word count) and, in the pilot, looped under greedy decoding on a long list. Qwen processes prompts about 1.6× faster (19.3 vs 12.2 tokens/s at pp512) and uses the least memory, which matters for longer inputs than this suite contains.
+- **Gemma 4 E2B** gave the most correct and best-formatted answers (38/40, 39/40; its only correctness losses were R04 truncation and one omitted detail). It costs speed and memory: 2.35 tokens/s generation, a median answer of 10.92 s with only 8/20 answers inside 10 s and up to 58.6 s, and about 2.9 GB resident, which leaves under 1 GB for everything else on a 4 GB board and swapped on a cold first load.
+- **Qwen3.5-0.8B and LFM2.5-1.2B** are equally fast for answers on this suite (median 6.75 vs 6.72 s, 17/20 within 10 s each) and fit in under 0.8 GB. Their quality totals differ by one or three points, which this suite cannot distinguish. They fail differently: LFM makes reasoning errors (R01 wrong arithmetic) and wraps code in fences; Qwen misses explicit format limits (bullet count, word count) and, in the pilot, looped under greedy decoding on a long list. Qwen processes prompts about 1.6× faster (19.3 vs 12.2 tokens/s at pp512) and uses the least memory, which matters for longer inputs than this suite contains.
 - **Smaller is faster here, but not proportionally more accurate.** Gemma is the slowest generator and the most accurate; the two faster models trade accuracy in reasoning and constraint-following, not in simple instructions or extraction, where all three were near ceiling.
 - **No candidate failed** on RAM, runtime support, or thermals; Gemma's restriction is memory headroom, not a failure.
 
-**Recommendation (for this board and use case).** Run **LFM2.5-1.2B-Instruct (Q4_K_M)** as the default interactive assistant: it meets the 10 s budget for most short answers, needs under 0.8 GB, followed instructions and extraction perfectly on this suite, and its code passed every test despite the fences. Keep **Gemma 4 E2B** for non-interactive or accuracy-critical requests where a 10–60 s wait is acceptable and nothing else memory-heavy is running. Qwen3.5-0.8B is an equally fast alternative, worth preferring if inputs are long (faster prompt processing) or RAM is tight, but only with its recommended sampling settings tested, given the greedy looping. The choice between LFM and Qwen is a judgment about failure types, not a measured quality gap.
+**Recommendation (for this board and use case).** Run **LFM2.5-1.2B-Instruct (Q4_K_M)** as the default interactive assistant: it meets the 10 s budget for most short answers, needs under 0.8 GB, followed instructions and extraction perfectly on this suite, and its code passed every test despite the fences. Keep **Gemma 4 E2B** for non-interactive or accuracy-critical requests where a 10–60 s wait is acceptable and nothing else memory-heavy is running. Qwen3.5-0.8B is an equally fast alternative, worth preferring if inputs are long (faster prompt processing) or RAM is tight; its recommended sampling removes the greedy looping but cost three of nine code tests in the follow-up (section 5a), so its decoding settings should be chosen per task. The choice between LFM and Qwen is a judgment about failure types, not a measured quality gap.
 
 ## 7. Limitations
 
@@ -102,7 +116,7 @@ Representative answers (full text in `results/raw/quality/<label>/answers/`):
 
 ## 8. Conclusion
 
-On a 4 GB Raspberry Pi 4B, all three candidates run with llama.cpp on the CPU. LFM2.5-1.2B-Instruct and Qwen3.5-0.8B deliver most short answers within 10 s in under 0.8 GB, while Gemma 4 E2B gives clearly better answers at less than half the generation speed and nearly 3 GB of RAM. The personal default is LFM2.5-1.2B for interactive use, with Gemma 4 E2B for accuracy-critical requests. The most useful next experiment is a labelled rerun with each vendor's recommended sampling settings (fixed seeds), to test whether Qwen's format and looping problems and LFM's reasoning errors persist outside greedy decoding.
+On a 4 GB Raspberry Pi 4B, all three candidates run with llama.cpp on the CPU. LFM2.5-1.2B-Instruct and Qwen3.5-0.8B deliver most short answers within 10 s in under 0.8 GB, while Gemma 4 E2B gives clearly better answers at less than half the generation speed and nearly 3 GB of RAM. The personal default is LFM2.5-1.2B for interactive use, with Gemma 4 E2B for accuracy-critical requests. The vendor-sampling follow-up (section 5a) showed that Qwen's looping is a decoding effect, fixed by its recommended presence penalty at some cost in code correctness. The most useful next experiment is several seeds per prompt under sampling, to separate sampling variance from model differences before drawing quality conclusions from a single sampled answer.
 
 ## References
 
