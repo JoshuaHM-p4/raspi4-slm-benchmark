@@ -1,0 +1,82 @@
+{
+  "prompt_id": "C02",
+  "category": "coding",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|turn>user\nWrite only a Python function named count_even(numbers) that returns how many integers are even. No Markdown fences or explanation.<turn|>\n<|turn>model\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write only a Python function named count_even(numbers) that returns how many integers are even. No Markdown fences or explanation."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 0.95,
+    "top_k": 64,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "def count_even(numbers):\n    count = 0\n    for number in numbers:\n        if number % 2 == 0:\n            count += 1\n    return count"
+        }
+      }
+    ],
+    "created": 1794999015,
+    "model": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 42,
+      "prompt_tokens": 35,
+      "total_tokens": 77,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-sr2ilL0LyP2Lgw7yvBxu2oGiStwEKC1B",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 35,
+      "prompt_ms": 2545.986,
+      "prompt_per_token_ms": 72.74245714285713,
+      "prompt_per_second": 13.74712979568623,
+      "predicted_n": 42,
+      "predicted_ms": 17810.959,
+      "predicted_per_token_ms": 434.41363414634145,
+      "predicted_per_second": 2.30195353321514
+    }
+  },
+  "wall_seconds": 20.36,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "def count_even(numbers):\n    count = 0\n    for number in numbers:\n        if number % 2 == 0:\n            count += 1\n    return count",
+  "usage": {
+    "completion_tokens": 42,
+    "prompt_tokens": 35,
+    "total_tokens": 77,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

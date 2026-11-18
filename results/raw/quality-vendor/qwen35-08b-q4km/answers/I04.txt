@@ -1,0 +1,2 @@
+1. Mouse: Input Device; Keyboard: Output Device
+2. Display Monitor: Input Device; Speaker: Output Device

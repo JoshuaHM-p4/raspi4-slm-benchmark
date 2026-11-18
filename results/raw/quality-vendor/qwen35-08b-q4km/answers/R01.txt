@@ -1,0 +1,1 @@
+Ten pens remain; after removing three from a dozen, we subtract 15 from 12 to get Ten.

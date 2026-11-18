@@ -1,0 +1,2 @@
+- The team evaluated three fans, noting that Fan A was quiet but had low cooling power, Fan B provided the best cooling despite being loud, and Fan C offered a good balance between noise and cooling performance.  
+- This comparison helped the team identify which fan best suited their specific needs based on noise level and cooling efficiency.

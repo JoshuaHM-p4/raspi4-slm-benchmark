@@ -1,0 +1,82 @@
+{
+  "prompt_id": "I04",
+  "category": "instruction",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nGive exactly two bullet points naming one input device and one output device.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Give exactly two bullet points naming one input device and one output device."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 1.0,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 2.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "1. Mouse: Input Device; Keyboard: Output Device\n2. Display Monitor: Input Device; Speaker: Output Device"
+        }
+      }
+    ],
+    "created": 1794998014,
+    "model": "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 25,
+      "prompt_tokens": 26,
+      "total_tokens": 51,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-Mv17Yc0kBiiFzFv9urDJcdYsOFKOu7MR",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 26,
+      "prompt_ms": 1453.095,
+      "prompt_per_token_ms": 55.88826923076923,
+      "prompt_per_second": 17.892842518899315,
+      "predicted_n": 25,
+      "predicted_ms": 4611.161,
+      "predicted_per_token_ms": 192.13170833333334,
+      "predicted_per_second": 5.204762965335628
+    }
+  },
+  "wall_seconds": 6.1,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "1. Mouse: Input Device; Keyboard: Output Device\n2. Display Monitor: Input Device; Speaker: Output Device",
+  "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 26,
+    "total_tokens": 51,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

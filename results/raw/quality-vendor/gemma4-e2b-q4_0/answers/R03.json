@@ -1,0 +1,82 @@
+{
+  "prompt_id": "R03",
+  "category": "reasoning",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|turn>user\nAna finished before Ben. Ben finished before Carlo. Who finished first among the three? Answer with the name only.<turn|>\n<|turn>model\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Ana finished before Ben. Ben finished before Carlo. Who finished first among the three? Answer with the name only."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 0.95,
+    "top_k": 64,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Ana"
+        }
+      }
+    ],
+    "created": 1794998875,
+    "model": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 2,
+      "prompt_tokens": 32,
+      "total_tokens": 34,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-aJ6qShKZLHzqfh8y9S3A1uh8g5Q3io4X",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 32,
+      "prompt_ms": 2366.394,
+      "prompt_per_token_ms": 73.9498125,
+      "prompt_per_second": 13.52268472621212,
+      "predicted_n": 2,
+      "predicted_ms": 430.489,
+      "predicted_per_token_ms": 430.489,
+      "predicted_per_second": 2.322939726682912
+    }
+  },
+  "wall_seconds": 2.8,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "Ana",
+  "usage": {
+    "completion_tokens": 2,
+    "prompt_tokens": 32,
+    "total_tokens": 34,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

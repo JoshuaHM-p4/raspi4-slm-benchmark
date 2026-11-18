@@ -1,0 +1,82 @@
+{
+  "prompt_id": "S01",
+  "category": "summarization",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|turn>user\nSummarize in one sentence of at most 25 words: The library closes at 6 PM this week for electrical repairs. Online borrowing remains available. Normal hours resume next Monday.<turn|>\n<|turn>model\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Summarize in one sentence of at most 25 words: The library closes at 6 PM this week for electrical repairs. Online borrowing remains available. Normal hours resume next Monday."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 0.95,
+    "top_k": 64,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The library will close at 6 PM this week for repairs; online borrowing is available, and normal hours resume Monday."
+        }
+      }
+    ],
+    "created": 1794998947,
+    "model": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 25,
+      "prompt_tokens": 46,
+      "total_tokens": 71,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-qotuBKqoSWI9Kyq3RSx855v1E49lpLQm",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 46,
+      "prompt_ms": 3220.57,
+      "prompt_per_token_ms": 70.01239130434783,
+      "prompt_per_second": 14.283185895664431,
+      "predicted_n": 25,
+      "predicted_ms": 10402.279,
+      "predicted_per_token_ms": 433.42829166666667,
+      "predicted_per_second": 2.307186723217095
+    }
+  },
+  "wall_seconds": 13.64,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "The library will close at 6 PM this week for repairs; online borrowing is available, and normal hours resume Monday.",
+  "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 46,
+    "total_tokens": 71,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

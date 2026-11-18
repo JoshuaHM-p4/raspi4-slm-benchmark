@@ -1,0 +1,122 @@
+{
+  "model_label": "qwen35-08b-q4km",
+  "model_path": "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+  "model_file_bytes": 532517120,
+  "model_sha256": "bd258782e35f7f458f8aced1adc053e6e92e89bc735ba3be89d38a06121dc517",
+  "settings": {
+    "ctx": 2048,
+    "threads": 4,
+    "batch": 128,
+    "ubatch": 128,
+    "ngl": 0,
+    "parallel_slots": 1,
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "enable_thinking": false,
+    "jinja": true,
+    "load_timeout_s": 900,
+    "extra_server_args": [],
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 2.0,
+      "repeat_penalty": 1.0,
+      "seed": 42
+    },
+    "sampling_source": "https://huggingface.co/Qwen/Qwen3.5-0.8B (Best Practices: non-thinking mode for text tasks)"
+  },
+  "before": {
+    "time_utc": "2026-11-18T10:25:45.452625+00:00",
+    "temp": "temp=45.2'C",
+    "throttled": "throttled=0x0",
+    "arm_clock": "frequency(48)=1800457088",
+    "mem_available_kib": 3584108,
+    "swap_free_kib": 1944528,
+    "swap_total_kib": 2097148,
+    "pswpin": 70315,
+    "pswpout": 110161
+  },
+  "prompts_file": "data/pilot_prompts.jsonl",
+  "prompts_sha256": "54c9ebfed0734896a0d8ea9adcba679f6844371d14e9922b78b40521e7a62de5",
+  "prompt_ids": [
+    "P01",
+    "P02"
+  ],
+  "cache_prompt": false,
+  "latency_note": "wall_seconds: client-observed, non-streaming, includes prompt processing and generation; warm model, prompt cache off. Not TTFT.",
+  "command": [
+    "/home/bagwis/raspi4bench-slm/vendor/llama.cpp/build/bin/llama-server",
+    "-m",
+    "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+    "-c",
+    "2048",
+    "-t",
+    "4",
+    "-b",
+    "128",
+    "-ub",
+    "128",
+    "-ngl",
+    "0",
+    "-np",
+    "1",
+    "--jinja",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "load_seconds": 3.05,
+  "loaded": true,
+  "n_ctx": 2048,
+  "build_info": "b1-b1b770d",
+  "server_vm_end": {
+    "rss_kib": 727340,
+    "hwm_kib": 727340,
+    "swap_kib": 0
+  },
+  "server_returncode": 0,
+  "server_exited_on_its_own": false,
+  "after": {
+    "time_utc": "2026-11-18T10:26:17.154707+00:00",
+    "temp": "temp=51.1'C",
+    "throttled": "throttled=0x0",
+    "arm_clock": "frequency(48)=1800457088",
+    "mem_available_kib": 3569388,
+    "swap_free_kib": 1944528,
+    "swap_total_kib": 2097148,
+    "pswpin": 70315,
+    "pswpout": 110161
+  },
+  "telemetry_summary": {
+    "min_mem_available_kib": 3347452,
+    "max_server_hwm_kib": 727340,
+    "max_server_swap_kib": 0,
+    "min_swap_free_kib": 1944528,
+    "pswpin_delta": 0,
+    "pswpout_delta": 0
+  },
+  "status": "collected",
+  "answers": [
+    {
+      "prompt_id": "P01",
+      "category": "pilot",
+      "status": "complete",
+      "completion_tokens": 6,
+      "prompt_tokens": 26,
+      "wall_seconds": 2.43,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "P02",
+      "category": "pilot",
+      "status": "truncated",
+      "completion_tokens": 128,
+      "prompt_tokens": 27,
+      "wall_seconds": 25.88,
+      "reasoning_present": false
+    }
+  ]
+}

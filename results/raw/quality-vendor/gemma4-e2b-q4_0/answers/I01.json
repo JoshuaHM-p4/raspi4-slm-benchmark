@@ -1,0 +1,82 @@
+{
+  "prompt_id": "I01",
+  "category": "instruction",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|turn>user\nReturn exactly the word READY in uppercase, with no other text.<turn|>\n<|turn>model\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Return exactly the word READY in uppercase, with no other text."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 0.95,
+    "top_k": 64,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "READY"
+        }
+      }
+    ],
+    "created": 1794998785,
+    "model": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 2,
+      "prompt_tokens": 22,
+      "total_tokens": 24,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-2IRdih8SMsYnv3xR3jzD5IZd0tKD3o06",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 22,
+      "prompt_ms": 1753.205,
+      "prompt_per_token_ms": 79.69113636363636,
+      "prompt_per_second": 12.54844698708936,
+      "predicted_n": 2,
+      "predicted_ms": 429.714,
+      "predicted_per_token_ms": 429.714,
+      "predicted_per_second": 2.3271292068678235
+    }
+  },
+  "wall_seconds": 2.2,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "READY",
+  "usage": {
+    "completion_tokens": 2,
+    "prompt_tokens": 22,
+    "total_tokens": 24,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

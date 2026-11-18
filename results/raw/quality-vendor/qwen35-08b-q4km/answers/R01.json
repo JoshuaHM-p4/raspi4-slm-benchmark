@@ -1,0 +1,82 @@
+{
+  "prompt_id": "R01",
+  "category": "reasoning",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nA box contains 12 pens. Three are removed and five are added. How many pens remain? Give the number and one short explanatory sentence.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "A box contains 12 pens. Three are removed and five are added. How many pens remain? Give the number and one short explanatory sentence."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 1.0,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 2.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Ten pens remain; after removing three from a dozen, we subtract 15 from 12 to get Ten."
+        }
+      }
+    ],
+    "created": 1794998043,
+    "model": "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 25,
+      "prompt_tokens": 42,
+      "total_tokens": 67,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-Xq13FqdIL6uIi1YzW6CoHpcu14DfPakX",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 42,
+      "prompt_ms": 2685.019,
+      "prompt_per_token_ms": 63.929023809523805,
+      "prompt_per_second": 15.642347409832109,
+      "predicted_n": 25,
+      "predicted_ms": 4629.598,
+      "predicted_per_token_ms": 192.89991666666666,
+      "predicted_per_second": 5.184035417329971
+    }
+  },
+  "wall_seconds": 7.35,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "Ten pens remain; after removing three from a dozen, we subtract 15 from 12 to get Ten.",
+  "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 42,
+    "total_tokens": 67,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

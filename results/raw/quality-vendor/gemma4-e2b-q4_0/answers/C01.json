@@ -1,0 +1,82 @@
+{
+  "prompt_id": "C01",
+  "category": "coding",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|turn>user\nWrite only a Python function named add(a, b) that returns their sum. No Markdown fences or explanation.<turn|>\n<|turn>model\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write only a Python function named add(a, b) that returns their sum. No Markdown fences or explanation."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 0.95,
+    "top_k": 64,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "def add(a, b):\n    return a + b"
+        }
+      }
+    ],
+    "created": 1794998995,
+    "model": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 14,
+      "prompt_tokens": 32,
+      "total_tokens": 46,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-nyuuFCUBDb29YTgw5lJUBhvq99RdvnGs",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 32,
+      "prompt_ms": 2386.6,
+      "prompt_per_token_ms": 74.58125,
+      "prompt_per_second": 13.408195759658092,
+      "predicted_n": 14,
+      "predicted_ms": 5639.5,
+      "predicted_per_token_ms": 433.8076923076923,
+      "predicted_per_second": 2.3051688979519462
+    }
+  },
+  "wall_seconds": 8.03,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "def add(a, b):\n    return a + b",
+  "usage": {
+    "completion_tokens": 14,
+    "prompt_tokens": 32,
+    "total_tokens": 46,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

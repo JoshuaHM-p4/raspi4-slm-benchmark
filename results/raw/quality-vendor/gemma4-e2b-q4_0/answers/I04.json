@@ -1,0 +1,82 @@
+{
+  "prompt_id": "I04",
+  "category": "instruction",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|turn>user\nGive exactly two bullet points naming one input device and one output device.<turn|>\n<|turn>model\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Give exactly two bullet points naming one input device and one output device."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 0.95,
+    "top_k": 64,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "* Input Device: Keyboard\n* Output Device: Monitor"
+        }
+      }
+    ],
+    "created": 1794998799,
+    "model": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 12,
+      "prompt_tokens": 23,
+      "total_tokens": 35,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-LOQ8A6KAwgxFKz6jM1ZzCt4hxoZYLoBv",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 23,
+      "prompt_ms": 1804.543,
+      "prompt_per_token_ms": 78.45839130434783,
+      "prompt_per_second": 12.745609276143602,
+      "predicted_n": 12,
+      "predicted_ms": 4740.732,
+      "predicted_per_token_ms": 430.97563636363634,
+      "predicted_per_second": 2.3203167780840595
+    }
+  },
+  "wall_seconds": 6.55,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "* Input Device: Keyboard\n* Output Device: Monitor",
+  "usage": {
+    "completion_tokens": 12,
+    "prompt_tokens": 23,
+    "total_tokens": 35,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

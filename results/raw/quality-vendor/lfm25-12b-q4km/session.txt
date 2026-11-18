@@ -1,0 +1,2 @@
+start_temp_c=45.3 waited_s=140 throttled=0x0
+end_temp=temp=58.9'C throttled=0x0 collect_exit=0

@@ -1,0 +1,82 @@
+{
+  "prompt_id": "R01",
+  "category": "reasoning",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nA box contains 12 pens. Three are removed and five are added. How many pens remain? Give the number and one short explanatory sentence.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "A box contains 12 pens. Three are removed and five are added. How many pens remain? Give the number and one short explanatory sentence."
+      }
+    ],
+    "temperature": 0.1,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 1.0,
+    "top_k": 50,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.05,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "There are still 12 pens remaining. The addition of five pens more than compensates for the three removed."
+        }
+      }
+    ],
+    "created": 1794998355,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 23,
+      "prompt_tokens": 39,
+      "total_tokens": 62,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-ZoCju0cOmUEFqkjRXYwr3IdV4CZDPBVi",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 39,
+      "prompt_ms": 3221.58,
+      "prompt_per_token_ms": 82.60461538461539,
+      "prompt_per_second": 12.105861099212188,
+      "predicted_n": 23,
+      "predicted_ms": 4452.377,
+      "predicted_per_token_ms": 202.38077272727276,
+      "predicted_per_second": 4.941180856877124
+    }
+  },
+  "wall_seconds": 7.68,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "There are still 12 pens remaining. The addition of five pens more than compensates for the three removed.",
+  "usage": {
+    "completion_tokens": 23,
+    "prompt_tokens": 39,
+    "total_tokens": 62,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

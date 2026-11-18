@@ -1,0 +1,82 @@
+{
+  "prompt_id": "P02",
+  "category": "pilot",
+  "status": "truncated",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nWrite a numbered list of 60 different fruits, one per line.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a numbered list of 60 different fruits, one per line."
+      }
+    ],
+    "temperature": 0.1,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 1.0,
+    "top_k": 50,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.05,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "1. Strawberry  \n2. Blueberry  \n3. Raspberry  \n4. Blackberry  \n5. Watermelon  \n6. Cantaloupe  \n7. Honeydew melon  \n8. Grape  \n9. Orange  \n10. Lemon  \n11. Lime  \n12. Grapefruit  \n13. Pear  \n14. Apple  \n15. Banana  \n16. Mango  \n17. Pineapple  \n18. Papaya  \n19. Kiwi  \n20. Strawberry  \n21. Blueberry  \n22. Raspberry  \n23. Blackcurrant  \n24. Cherry  \n25. Pe"
+        }
+      }
+    ],
+    "created": 1794997660,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 128,
+      "prompt_tokens": 23,
+      "total_tokens": 151,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-9nIwua1eeJp8vQevgsnxx9b8vNyDQBfh",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 23,
+      "prompt_ms": 1930.168,
+      "prompt_per_token_ms": 83.92034782608695,
+      "prompt_per_second": 11.916061192600852,
+      "predicted_n": 128,
+      "predicted_ms": 25699.664,
+      "predicted_per_token_ms": 202.35955905511813,
+      "predicted_per_second": 4.941698848669772
+    }
+  },
+  "wall_seconds": 27.63,
+  "timed_out": false,
+  "finish_reason": "length",
+  "content": "1. Strawberry  \n2. Blueberry  \n3. Raspberry  \n4. Blackberry  \n5. Watermelon  \n6. Cantaloupe  \n7. Honeydew melon  \n8. Grape  \n9. Orange  \n10. Lemon  \n11. Lime  \n12. Grapefruit  \n13. Pear  \n14. Apple  \n15. Banana  \n16. Mango  \n17. Pineapple  \n18. Papaya  \n19. Kiwi  \n20. Strawberry  \n21. Blueberry  \n22. Raspberry  \n23. Blackcurrant  \n24. Cherry  \n25. Pe",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 23,
+    "total_tokens": 151,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

@@ -1,0 +1,82 @@
+{
+  "prompt_id": "C03",
+  "category": "coding",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nWrite only a Python function named last_or_none(items) that returns the last item, or None for an empty list. No Markdown fences or explanation.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write only a Python function named last_or_none(items) that returns the last item, or None for an empty list. No Markdown fences or explanation."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 1.0,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 2.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "def last_or_none(items):\n    \"\"\"Returns the last element of `items` or `None` if items is empty.\"\"\"\n    return list.reverse()[-1] if items else None"
+        }
+      }
+    ],
+    "created": 1794998138,
+    "model": "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 40,
+      "prompt_tokens": 42,
+      "total_tokens": 82,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-i1HW2SrhdGcQfEv7GOyM9q2BF6plgLto",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 42,
+      "prompt_ms": 2275.321,
+      "prompt_per_token_ms": 54.17430952380952,
+      "prompt_per_second": 18.45893392624601,
+      "predicted_n": 40,
+      "predicted_ms": 7449.994,
+      "predicted_per_token_ms": 191.02548717948716,
+      "predicted_per_second": 5.234903544888761
+    }
+  },
+  "wall_seconds": 9.76,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "def last_or_none(items):\n    \"\"\"Returns the last element of `items` or `None` if items is empty.\"\"\"\n    return list.reverse()[-1] if items else None",
+  "usage": {
+    "completion_tokens": 40,
+    "prompt_tokens": 42,
+    "total_tokens": 82,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

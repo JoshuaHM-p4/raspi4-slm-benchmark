@@ -1,0 +1,82 @@
+{
+  "prompt_id": "E01",
+  "category": "extraction",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nExtract name and city as a JSON object with exactly those keys. Text: Mina lives in Cebu.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Extract name and city as a JSON object with exactly those keys. Text: Mina lives in Cebu."
+      }
+    ],
+    "temperature": 0.1,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 1.0,
+    "top_k": 50,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.05,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"name\": \"Mina\",\n  \"city\": \"Cebu\"\n}"
+        }
+      }
+    ],
+    "created": 1794998332,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 20,
+      "prompt_tokens": 33,
+      "total_tokens": 53,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-oeRvHl8j34rgVnuVX5a7MRzSCTLekm6u",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 33,
+      "prompt_ms": 2740.008,
+      "prompt_per_token_ms": 83.03054545454545,
+      "prompt_per_second": 12.043760456173851,
+      "predicted_n": 20,
+      "predicted_ms": 3827.65,
+      "predicted_per_token_ms": 201.45526315789473,
+      "predicted_per_second": 4.963881232610087
+    }
+  },
+  "wall_seconds": 6.57,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "{\n  \"name\": \"Mina\",\n  \"city\": \"Cebu\"\n}",
+  "usage": {
+    "completion_tokens": 20,
+    "prompt_tokens": 33,
+    "total_tokens": 53,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

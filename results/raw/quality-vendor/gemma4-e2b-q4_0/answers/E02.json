@@ -1,0 +1,82 @@
+{
+  "prompt_id": "E02",
+  "category": "extraction",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|turn>user\nClassify the sentiment as positive, negative, or neutral. Return only the label. Text: The package arrived on Tuesday.<turn|>\n<|turn>model\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Classify the sentiment as positive, negative, or neutral. Return only the label. Text: The package arrived on Tuesday."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 0.95,
+    "top_k": 64,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "neutral"
+        }
+      }
+    ],
+    "created": 1794998815,
+    "model": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 2,
+      "prompt_tokens": 34,
+      "total_tokens": 36,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-ur7PAE0a8cr4sbZYGvngBRSTOsEpxu9v",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 34,
+      "prompt_ms": 2473.138,
+      "prompt_per_token_ms": 72.73935294117646,
+      "prompt_per_second": 13.747716463860893,
+      "predicted_n": 2,
+      "predicted_ms": 437.998,
+      "predicted_per_token_ms": 437.998,
+      "predicted_per_second": 2.2831154480157445
+    }
+  },
+  "wall_seconds": 2.92,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "neutral",
+  "usage": {
+    "completion_tokens": 2,
+    "prompt_tokens": 34,
+    "total_tokens": 36,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

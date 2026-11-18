@@ -1,0 +1,2 @@
+* Fan A was quiet but performed weakly.
+* Fan B cooled most effectively but was loud, while Fan C provided a good balance.

@@ -1,0 +1,82 @@
+{
+  "prompt_id": "S03",
+  "category": "summarization",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nUsing only the note, summarize the decision and reason in one sentence. Note: We considered adding a camera. We postponed it because the current battery cannot support the extra load.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Using only the note, summarize the decision and reason in one sentence. Note: We considered adding a camera. We postponed it because the current battery cannot support the extra load."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 1.0,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 2.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Because our added camera requires more power than our current battery can supply, we had to postpone its purchase."
+        }
+      }
+    ],
+    "created": 1794998109,
+    "model": "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 22,
+      "prompt_tokens": 47,
+      "total_tokens": 69,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-L1HdaBXrdHiA5O5oz7ivfjn9I0DCeKRR",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 47,
+      "prompt_ms": 2529.762,
+      "prompt_per_token_ms": 53.82472340425532,
+      "prompt_per_second": 18.578822829973728,
+      "predicted_n": 22,
+      "predicted_ms": 4024.733,
+      "predicted_per_token_ms": 191.65395238095238,
+      "predicted_per_second": 5.217737425066458
+    }
+  },
+  "wall_seconds": 6.59,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "Because our added camera requires more power than our current battery can supply, we had to postpone its purchase.",
+  "usage": {
+    "completion_tokens": 22,
+    "prompt_tokens": 47,
+    "total_tokens": 69,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

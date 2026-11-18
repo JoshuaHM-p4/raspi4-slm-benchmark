@@ -1,0 +1,8 @@
+To determine the number of samples and the sampling times, we look at the sampling interval and the time range.
+
+**1. Determine the sampling times:**
+The sensor samples every 5 seconds, starting at time 0. The sampling times are:
+$$t = 0, 0 + 5, 0 + 2 \times 5, 0 + 3 \times 5, \dots$$
+$$t = 0, 5, 10, 15, 20, 25, \dots$$
+
+**2. Identify samples within the time range:**

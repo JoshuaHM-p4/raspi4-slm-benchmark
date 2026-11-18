@@ -1,0 +1,82 @@
+{
+  "prompt_id": "R01",
+  "category": "reasoning",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|turn>user\nA box contains 12 pens. Three are removed and five are added. How many pens remain? Give the number and one short explanatory sentence.<turn|>\n<|turn>model\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "A box contains 12 pens. Three are removed and five are added. How many pens remain? Give the number and one short explanatory sentence."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 0.95,
+    "top_k": 64,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "**14**\n\nThree pens were removed and five were added, so the net change is $5 - 3 = 2$, which means the original 12 pens plus the 2 added result in 14."
+        }
+      }
+    ],
+    "created": 1794998862,
+    "model": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 48,
+      "prompt_tokens": 39,
+      "total_tokens": 87,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-5UcFOb966AAdWnPZ0gLwtNUh2c8k85Tu",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 39,
+      "prompt_ms": 2784.878,
+      "prompt_per_token_ms": 71.4071282051282,
+      "prompt_per_second": 14.004204133897428,
+      "predicted_n": 48,
+      "predicted_ms": 20421.281,
+      "predicted_per_token_ms": 434.4953404255319,
+      "predicted_per_second": 2.301520653870832
+    }
+  },
+  "wall_seconds": 23.22,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "**14**\n\nThree pens were removed and five were added, so the net change is $5 - 3 = 2$, which means the original 12 pens plus the 2 added result in 14.",
+  "usage": {
+    "completion_tokens": 48,
+    "prompt_tokens": 39,
+    "total_tokens": 87,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

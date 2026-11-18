@@ -1,0 +1,82 @@
+{
+  "prompt_id": "R03",
+  "category": "reasoning",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nAna finished before Ben. Ben finished before Carlo. Who finished first among the three? Answer with the name only.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Ana finished before Ben. Ben finished before Carlo. Who finished first among the three? Answer with the name only."
+      }
+    ],
+    "temperature": 0.1,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 1.0,
+    "top_k": 50,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.05,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Ana"
+        }
+      }
+    ],
+    "created": 1794998365,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 3,
+      "prompt_tokens": 33,
+      "total_tokens": 36,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-QFuWnoWoWlmo7TVNPgCUVtNDbI7QB7rT",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 33,
+      "prompt_ms": 2753.103,
+      "prompt_per_token_ms": 83.42736363636364,
+      "prompt_per_second": 11.986474897597365,
+      "predicted_n": 3,
+      "predicted_ms": 399.93,
+      "predicted_per_token_ms": 199.965,
+      "predicted_per_second": 5.000875153151801
+    }
+  },
+  "wall_seconds": 3.16,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "Ana",
+  "usage": {
+    "completion_tokens": 3,
+    "prompt_tokens": 33,
+    "total_tokens": 36,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

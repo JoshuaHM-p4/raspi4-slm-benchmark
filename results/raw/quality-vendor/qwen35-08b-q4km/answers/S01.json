@@ -1,0 +1,82 @@
+{
+  "prompt_id": "S01",
+  "category": "summarization",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nSummarize in one sentence of at most 25 words: The library closes at 6 PM this week for electrical repairs. Online borrowing remains available. Normal hours resume next Monday.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Summarize in one sentence of at most 25 words: The library closes at 6 PM this week for electrical repairs. Online borrowing remains available. Normal hours resume next Monday."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 1.0,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 2.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "This week's closed library hours resume next Monday due to power grid issues preventing service, while online borrowing stays open otherwise."
+        }
+      }
+    ],
+    "created": 1794998089,
+    "model": "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 25,
+      "prompt_tokens": 50,
+      "total_tokens": 75,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-NhqVEj0N4EuRQNkQGXyfrt0w6UB78o6B",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 50,
+      "prompt_ms": 2661.568,
+      "prompt_per_token_ms": 53.23136,
+      "prompt_per_second": 18.785918676509485,
+      "predicted_n": 25,
+      "predicted_ms": 4632.068,
+      "predicted_per_token_ms": 193.00283333333334,
+      "predicted_per_second": 5.181271086693891
+    }
+  },
+  "wall_seconds": 7.33,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "This week's closed library hours resume next Monday due to power grid issues preventing service, while online borrowing stays open otherwise.",
+  "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 50,
+    "total_tokens": 75,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

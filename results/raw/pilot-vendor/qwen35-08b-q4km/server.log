@@ -1,0 +1,30 @@
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions
+0.00.005.997 I srv  llama_server: initializing ...
+0.00.006.056 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.006.457 W srv  server_setup: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.008.394 I srv    load_model: loading model '/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf'
+0.02.316.433 I cmn          init: llama threadpool init, n_threads = 4
+0.02.799.702 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 2048, kv_unified = 'false'
+0.02.820.588 I srv  server_run_i: model loaded
+0.02.820.617 I srv  server_on_li: listening on http://127.0.0.1:8080
+0.03.052.600 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.03.052.736 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.05.481.880 I slot print_timing: id  0 | task 0 | prompt eval time =    1461.10 ms /    26 tokens (   56.20 ms per token,    17.79 tokens per second)
+0.05.481.906 I slot print_timing: id  0 | task 0 |        eval time =     967.97 ms /     6 tokens (  193.59 ms per token,     5.17 tokens per second)
+0.05.481.908 I slot print_timing: id  0 | task 0 |       total time =    2429.07 ms /    32 tokens
+0.05.481.917 I slot print_timing: id  0 | task 0 |    graphs reused =          5
+0.05.481.919 I slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+0.05.482.001 I slot      release: id  0 | task 0 | stop processing: n_tokens = 31, truncated = 0
+0.05.492.608 I slot get_availabl: id  0 | task -1 | selected slot by LCP similarity, f_sim_best = 0.111 (> 0.100 thold), f_keep = 0.097
+0.05.520.111 I slot launch_slot_: id  0 | task 8 | processing task, is_child = 0
+0.26.003.626 I slot print_timing: id  0 | task 8 | n_gen =    100, tg =   5.22 t/s, tg_3s =   5.27 t/s
+0.29.063.271 I slot print_timing: id  0 | task 8 | n_gen =    116, tg =   5.22 t/s, tg_3s =   5.23 t/s
+0.31.362.363 I slot print_timing: id  0 | task 8 | prompt eval time =    1507.75 ms /    27 tokens (   55.84 ms per token,    17.91 tokens per second)
+0.31.362.512 I slot print_timing: id  0 | task 8 |        eval time =   24334.42 ms /   128 tokens (  191.61 ms per token,     5.22 tokens per second)
+0.31.362.549 I slot print_timing: id  0 | task 8 |       total time =   25842.17 ms /   155 tokens
+0.31.362.580 I slot print_timing: id  0 | task 8 |    graphs reused =        131
+0.31.362.610 I slot print_timing: id  0 | task 8 |   graph reallocs =          0    /     0        (same size) / (changed size)
+0.31.362.689 I slot      release: id  0 | task 8 | stop processing: n_tokens = 154, truncated = 0
+0.31.367.051 I srv    operator(): operator(): cleaning up before exit...

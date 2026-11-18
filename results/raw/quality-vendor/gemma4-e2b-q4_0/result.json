@@ -1,0 +1,302 @@
+{
+  "model_label": "gemma4-e2b-q4_0",
+  "model_path": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+  "model_file_bytes": 2841481184,
+  "model_sha256": "8e30dff3ac4c8434c49a7036fa15564bdbb6044e42bf04550bf1a096ad7e6a52",
+  "settings": {
+    "ctx": 2048,
+    "threads": 4,
+    "batch": 128,
+    "ubatch": 128,
+    "ngl": 0,
+    "parallel_slots": 1,
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "enable_thinking": false,
+    "jinja": true,
+    "load_timeout_s": 900,
+    "extra_server_args": [],
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 64,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "seed": 42
+    },
+    "sampling_source": "https://huggingface.co/google/gemma-4-E2B-it (Sampling Parameters) and generation_config.json"
+  },
+  "before": {
+    "time_utc": "2026-11-18T10:45:19.653044+00:00",
+    "temp": "temp=48.7'C",
+    "throttled": "throttled=0x0",
+    "arm_clock": "frequency(48)=1800404352",
+    "mem_available_kib": 3557676,
+    "swap_free_kib": 1934668,
+    "swap_total_kib": 2097148,
+    "pswpin": 76546,
+    "pswpout": 129814
+  },
+  "prompts_file": "data/prompts.jsonl",
+  "prompts_sha256": "caec2891b8601aa9a2c839680c3566974ade66ab59acdeb449924d3df7cbb3b6",
+  "prompt_ids": [
+    "I01",
+    "I02",
+    "I03",
+    "I04",
+    "E01",
+    "E02",
+    "E03",
+    "E04",
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "C01",
+    "C02",
+    "C03",
+    "C04"
+  ],
+  "cache_prompt": false,
+  "latency_note": "wall_seconds: client-observed, non-streaming, includes prompt processing and generation; warm model, prompt cache off. Not TTFT.",
+  "command": [
+    "/home/bagwis/raspi4bench-slm/vendor/llama.cpp/build/bin/llama-server",
+    "-m",
+    "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "-c",
+    "2048",
+    "-t",
+    "4",
+    "-b",
+    "128",
+    "-ub",
+    "128",
+    "-ngl",
+    "0",
+    "-np",
+    "1",
+    "--jinja",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "load_seconds": 63.25,
+  "loaded": true,
+  "n_ctx": 2048,
+  "build_info": "b1-b1b770d",
+  "server_vm_end": {
+    "rss_kib": 2939720,
+    "hwm_kib": 2939720,
+    "swap_kib": 11780
+  },
+  "server_returncode": 0,
+  "server_exited_on_its_own": false,
+  "after": {
+    "time_utc": "2026-11-18T10:50:40.317243+00:00",
+    "temp": "temp=58.9'C",
+    "throttled": "throttled=0x0",
+    "arm_clock": "frequency(48)=1800457088",
+    "mem_available_kib": 3570576,
+    "swap_free_kib": 1924128,
+    "swap_total_kib": 2097148,
+    "pswpin": 84962,
+    "pswpout": 140844
+  },
+  "telemetry_summary": {
+    "min_mem_available_kib": 3408204,
+    "max_server_hwm_kib": 2939720,
+    "max_server_swap_kib": 18204,
+    "min_swap_free_kib": 1890908,
+    "pswpin_delta": 8416,
+    "pswpout_delta": 11030
+  },
+  "status": "collected",
+  "answers": [
+    {
+      "prompt_id": "I01",
+      "category": "instruction",
+      "status": "complete",
+      "completion_tokens": 2,
+      "prompt_tokens": 22,
+      "wall_seconds": 2.2,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "I02",
+      "category": "instruction",
+      "status": "complete",
+      "completion_tokens": 6,
+      "prompt_tokens": 28,
+      "wall_seconds": 4.26,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "I03",
+      "category": "instruction",
+      "status": "complete",
+      "completion_tokens": 4,
+      "prompt_tokens": 23,
+      "wall_seconds": 3.1,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "I04",
+      "category": "instruction",
+      "status": "complete",
+      "completion_tokens": 12,
+      "prompt_tokens": 23,
+      "wall_seconds": 6.55,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "E01",
+      "category": "extraction",
+      "status": "complete",
+      "completion_tokens": 27,
+      "prompt_tokens": 29,
+      "wall_seconds": 13.46,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "E02",
+      "category": "extraction",
+      "status": "complete",
+      "completion_tokens": 2,
+      "prompt_tokens": 34,
+      "wall_seconds": 2.92,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "E03",
+      "category": "extraction",
+      "status": "complete",
+      "completion_tokens": 37,
+      "prompt_tokens": 53,
+      "wall_seconds": 19.23,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "E04",
+      "category": "extraction",
+      "status": "complete",
+      "completion_tokens": 6,
+      "prompt_tokens": 39,
+      "wall_seconds": 4.96,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "R01",
+      "category": "reasoning",
+      "status": "complete",
+      "completion_tokens": 48,
+      "prompt_tokens": 39,
+      "wall_seconds": 23.22,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "R02",
+      "category": "reasoning",
+      "status": "complete",
+      "completion_tokens": 16,
+      "prompt_tokens": 45,
+      "wall_seconds": 9.66,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "R03",
+      "category": "reasoning",
+      "status": "complete",
+      "completion_tokens": 2,
+      "prompt_tokens": 32,
+      "wall_seconds": 2.8,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "R04",
+      "category": "reasoning",
+      "status": "truncated",
+      "completion_tokens": 128,
+      "prompt_tokens": 47,
+      "wall_seconds": 58.65,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "S01",
+      "category": "summarization",
+      "status": "complete",
+      "completion_tokens": 25,
+      "prompt_tokens": 46,
+      "wall_seconds": 13.64,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "S02",
+      "category": "summarization",
+      "status": "complete",
+      "completion_tokens": 29,
+      "prompt_tokens": 44,
+      "wall_seconds": 15.29,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "S03",
+      "category": "summarization",
+      "status": "complete",
+      "completion_tokens": 20,
+      "prompt_tokens": 44,
+      "wall_seconds": 11.34,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "S04",
+      "category": "summarization",
+      "status": "complete",
+      "completion_tokens": 23,
+      "prompt_tokens": 44,
+      "wall_seconds": 12.68,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "C01",
+      "category": "coding",
+      "status": "complete",
+      "completion_tokens": 14,
+      "prompt_tokens": 32,
+      "wall_seconds": 8.03,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "C02",
+      "category": "coding",
+      "status": "complete",
+      "completion_tokens": 42,
+      "prompt_tokens": 35,
+      "wall_seconds": 20.36,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "C03",
+      "category": "coding",
+      "status": "complete",
+      "completion_tokens": 26,
+      "prompt_tokens": 42,
+      "wall_seconds": 13.82,
+      "reasoning_present": false
+    },
+    {
+      "prompt_id": "C04",
+      "category": "coding",
+      "status": "complete",
+      "completion_tokens": 19,
+      "prompt_tokens": 36,
+      "wall_seconds": 10.41,
+      "reasoning_present": false
+    }
+  ]
+}

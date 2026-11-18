@@ -19,7 +19,8 @@ die() { echo "pi: $*" >&2; exit 1; }
 
 sync_repo() {
   local -a opts=(-az --delete -i --exclude=/.git --exclude=/models/ --exclude=/vendor/
-    --exclude=/results/raw/ --exclude=/.claude/ --exclude=/CLAUDE.md --exclude=/AGENTS.md
+    --exclude=/results/raw/ --exclude=/results/scoring/ --exclude=/results/scoring-vendor/
+    --exclude=/reports/paper/ --exclude=/.claude/ --exclude=/CLAUDE.md --exclude=/AGENTS.md
     --exclude=/.last.log --exclude=__pycache__/)
   [[ -n ${PI_DRY:-} ]] && opts+=(-n)
   local out n

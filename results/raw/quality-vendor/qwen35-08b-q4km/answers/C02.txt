@@ -1,0 +1,2 @@
+def count_even(numbers):
+    return sum(1 for number in range(len(numbers)) if numbers[i] % 2 == 0)

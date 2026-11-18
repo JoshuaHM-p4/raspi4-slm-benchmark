@@ -1,0 +1,4 @@
+```python
+def unique_sorted(numbers):
+    return sorted(set(numbers))
+```

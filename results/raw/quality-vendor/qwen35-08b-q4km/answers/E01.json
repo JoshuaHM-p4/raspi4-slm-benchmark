@@ -1,0 +1,82 @@
+{
+  "prompt_id": "E01",
+  "category": "extraction",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nExtract name and city as a JSON object with exactly those keys. Text: Mina lives in Cebu.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Extract name and city as a JSON object with exactly those keys. Text: Mina lives in Cebu."
+      }
+    ],
+    "temperature": 1.0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 1.0,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 2.0,
+    "repeat_penalty": 1.0,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```json\n{\n  \"name\": \"Mina\",\n  \"city\": \"Cebu\"\n}\n```"
+        }
+      }
+    ],
+    "created": 1794998021,
+    "model": "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 27,
+      "prompt_tokens": 33,
+      "total_tokens": 60,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-iIeG1qpzKmdb813ZaBABCNhgIEMDnZ44",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 33,
+      "prompt_ms": 1841.99,
+      "prompt_per_token_ms": 55.81787878787879,
+      "prompt_per_second": 17.9154067068768,
+      "predicted_n": 27,
+      "predicted_ms": 4943.095,
+      "predicted_per_token_ms": 190.11903846153848,
+      "predicted_per_second": 5.259862495056234
+    }
+  },
+  "wall_seconds": 6.82,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "```json\n{\n  \"name\": \"Mina\",\n  \"city\": \"Cebu\"\n}\n```",
+  "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 33,
+    "total_tokens": 60,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

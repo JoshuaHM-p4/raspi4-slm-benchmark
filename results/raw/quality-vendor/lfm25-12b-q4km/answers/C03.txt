@@ -1,0 +1,6 @@
+```python
+def last_or_none(items):
+    if items:
+        return items[-1]
+    return None
+```

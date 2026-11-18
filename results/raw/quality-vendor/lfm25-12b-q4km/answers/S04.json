@@ -1,0 +1,82 @@
+{
+  "prompt_id": "S04",
+  "category": "summarization",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nSummarize in at most 20 words: The pilot involved ten volunteers. Seven preferred the new interface. The team said the sample was too small to draw broad conclusions.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Summarize in at most 20 words: The pilot involved ten volunteers. Seven preferred the new interface. The team said the sample was too small to draw broad conclusions."
+      }
+    ],
+    "temperature": 0.1,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false,
+    "top_p": 1.0,
+    "top_k": 50,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.05,
+    "seed": 42
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Ten volunteers tested a new interface; seven liked it, but the sample size is too small for general results."
+        }
+      }
+    ],
+    "created": 1794998435,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 23,
+      "prompt_tokens": 44,
+      "total_tokens": 67,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-lET6ib48tWlqauoU1aqfzbaET2AqiVFy",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 44,
+      "prompt_ms": 3629.607,
+      "prompt_per_token_ms": 82.49106818181818,
+      "prompt_per_second": 12.122524559821489,
+      "predicted_n": 23,
+      "predicted_ms": 4460.077,
+      "predicted_per_token_ms": 202.73077272727275,
+      "predicted_per_second": 4.932650265903481
+    }
+  },
+  "wall_seconds": 8.1,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "Ten volunteers tested a new interface; seven liked it, but the sample size is too small for general results.",
+  "usage": {
+    "completion_tokens": 23,
+    "prompt_tokens": 44,
+    "total_tokens": 67,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

@@ -1,0 +1,7 @@
+### Step-by-Step Deduction
+
+1.  **Define the interval length**:
+    The sensor samples at regular intervals of $1$ second ($5 \div 5 = 1$). Since it starts at time $0$, the total duration from one sample to the next after sampling at time $N$ is $(N+1) - N = 1$. Therefore, in 20 seconds, exactly **20** seconds elapse.
+
+2.  **Determine the maximum index**:
+    We want to find all integers $n$ such that the sample occurs at time $t \leq

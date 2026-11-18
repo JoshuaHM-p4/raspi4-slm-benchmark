@@ -112,7 +112,9 @@ def looping():
     for set_name, (_, pilot_dir, _) in SETS.items():
         for model in MODELS:
             base = RAW / pilot_dir / model
-            path = base / "answers/answers/P02.txt" if (base / "answers").exists() else base / "answers/P02.txt"
+            # greedy pilot (pilot.sh) nests the collection under answers/; pilot-vendor (session.sh) does not
+            path = next((p for p in (base / "answers/answers/P02.txt", base / "answers/P02.txt") if p.exists()),
+                        base / "answers/P02.txt")
             if not path.exists():
                 continue
             items = [re.sub(r"^\s*\d+[.)]\s*", "", line).strip().lower()

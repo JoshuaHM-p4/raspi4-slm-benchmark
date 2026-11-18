@@ -1,0 +1,3 @@
+def unique_sorted(numbers):
+    """Returns a sorted list containing all numeric values in the input, with duplicates removed."""
+    return list(set([int(x) for x in numbers]))
