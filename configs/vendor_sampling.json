@@ -1,0 +1,15 @@
+{
+  "_note": "Vendor-recommended non-thinking text sampling, from each model card (checked 18 November 2026). Parameters a card leaves unset are given their neutral value (top_p 1.0, min_p 0.0, repeat_penalty 1.0, presence_penalty 0.0), matching Hugging Face generation defaults, so llama.cpp's own defaults (top_p 0.95, min_p 0.05, top_k 40) do not leak in. llama.cpp names: repeat_penalty = repetition_penalty.",
+  "qwen35-08b-q4km": {
+    "source": "https://huggingface.co/Qwen/Qwen3.5-0.8B (Best Practices: non-thinking mode for text tasks)",
+    "params": {"temperature": 1.0, "top_p": 1.0, "top_k": 20, "min_p": 0.0, "presence_penalty": 2.0, "repeat_penalty": 1.0}
+  },
+  "lfm25-12b-q4km": {
+    "source": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct (recommended generation parameters)",
+    "params": {"temperature": 0.1, "top_p": 1.0, "top_k": 50, "min_p": 0.0, "presence_penalty": 0.0, "repeat_penalty": 1.05}
+  },
+  "gemma4-e2b-q4_0": {
+    "source": "https://huggingface.co/google/gemma-4-E2B-it (Sampling Parameters) and generation_config.json",
+    "params": {"temperature": 1.0, "top_p": 0.95, "top_k": 64, "min_p": 0.0, "presence_penalty": 0.0, "repeat_penalty": 1.0}
+  }
+}

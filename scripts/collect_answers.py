@@ -20,7 +20,19 @@ def main():
     add_server_args(parser)
     parser.add_argument("--prompts", type=Path, required=True)
     parser.add_argument("--ids", help="comma-separated prompt ids to run (default: all, in file order)")
+    parser.add_argument("--sampling-file", type=Path,
+                        help="JSON presets keyed by --label (e.g. configs/vendor_sampling.json); replaces the "
+                             "greedy baseline with that preset's params. Default: greedy (temperature 0)")
+    parser.add_argument("--seed", type=int, help="sampling seed, required with --sampling-file")
     args = parser.parse_args()
+    sampling = {}
+    if args.sampling_file:
+        if args.seed is None:
+            parser.error("--seed is required with --sampling-file")
+        presets = json.loads(args.sampling_file.read_text())
+        if args.label not in presets:
+            parser.error(f"no preset for label {args.label!r} in {args.sampling_file}")
+        sampling = {**presets[args.label]["params"], "seed": args.seed}
     rows = [json.loads(line) for line in args.prompts.read_text().splitlines() if line.strip()]
     if args.ids:
         wanted = args.ids.split(",")
@@ -33,6 +45,10 @@ def main():
     answers.mkdir()
 
     result = base_result(args)
+    if sampling:
+        result["settings"]["temperature"] = sampling["temperature"]
+        result["settings"]["sampling"] = sampling
+        result["settings"]["sampling_source"] = presets[args.label]["source"]
     result.update(prompts_file=str(args.prompts), prompts_sha256=sha256(args.prompts),
                   prompt_ids=[row["id"] for row in rows], cache_prompt=False,
                   latency_note="wall_seconds: client-observed, non-streaming, includes prompt processing "
@@ -53,7 +69,8 @@ def main():
                 else:
                     messages = [{"role": "user", "content": row["prompt"]}]
                     rendered = server.render(messages)
-                    chat = server.chat(messages, args.max_tokens, args.chat_timeout, cache_prompt=False)
+                    chat = server.chat(messages, args.max_tokens, args.chat_timeout, cache_prompt=False,
+                                       **sampling)
                     if chat["timed_out"]:
                         status = "timeout"
                     elif chat["http_status"] != 200:

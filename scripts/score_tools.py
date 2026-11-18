@@ -5,8 +5,11 @@
            blind_scores.csv (fill correctness_0_2 / adherence_0_2 / notes), key.csv (code -> model;
            do not open while scoring). Coding answers are executed against the criteria's test
            cases in a throwaway container (podman, --network none) and the outcome is shown.
-  unblind  Validate blind_scores.csv and write data/quality_scores.csv rows.
-  summary  Per-model, per-category totals from data/quality_scores.csv (all-attempts view).
+  unblind  Validate blind_scores.csv and write the set's scores CSV rows.
+  summary  Per-model, per-category totals from the set's scores CSV (all-attempts view).
+
+--set greedy (default) uses results/raw/quality, results/scoring, data/quality_scores.csv;
+--set vendor uses results/raw/quality-vendor, results/scoring-vendor, data/quality_scores_vendor.csv.
 """
 import argparse
 import csv
@@ -18,10 +21,11 @@ import subprocess
 import sys
 from pathlib import Path
 
-RAW = Path("results/raw/quality")
-OUT = Path("results/scoring")
+SETS = {"greedy": (Path("results/raw/quality"), Path("results/scoring"), Path("data/quality_scores.csv")),
+        "vendor": (Path("results/raw/quality-vendor"), Path("results/scoring-vendor"),
+                   Path("data/quality_scores_vendor.csv"))}
+RAW, OUT, SCORES = SETS["greedy"]
 PROMPTS = Path("data/prompts.jsonl")
-SCORES = Path("data/quality_scores.csv")
 IMAGE = "docker.io/library/python:3.13-slim"
 CATEGORIES = ["instruction", "extraction", "reasoning", "summarization", "coding"]
 
@@ -151,7 +155,7 @@ def unblind(_args):
         writer = csv.DictWriter(handle, fieldnames=fields)
         for row in sorted(blind, key=lambda r: (key[r["code"]]["model_label"], r["prompt_id"])):
             label = key[row["code"]]["model_label"]
-            writer.writerow({"model_label": label, "run_id": f"quality/{label}", "prompt_id": row["prompt_id"],
+            writer.writerow({"model_label": label, "run_id": f"{RAW.name}/{label}", "prompt_id": row["prompt_id"],
                              "category": row["category"], "correctness_0_2": row["correctness_0_2"],
                              "adherence_0_2": row["adherence_0_2"], "status": row["status"],
                              "output_path": key[row["code"]]["output_path"], "notes": row["notes"]})
@@ -175,5 +179,7 @@ def summary(_args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("command", choices=["sheets", "unblind", "summary"])
+    parser.add_argument("--set", choices=sorted(SETS), default="greedy")
     args = parser.parse_args()
+    RAW, OUT, SCORES = SETS[args.set]
     {"sheets": sheets, "unblind": unblind, "summary": summary}[args.command](args)

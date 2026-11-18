@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 # One measured session for one model, per docs/PROTOCOL_FREEZE.md.
-# Usage: scripts/session.sh speed|quality <label> <models/file.gguf>
-#   speed:   cool to <= 45.0 C, start monitor.py, run benchmark.py, stop monitor
-#   quality: verify the frozen prompt checksum, cool, run collect_answers.py on data/prompts.jsonl
-# Outputs: results/raw/<speed|quality>/<label>/ (refuses to reuse it).
+# Usage: scripts/session.sh speed|quality|quality-vendor|pilot-vendor <label> <models/file.gguf>
+#   speed:          cool to <= 45.0 C, start monitor.py, run benchmark.py, stop monitor
+#   quality:        verify the frozen prompt checksum, cool, collect answers to data/prompts.jsonl (greedy)
+#   quality-vendor: same, with the label's vendor sampling preset (configs/vendor_sampling.json), seed 42
+#   pilot-vendor:   the two pilot prompts with the vendor preset, seed 42 (looping check; never scored)
+# Outputs: results/raw/<kind>/<label>/ (refuses to reuse it).
 set -euo pipefail
-(($# == 3)) || { sed -n '2,7p' "$0"; exit 2; }
+(($# == 3)) || { sed -n '2,9p' "$0"; exit 2; }
 kind=$1 label=$2 model=$3
 out=results/raw/$kind/$label
 [[ -e $out ]] && { echo "exists: $out" >&2; exit 1; }
 pgrep -x llama-server >/dev/null && { echo "a llama-server is running; stop it first" >&2; exit 1; }
-[[ $kind == quality ]] && sha256sum --quiet -c data/prompts.jsonl.sha256
+[[ $kind == quality* ]] && sha256sum --quiet -c data/prompts.jsonl.sha256
 
 milli() { cat /sys/class/thermal/thermal_zone0/temp; }
 waited=0
@@ -28,10 +30,13 @@ case $kind in
     kill $mon; wait $mon || true  # SIGTERM: background jobs ignore SIGINT; monitor flushes every row
     echo "end_temp=$(vcgencmd measure_temp) $(vcgencmd get_throttled) benchmark_exit=$rc" >> "$out/session.txt"
     cat "$out/session.txt" ;;
-  quality)
+  quality|quality-vendor|pilot-vendor)
+    prompts=data/prompts.jsonl; extra=()
+    [[ $kind == pilot-vendor ]] && prompts=data/pilot_prompts.jsonl
+    [[ $kind == *-vendor ]] && extra=(--sampling-file configs/vendor_sampling.json --seed 42)
     rc=0
-    python3 scripts/collect_answers.py --model "$model" --label "$label" --prompts data/prompts.jsonl \
-      --out "$out" || rc=$?
+    python3 scripts/collect_answers.py --model "$model" --label "$label" --prompts "$prompts" \
+      --out "$out" "${extra[@]}" || rc=$?
     echo "$start" > "$out/session.txt"
     echo "end_temp=$(vcgencmd measure_temp) $(vcgencmd get_throttled) collect_exit=$rc" >> "$out/session.txt"
     cat "$out/session.txt" ;;
