@@ -8,6 +8,17 @@ Three quantized small language models were deployed with one pinned llama.cpp bu
 
 The goal is a useful local text assistant on hardware already owned: a Raspberry Pi 4B that also serves other projects. The questions are practical: which candidate fits in memory, how long an answer takes, and whether the answers are right and follow instructions. Feasibility, speed and resources, and task quality are kept as separate evidence, and the recommendation weighs them for one stated use case rather than through a combined score.
 
+### Related work
+
+Quantized language models on the Raspberry Pi 4 have been measured before:
+
+- **Husom et al., 2025** ([arXiv:2504.03360](https://arxiv.org/abs/2504.03360)): 28 Ollama-quantized variants of Gemma 2 (2B), Llama 3.2 (1B), and Qwen 2.5 (0.5B, 1.5B) on a 4 GB Pi 4, five standard benchmarks, hardware energy measurement. Across quantization levels and tasks, Qwen2.5-0.5B generated 3.2–10.1 tokens/s and Gemma2-2B 0.8–2.1 tokens/s.
+- **Nguyen and Nguyen, 2025** ([arXiv:2511.07425](https://arxiv.org/abs/2511.07425)): 25 quantized models on Pi 4, Pi 5, and Orange Pi 5 Pro with Ollama and Llamafile; on the Pi 4, models of 1B parameters or more typically generated below 5 tokens/s.
+- **Ray and Pradhan, 2026** ([Journal of Edge Computing 5(1), doi:10.55056/jec.1047](https://doi.org/10.55056/jec.1047)): four 0.5–1B models through Ollama on an 8 GB Pi 4B with a fixed 20-prompt suite, comparing Python and Rust clients; warm decoding 2.7–8.6 tokens/s.
+- **SimeonOnSecurity, 2026** ([informal benchmark](https://simeononsecurity.com/articles/ai-models-raspberry-pi-4-5/)): 2 GB Pi 4 and 8 GB Pi 5 with Ollama and a short-reply workload; recommended LFM2.5-1.2B as best overall on the Pi 5 and reported that Qwen3.5-0.8B did not complete on the 2 GB Pi 4.
+
+The throughput measured here (2.35–5.24 tokens/s for 0.75–4.6 B stored parameters) is consistent in magnitude with these reports, although model generations, runtimes, quantizations, and prompts differ, so the numbers are not directly comparable. This study is not the first language-model benchmark on a Raspberry Pi. It extends that work with newer model generations (Qwen3.5, LFM2.5, Gemma 4) under one pinned llama.cpp build rather than Ollama, separate blind scoring of correctness and instruction adherence with executed code tests, the effect of the server's prompt cache on observed memory, a comparison of greedy and vendor-recommended sampling, and publication of every raw log, answer, and score sheet.
+
 ## 2. Method
 
 - **Hardware and software:** [configs/hardware.md](../configs/hardware.md); environment snapshot `results/raw/environment-20261118.json`.
