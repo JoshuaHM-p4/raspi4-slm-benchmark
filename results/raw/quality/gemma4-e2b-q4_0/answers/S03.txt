@@ -1,0 +1,1 @@
+The decision was to postpone adding a camera because the current battery cannot support the extra load.

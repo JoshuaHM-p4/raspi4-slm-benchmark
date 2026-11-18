@@ -1,0 +1,20 @@
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions
+0.00.006.325 I srv  llama_server: initializing ...
+0.00.006.403 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.006.813 W srv  server_setup: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.008.772 I srv    load_model: loading model '/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf'
+0.00.663.842 I cmn          init: llama threadpool init, n_threads = 4
+0.01.131.638 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 2048, kv_unified = 'false'
+0.01.140.681 I srv  server_run_i: model loaded
+0.01.140.703 I srv  server_on_li: listening on http://127.0.0.1:8080
+0.02.054.137 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.02.054.281 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.10.004.678 I slot print_timing: id  0 | task 0 | prompt eval time =    1854.59 ms /    22 tokens (   84.30 ms per token,    11.86 tokens per second)
+0.10.004.699 I slot print_timing: id  0 | task 0 |        eval time =    6095.73 ms /    31 tokens (  203.19 ms per token,     4.92 tokens per second)
+0.10.004.701 I slot print_timing: id  0 | task 0 |       total time =    7950.33 ms /    53 tokens
+0.10.004.711 I slot print_timing: id  0 | task 0 |    graphs reused =         30
+0.10.004.712 I slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+0.10.004.784 I slot      release: id  0 | task 0 | stop processing: n_tokens = 52, truncated = 0
+0.10.006.875 I srv    operator(): operator(): cleaning up before exit...

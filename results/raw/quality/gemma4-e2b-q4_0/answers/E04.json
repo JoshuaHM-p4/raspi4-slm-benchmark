@@ -1,0 +1,76 @@
+{
+  "prompt_id": "E04",
+  "category": "extraction",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|turn>user\nUsing only this text, return the invoice total or UNKNOWN if absent. Text: Invoice 15 lists three keyboards. Payment is due Friday.<turn|>\n<|turn>model\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Using only this text, return the invoice total or UNKNOWN if absent. Text: Invoice 15 lists three keyboards. Payment is due Friday."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "UNKNOWN"
+        }
+      }
+    ],
+    "created": 1794935452,
+    "model": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 2,
+      "prompt_tokens": 39,
+      "total_tokens": 41,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-rlBfCOKzTMIvWcfYMbgr2uTY3j6kbYmI",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 39,
+      "prompt_ms": 2791.628,
+      "prompt_per_token_ms": 71.58020512820514,
+      "prompt_per_second": 13.970342753404106,
+      "predicted_n": 2,
+      "predicted_ms": 422.005,
+      "predicted_per_token_ms": 422.005,
+      "predicted_per_second": 2.369640170140164
+    }
+  },
+  "wall_seconds": 3.22,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "UNKNOWN",
+  "usage": {
+    "completion_tokens": 2,
+    "prompt_tokens": 39,
+    "total_tokens": 41,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

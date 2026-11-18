@@ -1,0 +1,39 @@
+{
+  "http_status": 200,
+  "body": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "A single-board computer is a compact computer with a pre-built motherboard that integrates the CPU, memory, and peripherals for computing tasks."
+        }
+      }
+    ],
+    "created": 1794931837,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 31,
+      "prompt_tokens": 22,
+      "total_tokens": 53,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-BCiO7yIsqLpVNNY9wbOAuLoTTwagiGeJ",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 22,
+      "prompt_ms": 1854.591,
+      "prompt_per_token_ms": 84.29959090909091,
+      "prompt_per_second": 11.862453770130449,
+      "predicted_n": 31,
+      "predicted_ms": 6095.734,
+      "predicted_per_token_ms": 203.19113333333334,
+      "predicted_per_second": 4.921474591903125
+    }
+  }
+}

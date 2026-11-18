@@ -1,0 +1,105 @@
+{
+  "timestamp_utc": "2026-11-17T16:05:24.488989+00:00",
+  "platform": "Linux-6.18.50+rpt-rpi-v8-aarch64-with-glibc2.41",
+  "machine": "aarch64",
+  "files": {
+    "/etc/os-release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.7\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"",
+    "/proc/meminfo": "MemTotal:        3886836 kB\nMemFree:         1373664 kB\nMemAvailable:    3463608 kB\nBuffers:          121872 kB\nCached:          1863844 kB\nSwapCached:            0 kB\nActive:           788216 kB\nInactive:        1379728 kB\nActive(anon):     214940 kB\nInactive(anon):        0 kB\nActive(file):     573276 kB\nInactive(file):  1379728 kB\nUnevictable:       10996 kB\nMlocked:               0 kB\nSwapTotal:       2097148 kB\nSwapFree:        2097148 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:              1748 kB\nWriteback:             0 kB\nAnonPages:        193452 kB\nMapped:           244792 kB\nShmem:             32848 kB\nKReclaimable:     206912 kB\nSlab:             245008 kB\nSReclaimable:     206912 kB\nSUnreclaim:        38096 kB\nKernelStack:        5280 kB\nPageTables:         7696 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     4040564 kB\nCommitted_AS:    1793076 kB\nVmallocTotal:   261087232 kB\nVmallocUsed:       39004 kB\nVmallocChunk:          0 kB\nPercpu:              864 kB\nCmaTotal:         524288 kB\nCmaFree:          384420 kB\nBalloon:               0 kB",
+    "/proc/swaps": "Filename\t\t\t\tType\t\tSize\t\tUsed\t\tPriority\n/dev/zram0                              partition\t2097148\t\t0\t\t100",
+    "/proc/cpuinfo": "processor\t: 0\nBogoMIPS\t: 108.00\nFeatures\t: fp asimd evtstrm crc32 cpuid\nCPU implementer\t: 0x41\nCPU architecture: 8\nCPU variant\t: 0x0\nCPU part\t: 0xd08\nCPU revision\t: 3\n\nprocessor\t: 1\nBogoMIPS\t: 108.00\nFeatures\t: fp asimd evtstrm crc32 cpuid\nCPU implementer\t: 0x41\nCPU architecture: 8\nCPU variant\t: 0x0\nCPU part\t: 0xd08\nCPU revision\t: 3\n\nprocessor\t: 2\nBogoMIPS\t: 108.00\nFeatures\t: fp asimd evtstrm crc32 cpuid\nCPU implementer\t: 0x41\nCPU architecture: 8\nCPU variant\t: 0x0\nCPU part\t: 0xd08\nCPU revision\t: 3\n\nprocessor\t: 3\nBogoMIPS\t: 108.00\nFeatures\t: fp asimd evtstrm crc32 cpuid\nCPU implementer\t: 0x41\nCPU architecture: 8\nCPU variant\t: 0x0\nCPU part\t: 0xd08\nCPU revision\t: 3\n\nRevision\t: c03115\nSerial\t\t: 10000000ab4b7b78\nModel\t\t: Raspberry Pi 4 Model B Rev 1.5",
+    "/sys/firmware/devicetree/base/model": "Raspberry Pi 4 Model B Rev 1.5",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "ondemand"
+  },
+  "disk_bytes": {
+    "total": 30800633856,
+    "used": 18095562752,
+    "free": 11377750016
+  },
+  "commands": [
+    {
+      "command": [
+        "vcgencmd",
+        "measure_temp"
+      ],
+      "exit_code": 0,
+      "stdout": "temp=46.7'C",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "vcgencmd",
+        "get_throttled"
+      ],
+      "exit_code": 0,
+      "stdout": "throttled=0x0",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "vcgencmd",
+        "measure_clock",
+        "arm"
+      ],
+      "exit_code": 0,
+      "stdout": "frequency(48)=1800457088",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "vcgencmd",
+        "version"
+      ],
+      "exit_code": 0,
+      "stdout": "Sep  7 2026 10:23:43 \nCopyright (c) 2012 Broadcom\nversion 465206a286cc1a7b13c2e86bc199f74dde7a8309 (clean) (release) (start)",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "lscpu"
+      ],
+      "exit_code": 0,
+      "stdout": "Architecture:                            aarch64\nCPU op-mode(s):                          32-bit, 64-bit\nByte Order:                              Little Endian\nCPU(s):                                  4\nOn-line CPU(s) list:                     0-3\nVendor ID:                               ARM\nModel name:                              Cortex-A72\nModel:                                   3\nThread(s) per core:                      1\nCore(s) per cluster:                     4\nSocket(s):                               -\nCluster(s):                              1\nStepping:                                r0p3\nFrequency boost:                         disabled\nCPU(s) scaling MHz:                      100%\nCPU max MHz:                             1800.0000\nCPU min MHz:                             600.0000\nBogoMIPS:                                108.00\nFlags:                                   fp asimd evtstrm crc32 cpuid\nL1d cache:                               128 KiB (4 instances)\nL1i cache:                               192 KiB (4 instances)\nL2 cache:                                1 MiB (1 instance)\nNUMA node(s):                            2\nNUMA node0 CPU(s):                       0-3\nNUMA node1 CPU(s):                       0-3\nVulnerability Gather data sampling:      Not affected\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Not affected\nVulnerability Spec rstack overflow:      Not affected\nVulnerability Spec store bypass:         Vulnerable\nVulnerability Spectre v1:                Mitigation; __user pointer sanitization\nVulnerability Spectre v2:                Vulnerable\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Not affected",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "lsblk",
+        "-o",
+        "NAME,SIZE,TYPE,MODEL,TRAN,MOUNTPOINTS"
+      ],
+      "exit_code": 0,
+      "stdout": "NAME         SIZE TYPE MODEL TRAN MOUNTPOINTS\nloop0          2G loop            \nmmcblk0     29.7G disk       mmc  \n\u251c\u2500mmcblk0p1  512M part       mmc  /boot/firmware\n\u2514\u2500mmcblk0p2 29.2G part       mmc  /\nzram0          2G disk            [SWAP]",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "vendor/llama.cpp",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "b1b770d90d94cad9e9ea5b993bdbc383a522fb28",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cmake",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "cmake version 3.31.6\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "c++",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "c++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "stderr": ""
+    }
+  ]
+}

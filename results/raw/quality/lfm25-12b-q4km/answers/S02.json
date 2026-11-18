@@ -1,0 +1,76 @@
+{
+  "prompt_id": "S02",
+  "category": "summarization",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nSummarize in exactly two bullets: The team tested three fans. Fan A was quiet but weak. Fan B cooled best but was loud. Fan C balanced noise and cooling.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Summarize in exactly two bullets: The team tested three fans. Fan A was quiet but weak. Fan B cooled best but was loud. Fan C balanced noise and cooling."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "- The team evaluated three fans, noting Fan A was quiet but weak, Fan B provided the best cooling despite being loud, and Fan C offered a balanced performance in both noise and cooling.  \n- Each fan had distinct strengths, making them suitable for different needs based on the desired balance of quietness, cooling, and noise level."
+        }
+      }
+    ],
+    "created": 1794935199,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 68,
+      "prompt_tokens": 45,
+      "total_tokens": 113,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-96sfbwevCwjZPbPILBWuOOAPhQMQS8IA",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 45,
+      "prompt_ms": 3678.653,
+      "prompt_per_token_ms": 81.74784444444444,
+      "prompt_per_second": 12.232738450731832,
+      "predicted_n": 68,
+      "predicted_ms": 13493.902,
+      "predicted_per_token_ms": 201.4015223880597,
+      "predicted_per_second": 4.965205764796572
+    }
+  },
+  "wall_seconds": 17.18,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "- The team evaluated three fans, noting Fan A was quiet but weak, Fan B provided the best cooling despite being loud, and Fan C offered a balanced performance in both noise and cooling.  \n- Each fan had distinct strengths, making them suitable for different needs based on the desired balance of quietness, cooling, and noise level.",
+  "usage": {
+    "completion_tokens": 68,
+    "prompt_tokens": 45,
+    "total_tokens": 113,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

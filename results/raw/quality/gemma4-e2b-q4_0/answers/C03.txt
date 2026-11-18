@@ -1,0 +1,4 @@
+def last_or_none(items):
+    if not items:
+        return None
+    return items[-1]

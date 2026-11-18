@@ -1,0 +1,3 @@
+peak_rss_kib=633924
+elapsed_seconds=32.62
+exit_code=0

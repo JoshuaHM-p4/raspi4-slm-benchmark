@@ -1,0 +1,26 @@
+Here is a list of 60 different fruits:
+
+1. Apple
+2. Banana
+3. Orange
+4. Grape
+5. Strawberry
+6. Blueberry
+7. Raspberry
+8. Pineapple
+9. Mango
+10. Watermelon
+11. Kiwi
+12. Lemon
+13. Lime
+14. Peach
+15. Plum
+16. Cherry
+17. Apricot
+18. Pear
+19. Coconut
+20. Papaya
+21. Passion fruit
+22. Tangerine
+23. Mandarin
+24. Fig

@@ -1,0 +1,3 @@
+1. Fan A was quiet but weak.
+2. Fan B cooled best but was loud.
+3. Fan C balanced noise and cooling.

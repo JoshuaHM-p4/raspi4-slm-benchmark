@@ -1,0 +1,76 @@
+{
+  "prompt_id": "I04",
+  "category": "instruction",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nGive exactly two bullet points naming one input device and one output device.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Give exactly two bullet points naming one input device and one output device."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "*   **Input Device**: Keyboard\n*   **Output Device**: Monitor"
+        }
+      }
+    ],
+    "created": 1794935725,
+    "model": "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 16,
+      "prompt_tokens": 26,
+      "total_tokens": 42,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-Yf7OsAKMrLZwth4oL7ADLiTWXWtSqqao",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 26,
+      "prompt_ms": 1439.061,
+      "prompt_per_token_ms": 55.348499999999994,
+      "prompt_per_second": 18.067336964868066,
+      "predicted_n": 16,
+      "predicted_ms": 2799.437,
+      "predicted_per_token_ms": 186.62913333333333,
+      "predicted_per_second": 5.358220242141545
+    }
+  },
+  "wall_seconds": 4.24,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "*   **Input Device**: Keyboard\n*   **Output Device**: Monitor",
+  "usage": {
+    "completion_tokens": 16,
+    "prompt_tokens": 26,
+    "total_tokens": 42,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

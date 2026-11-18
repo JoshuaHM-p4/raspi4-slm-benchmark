@@ -1,0 +1,112 @@
+{
+  "model_label": "gemma4-e2b-q4_0",
+  "model_path": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+  "model_file_bytes": 2841481184,
+  "model_sha256": "8e30dff3ac4c8434c49a7036fa15564bdbb6044e42bf04550bf1a096ad7e6a52",
+  "settings": {
+    "ctx": 2048,
+    "threads": 4,
+    "batch": 128,
+    "ubatch": 128,
+    "ngl": 0,
+    "parallel_slots": 1,
+    "temperature": 0,
+    "max_tokens": 128,
+    "enable_thinking": false,
+    "jinja": true,
+    "load_timeout_s": 900
+  },
+  "before": {
+    "time_utc": "2026-11-17T16:25:05.635374+00:00",
+    "temp": "temp=43.3'C",
+    "throttled": "throttled=0x0",
+    "arm_clock": "frequency(48)=1800457088",
+    "mem_available_kib": 3454172,
+    "swap_free_kib": 2097148,
+    "swap_total_kib": 2097148,
+    "pswpin": 0,
+    "pswpout": 0
+  },
+  "command": [
+    "/home/bagwis/raspi4bench-slm/vendor/llama.cpp/build/bin/llama-server",
+    "-m",
+    "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "-c",
+    "2048",
+    "-t",
+    "4",
+    "-b",
+    "128",
+    "-ub",
+    "128",
+    "-ngl",
+    "0",
+    "-np",
+    "1",
+    "--jinja",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "load_seconds": 80.27,
+  "loaded": true,
+  "chat_template_present": true,
+  "n_ctx": 2048,
+  "build_info": "b1-b1b770d",
+  "chat_wall_seconds": 12.64,
+  "chat_http_status": 200,
+  "finish_reason": "stop",
+  "answer": "A single-board computer is a complete, compact computer on a single circuit board that contains all the necessary components to function.",
+  "usage": {
+    "completion_tokens": 26,
+    "prompt_tokens": 22,
+    "total_tokens": 48,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 22,
+    "prompt_ms": 1795.725,
+    "prompt_per_token_ms": 81.62386363636364,
+    "prompt_per_second": 12.25131910509683,
+    "predicted_n": 26,
+    "predicted_ms": 10816.935,
+    "predicted_per_token_ms": 432.6774,
+    "predicted_per_second": 2.3111907393360505
+  },
+  "reasoning_present": false,
+  "server_vm": {
+    "rss_kib": 2856116,
+    "hwm_kib": 2856116,
+    "swap_kib": 59200
+  },
+  "server_returncode": 0,
+  "server_exited_on_its_own": false,
+  "after": {
+    "time_utc": "2026-11-17T16:26:39.542881+00:00",
+    "temp": "temp=49.1'C",
+    "throttled": "throttled=0x0",
+    "arm_clock": "frequency(48)=1800457088",
+    "mem_available_kib": 3531012,
+    "swap_free_kib": 1947228,
+    "swap_total_kib": 2097148,
+    "pswpin": 22612,
+    "pswpout": 56921
+  },
+  "telemetry_summary": {
+    "min_mem_available_kib": 3297988,
+    "max_server_hwm_kib": 2856020,
+    "max_server_swap_kib": 81368,
+    "min_swap_free_kib": 1863888,
+    "pswpin_delta": 22612,
+    "pswpout_delta": 56921
+  },
+  "status": "ready_with_restrictions",
+  "restrictions": [
+    "swap activity during run"
+  ],
+  "status_note": "Provisional; answer coherence is judged manually."
+}

@@ -1,0 +1,76 @@
+{
+  "prompt_id": "S01",
+  "category": "summarization",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nSummarize in one sentence of at most 25 words: The library closes at 6 PM this week for electrical repairs. Online borrowing remains available. Normal hours resume next Monday.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Summarize in one sentence of at most 25 words: The library closes at 6 PM this week for electrical repairs. Online borrowing remains available. Normal hours resume next Monday."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The library will close at 6 PM this week for repairs, but online borrowing will continue."
+        }
+      }
+    ],
+    "created": 1794935181,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 20,
+      "prompt_tokens": 46,
+      "total_tokens": 66,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-gJv48NHuWbSBpPgeWzpMTaAUMQvQNrvX",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 46,
+      "prompt_ms": 3768.801,
+      "prompt_per_token_ms": 81.93045652173913,
+      "prompt_per_second": 12.205473305701204,
+      "predicted_n": 20,
+      "predicted_ms": 3795.127,
+      "predicted_per_token_ms": 199.74352631578947,
+      "predicted_per_second": 5.006420075006713
+    }
+  },
+  "wall_seconds": 7.57,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "The library will close at 6 PM this week for repairs, but online borrowing will continue.",
+  "usage": {
+    "completion_tokens": 20,
+    "prompt_tokens": 46,
+    "total_tokens": 66,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

@@ -1,0 +1,12 @@
+def unique_sorted(numbers):
+    """
+    Returns a sorted list of distinct integers.
+    
+    Parameters:
+    numbers (list): A list of integers to be processed.
+    
+    Returns:
+    list: A sorted list containing only unique integers.
+    """
+    unique_elements = set(numbers)
+    return sorted(list(unique_elements))

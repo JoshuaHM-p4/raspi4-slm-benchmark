@@ -1,0 +1,4 @@
+set,model_label,prompt_id,list_items,distinct_items,source
+greedy,qwen35-08b-q4km,P02,25,3,results/raw/pilot/qwen35-08b-q4km/answers/answers/P02.txt
+greedy,lfm25-12b-q4km,P02,26,22,results/raw/pilot/lfm25-12b-q4km/answers/answers/P02.txt
+greedy,gemma4-e2b-q4_0,P02,24,24,results/raw/pilot/gemma4-e2b-q4_0/answers/answers/P02.txt

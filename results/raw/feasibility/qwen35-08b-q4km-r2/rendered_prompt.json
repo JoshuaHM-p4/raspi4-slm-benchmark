@@ -1,0 +1,6 @@
+{
+  "http_status": 200,
+  "body": {
+    "prompt": "<|im_start|>user\nIn one short sentence, what is a single-board computer?<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+  }
+}

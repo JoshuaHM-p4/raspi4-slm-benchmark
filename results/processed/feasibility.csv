@@ -1,0 +1,6 @@
+model_label,run,status,restrictions,load_seconds,parallel_slots,server_vmhwm_kib,server_vmswap_peak_kib,pswpout_pages,pswpin_pages,throttled_before,throttled_after
+gemma4-e2b-q4_0,gemma4-e2b-q4_0-r1,ready_with_restrictions,swap activity during run,80.27,1,2856020,81368,56921,22612,throttled=0x0,throttled=0x0
+gemma4-e2b-q4_0,gemma4-e2b-q4_0-r2,ready,,8.07,1,2915456,0,0,1420,throttled=0x0,throttled=0x0
+lfm25-12b-q4km,lfm25-12b-q4km-r1,ready,,2.06,1,779560,0,0,0,throttled=0x0,throttled=0x0
+qwen35-08b-q4km,qwen35-08b-q4km-r1,ready,,3.06,4 (server default),751048,0,0,0,throttled=0x0,throttled=0x0
+qwen35-08b-q4km,qwen35-08b-q4km-r2,ready,,3.06,1,687268,0,0,0,throttled=0x0,throttled=0x0

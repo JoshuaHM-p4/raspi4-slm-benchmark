@@ -1,0 +1,76 @@
+{
+  "prompt_id": "P02",
+  "category": "pilot",
+  "status": "truncated",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nWrite a numbered list of 60 different fruits, one per line.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a numbered list of 60 different fruits, one per line."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "1. Apple  \n2. Banana  \n3. Blueberry  \n4. Grape  \n5. Strawberry  \n6. Orange  \n7. Mango  \n8. Pineapple  \n9. Watermelon  \n10. Pineapple  \n11. Papaya  \n12. Kiwi  \n13. Grapefruit  \n14. Lemon  \n15. Lime  \n16. Orange juice  \n17. Pear  \n18. Peach  \n19. Plum  \n20. Cherry  \n21. Raspberry  \n22. Blackberry  \n23. Strawberry  \n24. Raspberry  \n25. Blueberry  \n26. Cran"
+        }
+      }
+    ],
+    "created": 1794933351,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 128,
+      "prompt_tokens": 23,
+      "total_tokens": 151,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-OSkSJzG5xwhJGgPAsgPdYOiwY7J3ryfq",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 23,
+      "prompt_ms": 1916.643,
+      "prompt_per_token_ms": 83.33230434782608,
+      "prompt_per_second": 12.00014817574269,
+      "predicted_n": 128,
+      "predicted_ms": 25598.639,
+      "predicted_per_token_ms": 201.56408661417322,
+      "predicted_per_second": 4.961201257613735
+    }
+  },
+  "wall_seconds": 27.52,
+  "timed_out": false,
+  "finish_reason": "length",
+  "content": "1. Apple  \n2. Banana  \n3. Blueberry  \n4. Grape  \n5. Strawberry  \n6. Orange  \n7. Mango  \n8. Pineapple  \n9. Watermelon  \n10. Pineapple  \n11. Papaya  \n12. Kiwi  \n13. Grapefruit  \n14. Lemon  \n15. Lime  \n16. Orange juice  \n17. Pear  \n18. Peach  \n19. Plum  \n20. Cherry  \n21. Raspberry  \n22. Blackberry  \n23. Strawberry  \n24. Raspberry  \n25. Blueberry  \n26. Cran",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 23,
+    "total_tokens": 151,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

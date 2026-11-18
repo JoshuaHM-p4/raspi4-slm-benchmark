@@ -1,0 +1,26 @@
+1. Apple
+2. Banana
+3. Avocado
+4. Apple
+5. Avocado
+6. Apple
+7. Banana
+8. Avocado
+9. Apple
+10. Avocado
+11. Apple
+12. Banana
+13. Avocado
+14. Apple
+15. Avocado
+16. Apple
+17. Banana
+18. Avocado
+19. Apple
+20. Avocado
+21. Apple
+22. Banana
+23. Avocado
+24. Apple
+25. Avocado
+26

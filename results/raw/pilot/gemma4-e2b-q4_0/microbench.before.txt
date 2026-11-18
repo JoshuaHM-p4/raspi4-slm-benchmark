@@ -1,0 +1,2 @@
+temp=43.8'C
+throttled=0x0

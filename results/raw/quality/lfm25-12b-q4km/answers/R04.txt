@@ -1,0 +1,10 @@
+We are given that a sensor samples every 5 seconds, starting at time 0. We are to count how many samples occur from time 0 through time 20 inclusive.
+
+1. **Determine the sampling interval and range:**
+   - Sampling interval = 5 seconds.
+   - Start time = 0.
+   - End time = 20 seconds.
+
+2. **Find the number of sampling times:**
+   - The sampling times are: 0, 5, 10, 15, and 20 seconds.
+   - This forms an arithmetic sequence: 0, 5, 10

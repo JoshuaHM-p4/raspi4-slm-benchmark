@@ -1,0 +1,23 @@
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions
+0.00.006.069 I srv  llama_server: initializing ...
+0.00.006.129 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.026.889 W srv  server_setup: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.029.357 I srv    load_model: loading model '/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf'
+0.03.432.306 W load: control-looking token:    212 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.03.432.464 W load: control-looking token:     50 '<|tool_response>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.03.453.558 W load: '</s>' is a normal token here, removing it from EOG list
+1.19.109.707 I cmn          init: llama threadpool init, n_threads = 4
+1.20.117.461 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 2048, kv_unified = 'false'
+1.20.179.470 I srv  server_run_i: model loaded
+1.20.179.496 I srv  server_on_li: listening on http://127.0.0.1:8080
+1.20.288.012 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+1.20.288.138 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+1.32.900.876 I slot print_timing: id  0 | task 0 | prompt eval time =    1795.72 ms /    22 tokens (   81.62 ms per token,    12.25 tokens per second)
+1.32.900.906 I slot print_timing: id  0 | task 0 |        eval time =   10816.93 ms /    26 tokens (  432.68 ms per token,     2.31 tokens per second)
+1.32.900.908 I slot print_timing: id  0 | task 0 |       total time =   12612.66 ms /    48 tokens
+1.32.900.918 I slot print_timing: id  0 | task 0 |    graphs reused =         25
+1.32.900.919 I slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+1.32.901.259 I slot      release: id  0 | task 0 | stop processing: n_tokens = 47, truncated = 0
+1.32.909.026 I srv    operator(): operator(): cleaning up before exit...

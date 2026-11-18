@@ -1,0 +1,2 @@
+start_temp_c=43.3 waited_s=10 throttled=0x0
+end_temp=temp=51.1'C throttled=0x0 benchmark_exit=0

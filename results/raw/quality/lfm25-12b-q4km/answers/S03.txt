@@ -1,0 +1,1 @@
+We decided against adding a camera due to insufficient battery capacity to handle the additional load.

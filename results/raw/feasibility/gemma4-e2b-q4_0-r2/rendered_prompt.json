@@ -1,0 +1,6 @@
+{
+  "http_status": 200,
+  "body": {
+    "prompt": "<|turn>user\nIn one short sentence, what is a single-board computer?<turn|>\n<|turn>model\n"
+  }
+}

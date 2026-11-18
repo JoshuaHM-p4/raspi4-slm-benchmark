@@ -1,0 +1,76 @@
+{
+  "prompt_id": "S02",
+  "category": "summarization",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|turn>user\nSummarize in exactly two bullets: The team tested three fans. Fan A was quiet but weak. Fan B cooled best but was loud. Fan C balanced noise and cooling.<turn|>\n<|turn>model\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Summarize in exactly two bullets: The team tested three fans. Fan A was quiet but weak. Fan B cooled best but was loud. Fan C balanced noise and cooling."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "* Fan A was quiet but weak.\n* Fan C provided the best balance of noise and cooling."
+        }
+      }
+    ],
+    "created": 1794935562,
+    "model": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 22,
+      "prompt_tokens": 44,
+      "total_tokens": 66,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-HADGYrVjqJtW9nx5DI6EXPLTYyqLEp5H",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 44,
+      "prompt_ms": 3083.149,
+      "prompt_per_token_ms": 70.07156818181818,
+      "prompt_per_second": 14.27112345202908,
+      "predicted_n": 22,
+      "predicted_ms": 9076.793,
+      "predicted_per_token_ms": 432.22823809523805,
+      "predicted_per_second": 2.3135924769904967
+    }
+  },
+  "wall_seconds": 12.17,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "* Fan A was quiet but weak.\n* Fan C provided the best balance of noise and cooling.",
+  "usage": {
+    "completion_tokens": 22,
+    "prompt_tokens": 44,
+    "total_tokens": 66,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

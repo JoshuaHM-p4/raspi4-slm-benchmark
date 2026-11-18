@@ -1,0 +1,76 @@
+{
+  "prompt_id": "E01",
+  "category": "extraction",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nExtract name and city as a JSON object with exactly those keys. Text: Mina lives in Cebu.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Extract name and city as a JSON object with exactly those keys. Text: Mina lives in Cebu."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"name\": \"Mina\",\n  \"city\": \"Cebu\"\n}"
+        }
+      }
+    ],
+    "created": 1794935111,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 20,
+      "prompt_tokens": 33,
+      "total_tokens": 53,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-GZreBYlXoeaR3WAAA8BneqwD4G1SAr0N",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 33,
+      "prompt_ms": 2714.924,
+      "prompt_per_token_ms": 82.27042424242424,
+      "prompt_per_second": 12.155036384075576,
+      "predicted_n": 20,
+      "predicted_ms": 3783.431,
+      "predicted_per_token_ms": 199.12794736842105,
+      "predicted_per_second": 5.021896791563002
+    }
+  },
+  "wall_seconds": 6.5,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "{\n  \"name\": \"Mina\",\n  \"city\": \"Cebu\"\n}",
+  "usage": {
+    "completion_tokens": 20,
+    "prompt_tokens": 33,
+    "total_tokens": 53,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

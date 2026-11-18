@@ -1,0 +1,76 @@
+{
+  "prompt_id": "R03",
+  "category": "reasoning",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nAna finished before Ben. Ben finished before Carlo. Who finished first among the three? Answer with the name only.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Ana finished before Ben. Ben finished before Carlo. Who finished first among the three? Answer with the name only."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Ana"
+        }
+      }
+    ],
+    "created": 1794935144,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 3,
+      "prompt_tokens": 33,
+      "total_tokens": 36,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-oejTEX0NLJzIByigqt4g7uqcTFF8UjUu",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 33,
+      "prompt_ms": 2723.15,
+      "prompt_per_token_ms": 82.51969696969697,
+      "prompt_per_second": 12.118318858674696,
+      "predicted_n": 3,
+      "predicted_ms": 398.133,
+      "predicted_per_token_ms": 199.0665,
+      "predicted_per_second": 5.02344693858585
+    }
+  },
+  "wall_seconds": 3.13,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "Ana",
+  "usage": {
+    "completion_tokens": 3,
+    "prompt_tokens": 33,
+    "total_tokens": 36,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

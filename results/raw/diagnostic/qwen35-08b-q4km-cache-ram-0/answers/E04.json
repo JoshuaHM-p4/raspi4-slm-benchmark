@@ -1,0 +1,76 @@
+{
+  "prompt_id": "E04",
+  "category": "extraction",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nUsing only this text, return the invoice total or UNKNOWN if absent. Text: Invoice 15 lists three keyboards. Payment is due Friday.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Using only this text, return the invoice total or UNKNOWN if absent. Text: Invoice 15 lists three keyboards. Payment is due Friday."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "UNKNOWN"
+        }
+      }
+    ],
+    "created": 1794935746,
+    "model": "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 2,
+      "prompt_tokens": 41,
+      "total_tokens": 43,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-5h5Cyg236wfjr9OeoYmhm3v0vtqOjDJD",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 41,
+      "prompt_ms": 2179.681,
+      "prompt_per_token_ms": 53.162951219512195,
+      "prompt_per_second": 18.81009193547129,
+      "predicted_n": 2,
+      "predicted_ms": 186.637,
+      "predicted_per_token_ms": 186.637,
+      "predicted_per_second": 5.357994395537863
+    }
+  },
+  "wall_seconds": 2.37,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "UNKNOWN",
+  "usage": {
+    "completion_tokens": 2,
+    "prompt_tokens": 41,
+    "total_tokens": 43,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

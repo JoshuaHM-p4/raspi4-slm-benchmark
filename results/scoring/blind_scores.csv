@@ -1,0 +1,61 @@
+code,prompt_id,category,status,correctness_0_2,adherence_0_2,notes
+6575,I01,instruction,complete,2,2,
+172F,I01,instruction,complete,2,2,
+31A9,I01,instruction,complete,2,2,
+193F,I02,instruction,complete,2,2,
+D867,I02,instruction,complete,2,2,
+0FB6,I02,instruction,complete,2,2,
+2FD5,I03,instruction,complete,2,2,
+8DC1,I03,instruction,complete,2,2,
+2D9B,I03,instruction,complete,2,2,
+9B0E,I04,instruction,complete,2,2,
+ED67,I04,instruction,complete,2,2,
+B8C2,I04,instruction,complete,2,2,
+254A,E01,extraction,complete,2,2,
+CFEB,E01,extraction,complete,2,2,
+AD28,E01,extraction,complete,2,2,
+70BC,E02,extraction,complete,2,2,
+D839,E02,extraction,complete,0,1,Answered Positive
+43C3,E02,extraction,complete,2,2,
+562B,E03,extraction,complete,2,2,
+269F,E03,extraction,complete,2,2,
+7272,E03,extraction,complete,2,2,
+2388,E04,extraction,complete,2,2,
+8456,E04,extraction,complete,2,2,
+46C9,E04,extraction,complete,2,2,
+93AF,R01,reasoning,complete,2,2,
+235C,R01,reasoning,complete,0,1,"Answered 9 pens with no calculation, and reasons ""five pens increases total"""
+F540,R01,reasoning,complete,2,2,
+14D4,R02,reasoning,complete,2,2,
+ABD4,R02,reasoning,complete,0,1,explains Item X conductive material hoever never derived from the given premises 
+3FF6,R02,reasoning,complete,0,1,explains Item X conductive material hoever never derived from the given premises 
+7F8C,R03,reasoning,complete,2,2,
+365E,R03,reasoning,complete,2,2,
+2E4F,R03,reasoning,complete,2,2,
+CF4E,R04,reasoning,truncated,1,1,"Explained the 5 samples, never said how many. Due to Status Truncated"
+415A,R04,reasoning,truncated,0,0,"Never concluded with the answer, only explained solution"
+5F7D,R04,reasoning,truncated,1,1,"Explained the 5 samples, never said how many. Status Truncated"
+E304,S01,summarization,complete,2,2,
+2592,S01,summarization,complete,2,2,
+5E71,S01,summarization,complete,1,2,Missed detail on: normal hours resume on Monday
+5F63,S02,summarization,complete,1,1,"Was technically in two bullets, but was too long for a summary. "
+0848,S02,summarization,complete,2,0,Three bullets
+74F7,S02,summarization,complete,1,2,Missed the detail on Fan B
+85AF,S03,summarization,complete,2,2,
+D35F,S03,summarization,complete,0,2,"Reasoned ""camera due to the high battery load"", not in original sentence"
+BDE3,S03,summarization,complete,2,2,Unique way to summarize but was technically correct
+A5CD,S04,summarization,complete,2,2,
+BF28,S04,summarization,complete,2,0,22 words > 20
+446C,S04,summarization,complete,2,2,
+4EDD,C01,coding,complete,2,2,
+1697,C01,coding,complete,2,2,
+DB2A,C01,coding,complete,2,2,
+9996,C02,coding,complete,2,2,
+25CF,C02,coding,complete,2,2,
+AE66,C02,coding,complete,2,2,
+6869,C03,coding,complete,2,2,
+DF32,C03,coding,complete,2,2,
+D6AC,C03,coding,complete,2,1,Added Fences
+6462,C04,coding,complete,2,1,Added Explanation
+0311,C04,coding,complete,2,2,
+3E6F,C04,coding,complete,2,1,Added Fences

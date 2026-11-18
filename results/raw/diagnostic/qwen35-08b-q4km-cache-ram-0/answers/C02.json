@@ -1,0 +1,76 @@
+{
+  "prompt_id": "C02",
+  "category": "coding",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nWrite only a Python function named count_even(numbers) that returns how many integers are even. No Markdown fences or explanation.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write only a Python function named count_even(numbers) that returns how many integers are even. No Markdown fences or explanation."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "def count_even(numbers):\n    return sum(1 for n in numbers if n % 2 == 0)"
+        }
+      }
+    ],
+    "created": 1794935829,
+    "model": "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 25,
+      "prompt_tokens": 36,
+      "total_tokens": 61,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-BCV6tS7WclZhMEvWGArF78MHnWhrvG89",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 36,
+      "prompt_ms": 1933.698,
+      "prompt_per_token_ms": 53.71383333333333,
+      "prompt_per_second": 18.617178070205377,
+      "predicted_n": 25,
+      "predicted_ms": 4542.172,
+      "predicted_per_token_ms": 189.25716666666665,
+      "predicted_per_second": 5.2838157603895235
+    }
+  },
+  "wall_seconds": 6.48,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "def count_even(numbers):\n    return sum(1 for n in numbers if n % 2 == 0)",
+  "usage": {
+    "completion_tokens": 25,
+    "prompt_tokens": 36,
+    "total_tokens": 61,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

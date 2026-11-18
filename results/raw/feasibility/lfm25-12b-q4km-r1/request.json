@@ -1,0 +1,14 @@
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "In one short sentence, what is a single-board computer?"
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 128,
+  "stream": false,
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "prompt_id": "I04",
+  "category": "instruction",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nGive exactly two bullet points naming one input device and one output device.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Give exactly two bullet points naming one input device and one output device."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "- Input device: Keyboard  \n- Output device: Monitor"
+        }
+      }
+    ],
+    "created": 1794935104,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 13,
+      "prompt_tokens": 23,
+      "total_tokens": 36,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-7yBMSRO2WYYPUFIKhgk6GPF74bDQQAkf",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 23,
+      "prompt_ms": 1914.12,
+      "prompt_per_token_ms": 83.22260869565217,
+      "prompt_per_second": 12.015965561197834,
+      "predicted_n": 13,
+      "predicted_ms": 2390.361,
+      "predicted_per_token_ms": 199.19674999999998,
+      "predicted_per_second": 5.020162226542351
+    }
+  },
+  "wall_seconds": 4.31,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "- Input device: Keyboard  \n- Output device: Monitor",
+  "usage": {
+    "completion_tokens": 13,
+    "prompt_tokens": 23,
+    "total_tokens": 36,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

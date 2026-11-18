@@ -1,0 +1,76 @@
+{
+  "prompt_id": "C03",
+  "category": "coding",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nWrite only a Python function named last_or_none(items) that returns the last item, or None for an empty list. No Markdown fences or explanation.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write only a Python function named last_or_none(items) that returns the last item, or None for an empty list. No Markdown fences or explanation."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```python\ndef last_or_none(items):\n    if items:\n        return items[-1]\n    return None\n```"
+        }
+      }
+    ],
+    "created": 1794935238,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 27,
+      "prompt_tokens": 43,
+      "total_tokens": 70,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-wphncAZqACx8IZ2w1RS7RLN7jxuT2cqg",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 43,
+      "prompt_ms": 3509.708,
+      "prompt_per_token_ms": 81.62111627906977,
+      "prompt_per_second": 12.251731483074947,
+      "predicted_n": 27,
+      "predicted_ms": 5199.548,
+      "predicted_per_token_ms": 199.98261538461537,
+      "predicted_per_second": 5.000434653166006
+    }
+  },
+  "wall_seconds": 8.72,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "```python\ndef last_or_none(items):\n    if items:\n        return items[-1]\n    return None\n```",
+  "usage": {
+    "completion_tokens": 27,
+    "prompt_tokens": 43,
+    "total_tokens": 70,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

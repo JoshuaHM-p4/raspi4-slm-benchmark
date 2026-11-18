@@ -1,0 +1,1 @@
+vendor/llama.cpp/build/bin/llama-bench -m models/Qwen3.5-0.8B-Q4_K_M.gguf -t 4 -ngl 0 -b 128 -ub 128 -p 128 -n 32 -r 1 -o jsonl 

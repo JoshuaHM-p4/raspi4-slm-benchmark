@@ -1,0 +1,76 @@
+{
+  "prompt_id": "S02",
+  "category": "summarization",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nSummarize in exactly two bullets: The team tested three fans. Fan A was quiet but weak. Fan B cooled best but was loud. Fan C balanced noise and cooling.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Summarize in exactly two bullets: The team tested three fans. Fan A was quiet but weak. Fan B cooled best but was loud. Fan C balanced noise and cooling."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "1. Fan A was quiet but weak.\n2. Fan B cooled best but was loud.\n3. Fan C balanced noise and cooling."
+        }
+      }
+    ],
+    "created": 1794935804,
+    "model": "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 31,
+      "prompt_tokens": 48,
+      "total_tokens": 79,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-UgKBMAOhf0270E37CVSLOz20u5bHRjkC",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 48,
+      "prompt_ms": 2516.75,
+      "prompt_per_token_ms": 52.432291666666664,
+      "prompt_per_second": 19.072216151783053,
+      "predicted_n": 31,
+      "predicted_ms": 5720.62,
+      "predicted_per_token_ms": 190.68733333333333,
+      "predicted_per_second": 5.244186818911237
+    }
+  },
+  "wall_seconds": 8.24,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "1. Fan A was quiet but weak.\n2. Fan B cooled best but was loud.\n3. Fan C balanced noise and cooling.",
+  "usage": {
+    "completion_tokens": 31,
+    "prompt_tokens": 48,
+    "total_tokens": 79,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

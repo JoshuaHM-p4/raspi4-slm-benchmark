@@ -1,0 +1,76 @@
+{
+  "prompt_id": "C02",
+  "category": "coding",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|turn>user\nWrite only a Python function named count_even(numbers) that returns how many integers are even. No Markdown fences or explanation.<turn|>\n<|turn>model\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write only a Python function named count_even(numbers) that returns how many integers are even. No Markdown fences or explanation."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "def count_even(numbers):\n    count = 0\n    for number in numbers:\n        if number % 2 == 0:\n            count += 1\n    return count"
+        }
+      }
+    ],
+    "created": 1794935614,
+    "model": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 42,
+      "prompt_tokens": 35,
+      "total_tokens": 77,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-TWlmXei3kgGwxcx7RF9tqeVi3egELadq",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 35,
+      "prompt_ms": 2526.871,
+      "prompt_per_token_ms": 72.1963142857143,
+      "prompt_per_second": 13.851122593911601,
+      "predicted_n": 42,
+      "predicted_ms": 17726.849,
+      "predicted_per_token_ms": 432.3621707317073,
+      "predicted_per_second": 2.3128757964824995
+    }
+  },
+  "wall_seconds": 20.26,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "def count_even(numbers):\n    count = 0\n    for number in numbers:\n        if number % 2 == 0:\n            count += 1\n    return count",
+  "usage": {
+    "completion_tokens": 42,
+    "prompt_tokens": 35,
+    "total_tokens": 77,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

@@ -1,0 +1,76 @@
+{
+  "prompt_id": "C01",
+  "category": "coding",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nWrite only a Python function named add(a, b) that returns their sum. No Markdown fences or explanation.<|im_end|>\n<|im_start|>assistant\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write only a Python function named add(a, b) that returns their sum. No Markdown fences or explanation."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "def add(a, b):\n    return a + b"
+        }
+      }
+    ],
+    "created": 1794935218,
+    "model": "/home/bagwis/raspi4bench-slm/models/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 12,
+      "prompt_tokens": 33,
+      "total_tokens": 45,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-HmXxa9GPOnS62DhBUv8GGkqcBbq25TDW",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 33,
+      "prompt_ms": 2717.423,
+      "prompt_per_token_ms": 82.3461515151515,
+      "prompt_per_second": 12.14385835403616,
+      "predicted_n": 12,
+      "predicted_ms": 2208.187,
+      "predicted_per_token_ms": 200.74427272727272,
+      "predicted_per_second": 4.9814621678327065
+    }
+  },
+  "wall_seconds": 4.93,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "def add(a, b):\n    return a + b",
+  "usage": {
+    "completion_tokens": 12,
+    "prompt_tokens": 33,
+    "total_tokens": 45,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

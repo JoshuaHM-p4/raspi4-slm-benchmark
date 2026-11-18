@@ -1,0 +1,8 @@
+set,model_label,kind,vmhwm_kib,source
+greedy,qwen35-08b-q4km,chat server (default --cache-ram),1432168,results/raw/quality/qwen35-08b-q4km
+greedy,lfm25-12b-q4km,chat server (default --cache-ram),803788,results/raw/quality/lfm25-12b-q4km
+greedy,gemma4-e2b-q4_0,chat server (default --cache-ram),2932480,results/raw/quality/gemma4-e2b-q4_0
+speed,qwen35-08b-q4km,llama-bench peak RSS (GNU time),640292,results/raw/speed/qwen35-08b-q4km/bench
+speed,lfm25-12b-q4km,llama-bench peak RSS (GNU time),767292,results/raw/speed/lfm25-12b-q4km/bench
+speed,gemma4-e2b-q4_0,llama-bench peak RSS (GNU time),2906572,results/raw/speed/gemma4-e2b-q4_0/bench
+diagnostic,qwen35-08b-q4km,chat server --cache-ram 0,689340,results/raw/diagnostic/qwen35-08b-q4km-cache-ram-0

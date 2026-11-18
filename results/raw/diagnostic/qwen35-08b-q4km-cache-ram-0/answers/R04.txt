@@ -1,0 +1,11 @@
+To determine the number of samples and their times, we can use the formula for the $n$-th term of an arithmetic sequence (or simply count the intervals).
+
+### Step 1: Determine the Total Number of Samples
+The sensor samples every 5 seconds starting from time 0.
+*   **Start Time ($t_0$):** 0
+*   **Interval ($d$):** 5 seconds
+*   **Total Time ($T$):** 20 seconds
+
+The number of samples $n$ is calculated as:
+$$n = \frac{T}{d} + 1$$
+$$

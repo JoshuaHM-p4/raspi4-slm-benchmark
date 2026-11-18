@@ -1,0 +1,76 @@
+{
+  "prompt_id": "C04",
+  "category": "coding",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|turn>user\nWrite only a Python function named unique_sorted(numbers) that returns a sorted list of distinct integers. No Markdown fences or explanation.<turn|>\n<|turn>model\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write only a Python function named unique_sorted(numbers) that returns a sorted list of distinct integers. No Markdown fences or explanation."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "def unique_sorted(numbers):\n    return sorted(list(set(numbers)))"
+        }
+      }
+    ],
+    "created": 1794935639,
+    "model": "/home/bagwis/raspi4bench-slm/models/gemma-4-E2B-it-Q4_0.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 19,
+      "prompt_tokens": 36,
+      "total_tokens": 55,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-WTlEUJUrhWSE3LbIz1fg5f2YeNh6V89N",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 36,
+      "prompt_ms": 2586.648,
+      "prompt_per_token_ms": 71.85133333333334,
+      "prompt_per_second": 13.917626209673678,
+      "predicted_n": 19,
+      "predicted_ms": 7774.091,
+      "predicted_per_token_ms": 431.89394444444446,
+      "predicted_per_second": 2.315383239017912
+    }
+  },
+  "wall_seconds": 10.37,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "def unique_sorted(numbers):\n    return sorted(list(set(numbers)))",
+  "usage": {
+    "completion_tokens": 19,
+    "prompt_tokens": 36,
+    "total_tokens": 55,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}

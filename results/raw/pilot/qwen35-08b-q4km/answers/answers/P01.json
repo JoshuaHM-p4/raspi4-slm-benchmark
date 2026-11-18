@@ -1,0 +1,76 @@
+{
+  "prompt_id": "P01",
+  "category": "pilot",
+  "status": "complete",
+  "rendered_prompt": {
+    "http_status": 200,
+    "body": {
+      "prompt": "<|im_start|>user\nList the three primary colors of light as one comma-separated line only.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+    }
+  },
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "List the three primary colors of light as one comma-separated line only."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 128,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "cache_prompt": false
+  },
+  "http_status": 200,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "red, green, blue"
+        }
+      }
+    ],
+    "created": 1794933182,
+    "model": "/home/bagwis/raspi4bench-slm/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+    "system_fingerprint": "b1-b1b770d",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 6,
+      "prompt_tokens": 26,
+      "total_tokens": 32,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-SQkS4zzgFgbNVQmdQy3d1NcnTYAwLRGu",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 26,
+      "prompt_ms": 1455.838,
+      "prompt_per_token_ms": 55.99376923076923,
+      "prompt_per_second": 17.859129930665365,
+      "predicted_n": 6,
+      "predicted_ms": 944.792,
+      "predicted_per_token_ms": 188.9584,
+      "predicted_per_second": 5.292170128451553
+    }
+  },
+  "wall_seconds": 2.41,
+  "timed_out": false,
+  "finish_reason": "stop",
+  "content": "red, green, blue",
+  "usage": {
+    "completion_tokens": 6,
+    "prompt_tokens": 26,
+    "total_tokens": 32,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "reasoning_present": false
+}
