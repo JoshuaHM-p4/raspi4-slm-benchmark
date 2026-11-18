@@ -85,7 +85,8 @@ def sheets(_args):
         sys.exit(f"no answers under {RAW}")
     codes = set()
     for item in items:
-        while (code := secrets.token_hex(2).upper()) in codes:
+        # Letter prefix: bare hex like 5E71 or 0848 is rewritten as a number by spreadsheet apps.
+        while (code := "X" + secrets.token_hex(2).upper()) in codes:
             pass
         codes.add(code)
         item["code"] = code
@@ -125,7 +126,12 @@ def sheets(_args):
 
 def unblind(_args):
     key = {row["code"]: row for row in csv.DictReader((OUT / "key.csv").open())}
-    blind = list(csv.DictReader((OUT / "blind_scores.csv").open()))
+    blind = list(csv.DictReader((OUT / "blind_scores.csv").open(newline="", encoding="utf-8-sig")))
+    unknown = [row["code"] for row in blind if row["code"] not in key]
+    if unknown:
+        sys.exit(f"codes not in key.csv: {unknown}. A spreadsheet app may have converted them to numbers "
+                 "(e.g. 5E71 -> 5E+071, 0848 -> 848); restore them from blind_sheet.md, which lists codes "
+                 "in the same row order.")
     problems = []
     for row in blind:
         scored = row["status"] in ("complete", "truncated")
