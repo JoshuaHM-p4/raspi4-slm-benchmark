@@ -27,16 +27,16 @@ D839,E02,extraction,complete,0,1,Answered Positive
 235C,R01,reasoning,complete,0,1,"Answered 9 pens with no calculation, and reasons ""five pens increases total"""
 F540,R01,reasoning,complete,2,2,
 14D4,R02,reasoning,complete,2,2,
-ABD4,R02,reasoning,complete,0,1,explains Item X conductive material hoever never derived from the given premises 
-3FF6,R02,reasoning,complete,0,1,explains Item X conductive material hoever never derived from the given premises 
+ABD4,R02,reasoning,complete,1,1,"Answered Yes, but explains Item X conductive material hoever never derived from the given premises "
+3FF6,R02,reasoning,complete,1,1,"Answered Yes, but explains Item X conductive material hoever never derived from the given premises "
 7F8C,R03,reasoning,complete,2,2,
 365E,R03,reasoning,complete,2,2,
 2E4F,R03,reasoning,complete,2,2,
 CF4E,R04,reasoning,truncated,1,1,"Explained the 5 samples, never said how many. Due to Status Truncated"
 415A,R04,reasoning,truncated,0,0,"Never concluded with the answer, only explained solution"
 5F7D,R04,reasoning,truncated,1,1,"Explained the 5 samples, never said how many. Status Truncated"
-E304,S01,summarization,complete,2,2,
-2592,S01,summarization,complete,2,2,
+E304,S01,summarization,complete,1,2,Missed detail on electrical repairs
+2592,S01,summarization,complete,1,2,Missed detail on electrical repairs
 5E71,S01,summarization,complete,1,2,Missed detail on: normal hours resume on Monday
 5F63,S02,summarization,complete,1,1,"Was technically in two bullets, but was too long for a summary. "
 0848,S02,summarization,complete,2,0,Three bullets

@@ -15,7 +15,7 @@ gemma4-e2b-q4_0,quality/gemma4-e2b-q4_0,R01,reasoning,2,2,complete,results/raw/q
 gemma4-e2b-q4_0,quality/gemma4-e2b-q4_0,R02,reasoning,2,2,complete,results/raw/quality/gemma4-e2b-q4_0/answers/R02.txt,
 gemma4-e2b-q4_0,quality/gemma4-e2b-q4_0,R03,reasoning,2,2,complete,results/raw/quality/gemma4-e2b-q4_0/answers/R03.txt,
 gemma4-e2b-q4_0,quality/gemma4-e2b-q4_0,R04,reasoning,1,1,truncated,results/raw/quality/gemma4-e2b-q4_0/answers/R04.txt,"Explained the 5 samples, never said how many. Status Truncated"
-gemma4-e2b-q4_0,quality/gemma4-e2b-q4_0,S01,summarization,2,2,complete,results/raw/quality/gemma4-e2b-q4_0/answers/S01.txt,
+gemma4-e2b-q4_0,quality/gemma4-e2b-q4_0,S01,summarization,1,2,complete,results/raw/quality/gemma4-e2b-q4_0/answers/S01.txt,Missed detail on electrical repairs
 gemma4-e2b-q4_0,quality/gemma4-e2b-q4_0,S02,summarization,1,2,complete,results/raw/quality/gemma4-e2b-q4_0/answers/S02.txt,Missed the detail on Fan B
 gemma4-e2b-q4_0,quality/gemma4-e2b-q4_0,S03,summarization,2,2,complete,results/raw/quality/gemma4-e2b-q4_0/answers/S03.txt,
 gemma4-e2b-q4_0,quality/gemma4-e2b-q4_0,S04,summarization,2,2,complete,results/raw/quality/gemma4-e2b-q4_0/answers/S04.txt,
@@ -32,7 +32,7 @@ lfm25-12b-q4km,quality/lfm25-12b-q4km,I02,instruction,2,2,complete,results/raw/q
 lfm25-12b-q4km,quality/lfm25-12b-q4km,I03,instruction,2,2,complete,results/raw/quality/lfm25-12b-q4km/answers/I03.txt,
 lfm25-12b-q4km,quality/lfm25-12b-q4km,I04,instruction,2,2,complete,results/raw/quality/lfm25-12b-q4km/answers/I04.txt,
 lfm25-12b-q4km,quality/lfm25-12b-q4km,R01,reasoning,0,1,complete,results/raw/quality/lfm25-12b-q4km/answers/R01.txt,"Answered 9 pens with no calculation, and reasons ""five pens increases total"""
-lfm25-12b-q4km,quality/lfm25-12b-q4km,R02,reasoning,0,1,complete,results/raw/quality/lfm25-12b-q4km/answers/R02.txt,explains Item X conductive material hoever never derived from the given premises 
+lfm25-12b-q4km,quality/lfm25-12b-q4km,R02,reasoning,1,1,complete,results/raw/quality/lfm25-12b-q4km/answers/R02.txt,"Answered Yes, but explains Item X conductive material hoever never derived from the given premises "
 lfm25-12b-q4km,quality/lfm25-12b-q4km,R03,reasoning,2,2,complete,results/raw/quality/lfm25-12b-q4km/answers/R03.txt,
 lfm25-12b-q4km,quality/lfm25-12b-q4km,R04,reasoning,1,1,truncated,results/raw/quality/lfm25-12b-q4km/answers/R04.txt,"Explained the 5 samples, never said how many. Due to Status Truncated"
 lfm25-12b-q4km,quality/lfm25-12b-q4km,S01,summarization,1,2,complete,results/raw/quality/lfm25-12b-q4km/answers/S01.txt,Missed detail on: normal hours resume on Monday
@@ -52,10 +52,10 @@ qwen35-08b-q4km,quality/qwen35-08b-q4km,I02,instruction,2,2,complete,results/raw
 qwen35-08b-q4km,quality/qwen35-08b-q4km,I03,instruction,2,2,complete,results/raw/quality/qwen35-08b-q4km/answers/I03.txt,
 qwen35-08b-q4km,quality/qwen35-08b-q4km,I04,instruction,2,2,complete,results/raw/quality/qwen35-08b-q4km/answers/I04.txt,
 qwen35-08b-q4km,quality/qwen35-08b-q4km,R01,reasoning,2,2,complete,results/raw/quality/qwen35-08b-q4km/answers/R01.txt,
-qwen35-08b-q4km,quality/qwen35-08b-q4km,R02,reasoning,0,1,complete,results/raw/quality/qwen35-08b-q4km/answers/R02.txt,explains Item X conductive material hoever never derived from the given premises 
+qwen35-08b-q4km,quality/qwen35-08b-q4km,R02,reasoning,1,1,complete,results/raw/quality/qwen35-08b-q4km/answers/R02.txt,"Answered Yes, but explains Item X conductive material hoever never derived from the given premises "
 qwen35-08b-q4km,quality/qwen35-08b-q4km,R03,reasoning,2,2,complete,results/raw/quality/qwen35-08b-q4km/answers/R03.txt,
 qwen35-08b-q4km,quality/qwen35-08b-q4km,R04,reasoning,0,0,truncated,results/raw/quality/qwen35-08b-q4km/answers/R04.txt,"Never concluded with the answer, only explained solution"
-qwen35-08b-q4km,quality/qwen35-08b-q4km,S01,summarization,2,2,complete,results/raw/quality/qwen35-08b-q4km/answers/S01.txt,
+qwen35-08b-q4km,quality/qwen35-08b-q4km,S01,summarization,1,2,complete,results/raw/quality/qwen35-08b-q4km/answers/S01.txt,Missed detail on electrical repairs
 qwen35-08b-q4km,quality/qwen35-08b-q4km,S02,summarization,2,0,complete,results/raw/quality/qwen35-08b-q4km/answers/S02.txt,Three bullets
 qwen35-08b-q4km,quality/qwen35-08b-q4km,S03,summarization,0,2,complete,results/raw/quality/qwen35-08b-q4km/answers/S03.txt,"Reasoned ""camera due to the high battery load"", not in original sentence"
 qwen35-08b-q4km,quality/qwen35-08b-q4km,S04,summarization,2,0,complete,results/raw/quality/qwen35-08b-q4km/answers/S04.txt,22 words > 20

@@ -1,1 +1,61 @@
 model_label,run_id,prompt_id,category,correctness_0_2,adherence_0_2,status,output_path,notes
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,C01,coding,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/C01.txt,
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,C02,coding,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/C02.txt,
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,C03,coding,2,1,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/C03.txt,Added Fences
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,C04,coding,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/C04.txt,
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,E01,extraction,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/E01.txt,Added Fences (not in criteria/prompt so passable)
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,E02,extraction,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/E02.txt,
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,E03,extraction,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/E03.txt,Added Fences (not in criteria/prompt so passable)
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,E04,extraction,2,1,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/E04.txt,"Output is not exactly ""UKNOWN"": Invoice total is UNKNOWN "
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,I01,instruction,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/I01.txt,
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,I02,instruction,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/I02.txt,
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,I03,instruction,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/I03.txt,
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,I04,instruction,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/I04.txt,
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,R01,reasoning,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/R01.txt,
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,R02,reasoning,1,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/R02.txt,explains Item X conductive material hoever never derived from the given premises 
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,R03,reasoning,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/R03.txt,
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,R04,reasoning,1,1,truncated,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/R04.txt,"Never concluded with the answer, only explained solution. truncated"
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,S01,summarization,1,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/S01.txt,"Missed detail on ""electrical"" repairs"
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,S02,summarization,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/S02.txt,
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,S03,summarization,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/S03.txt,
+gemma4-e2b-q4_0,quality-vendor/gemma4-e2b-q4_0,S04,summarization,2,2,complete,results/raw/quality-vendor/gemma4-e2b-q4_0/answers/S04.txt,
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,C01,coding,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/C01.txt,
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,C02,coding,2,1,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/C02.txt,Added Fences
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,C03,coding,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/C03.txt,
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,C04,coding,2,1,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/C04.txt,Added Fences
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,E01,extraction,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/E01.txt,
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,E02,extraction,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/E02.txt,
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,E03,extraction,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/E03.txt,Added Fences (not in criteria/prompt so passable)
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,E04,extraction,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/E04.txt,
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,I01,instruction,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/I01.txt,
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,I02,instruction,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/I02.txt,
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,I03,instruction,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/I03.txt,
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,I04,instruction,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/I04.txt,
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,R01,reasoning,0,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/R01.txt,"Answered 12, hallucinated it's reasoning"
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,R02,reasoning,1,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/R02.txt,explains Item X conductive material hoever never derived from the given premises 
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,R03,reasoning,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/R03.txt,
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,R04,reasoning,2,1,truncated,results/raw/quality-vendor/lfm25-12b-q4km/answers/R04.txt,"Answered one, didn't finsh solution. truncated"
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,S01,summarization,0,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/S01.txt,"Missed detail on time, electrical repairs, and resumption"
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,S02,summarization,1,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/S02.txt,Made more verbose than summarizing
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,S03,summarization,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/S03.txt,
+lfm25-12b-q4km,quality-vendor/lfm25-12b-q4km,S04,summarization,2,2,complete,results/raw/quality-vendor/lfm25-12b-q4km/answers/S04.txt,
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,C01,coding,2,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/C01.txt,
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,C02,coding,0,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/C02.txt,Executed tests: NameError on non-empty input (undefined i); correctness set to 0 per behaviour-based rubric after unblinding
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,C03,coding,0,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/C03.txt,Executed tests: TypeError on non-empty input (list.reverse()); correctness set to 0 per behaviour-based rubric after unblinding
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,C04,coding,2,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/C04.txt,
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,E01,extraction,2,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/E01.txt,Added Fences (not in criteria/prompt so passable)
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,E02,extraction,0,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/E02.txt,Answered Positive
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,E03,extraction,2,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/E03.txt,Added Fences (not in criteria/prompt so passable)
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,E04,extraction,2,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/E04.txt,
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,I01,instruction,2,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/I01.txt,
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,I02,instruction,2,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/I02.txt,
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,I03,instruction,2,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/I03.txt,
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,I04,instruction,0,1,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/I04.txt,"Two bullets, but listed Monitor at input device: Keyboard: Output Device, , Display Monitor: Input Device"
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,R01,reasoning,0,1,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/R01.txt,"Answered ""ten"" and was incorrect in its calculation ""we subtract 15 from 12 to get Ten"""
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,R02,reasoning,0,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/R02.txt,"Answered No, got confused in its reasoning"
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,R03,reasoning,2,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/R03.txt,
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,R04,reasoning,1,1,truncated,results/raw/quality-vendor/qwen35-08b-q4km/answers/R04.txt,"Never concluded with the answer, only explained solution. truncated"
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,S01,summarization,1,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/S01.txt,"Missed detail on time, unique way of summarizing"
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,S02,summarization,1,1,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/S02.txt,"Incorrect format: no bullets, more verbose"
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,S03,summarization,2,2,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/S03.txt,
+qwen35-08b-q4km,quality-vendor/qwen35-08b-q4km,S04,summarization,2,1,complete,results/raw/quality-vendor/qwen35-08b-q4km/answers/S04.txt,"22 words, exceeded 20"
