@@ -26,7 +26,7 @@
 \maketitle
 
 \begin{abstract}
-Three quantized small language models were deployed with one pinned llama.cpp build on a single Raspberry Pi~4 Model~B (4\,GB RAM, CPU only, stock clocks): \qwen{} (Q4\_K\_M), \lfm{} (Q4\_K\_M), and \gemma{} (Q4\_0). Feasibility, synthetic throughput, resource use, and task quality were measured as separate kinds of evidence under a protocol frozen after a pilot. All three loaded at a 2{,}048-token context; \gemma{} occupied about 2.9\,GB and swapped to compressed RAM on its first load. Generation ran at 5.24, 5.00, and 2.35 tokens/s, respectively. On a 20-prompt personal task suite scored blind for correctness and instruction adherence (0--2 each), \gemma{} scored 38/40 and 39/40, \lfm{} 33/40 and 34/40, and \qwen{} 32/40 and 31/40, while only the two smaller models answered most prompts within a pre-declared 10\,s budget (17/20 each versus 8/20). No throttling or undervoltage occurred. The study recommends \lfm{} as an interactive default and \gemma{} for accuracy-critical requests on this board; all raw logs, answers, and scoring files are published.
+Three quantized small language models were deployed with one pinned llama.cpp build on a single Raspberry Pi~4 Model~B (4\,GB RAM, CPU only, stock clocks): \qwen{} (Q4\_K\_M), \lfm{} (Q4\_K\_M), and \gemma{} (Q4\_0). Feasibility, synthetic throughput, resource use, and task quality were measured as separate kinds of evidence under a protocol frozen after a pilot. All three loaded at a 2{,}048-token context; \gemma{} occupied about 2.9\,GB and swapped to compressed RAM on its first load. Generation ran at 5.24, 5.00, and 2.35 tokens/s, respectively. On a 20-prompt personal task suite scored for correctness and instruction adherence (0--2 each) on a blinded sheet, \gemma{} scored 37/40 and 39/40, \lfm{} 34/40 and 34/40, and \qwen{} 32/40 and 31/40, while only the two smaller models answered most prompts within a pre-declared 10\,s budget (17/20 each versus 8/20). With each vendor's recommended sampling, \lfm{} and \gemma{} kept their correctness while \qwen{} fell to 25/40. No throttling or undervoltage occurred. The study recommends \lfm{} as an interactive default and \gemma{} for accuracy-critical requests on this board; all raw logs, answers, and scoring files are published.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -154,7 +154,7 @@ Fig.~\ref{fig:latency} shows the time to a complete answer for each scored promp
 \end{figure}
 
 \subsection{Task Quality}
-Table~\ref{tab:quality} and Fig.~\ref{fig:quality} report scores. All three models were at or near ceiling on instruction following and extraction, and all 27 executed code tests passed for every model. The models differed in reasoning and in honoring explicit constraints. \gemma{} lost points only on R04 (truncated before stating the count) and one omitted summary detail. \lfm{} answered ``9 pens'' to a $12-3+5$ word problem and wrapped two code answers in Markdown fences against instructions. \qwen{} labeled a neutral sentence as positive, used three bullets where exactly two were requested, exceeded a 20-word limit, and introduced an unsupported cause into a summary.
+Table~\ref{tab:quality} and Fig.~\ref{fig:quality} report scores. All three models were at or near ceiling on instruction following and extraction, and all 27 executed code tests passed for every model. The models differed in reasoning and in honoring explicit constraints. \gemma{} lost correctness only on R04 (truncated before stating the count) and two omitted summary details. \lfm{} answered ``9 pens'' to a $12-3+5$ word problem and wrapped code answers in Markdown fences against instructions. \qwen{} labeled a neutral sentence as positive, used three bullets where exactly two were requested, exceeded a 20-word limit, and introduced an unsupported cause into a summary. Both smaller models answered the syllogism (R02) correctly without deriving it from the stated premises.
 
 \begin{table}[t]
 \caption{Quality Scores (Correctness / Adherence, Maximum 8 per Category)}
@@ -167,11 +167,11 @@ Category & \qwen{} & LFM2.5-1.2B & Gemma 4 E2B \\
 \midrule
 Instruction & 8 / 8 & 8 / 8 & 8 / 8 \\
 Extraction & 6 / 7 & 8 / 8 & 8 / 8 \\
-Reasoning & 4 / 5 & 3 / 5 & 7 / 7 \\
-Summarization & 6 / 4 & 6 / 7 & 7 / 8 \\
+Reasoning & 5 / 5 & 4 / 5 & 7 / 7 \\
+Summarization & 5 / 4 & 6 / 7 & 6 / 8 \\
 Coding & 8 / 7 & 8 / 6 & 8 / 8 \\
 \midrule
-Total (/40) & \textbf{32 / 31} & \textbf{33 / 34} & \textbf{38 / 39} \\
+Total (/40) & \textbf{32 / 31} & \textbf{34 / 34} & \textbf{37 / 39} \\
 Completed / truncated & 19 / 1 & 19 / 1 & 19 / 1 \\
 \bottomrule
 \end{tabular}
@@ -225,13 +225,36 @@ Gemma 4 E2B & 1.0 & 0.95 / 64 & 0.0 & 1.00 \\
 \end{tabular}
 \end{table}
 
-With its recommended presence penalty, \qwen{} no longer looped: the 60-fruit list contained 23 distinct items out of 23 (Fig.~\ref{fig:repetition}). Sampling also changed behaviour elsewhere: only 9 of \qwen{}'s 20 scored answers were identical to the greedy run (11 for \lfm{}, 10 for \gemma{}), and \qwen{}'s executed code tests fell from 9/9 to 6/9, while both other models kept 9/9. Answer times were essentially unchanged (medians 7.08, 7.06, and 10.88\,s; 18, 18, and 9 answers within 10\,s), as were memory and thermals, and no throttle flag was set. Blinded quality scoring of these 60 answers uses the same rubric and a separate code-to-model key; its scores are recorded in \texttt{data/quality\_scores\_vendor.csv} in the repository~\cite{repo} and are not part of the comparison above.
+With its recommended presence penalty, \qwen{} no longer looped: the 60-fruit list contained 23 distinct items out of 23 (Fig.~\ref{fig:repetition}). Sampling also changed behaviour elsewhere: only 9 of \qwen{}'s 20 scored answers were identical to the greedy run (11 for \lfm{}, 10 for \gemma{}), and \qwen{}'s executed code tests fell from 9/9 to 6/9, while both other models kept 9/9. Answer times were essentially unchanged (medians 7.08, 7.06, and 10.88\,s; 18, 18, and 9 answers within 10\,s), as were memory and thermals, and no throttle flag was set.
+
+The 60 sampled answers were scored blind on a separate sheet with its own code-to-model key (Table~\ref{tab:vendorquality}). \lfm{} and \gemma{} kept the same correctness totals as under greedy decoding (34 and 37). \qwen{} fell from 32 to 25: it swapped input and output devices in I04, answered ``ten'' pens in R01 and ``no'' in R02, and produced two functions that raise errors on non-empty input. On this suite, the looping fix for \qwen{} costs more accuracy than it gains.
+
+\begin{table}[t]
+\caption{Quality Under Vendor-Recommended Sampling (Correctness / Adherence, Maximum 8 per Category)}
+\label{tab:vendorquality}
+\centering
+\footnotesize
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Category & \qwen{} & LFM2.5-1.2B & Gemma 4 E2B \\
+\midrule
+Instruction & 6 / 7 & 8 / 8 & 8 / 8 \\
+Extraction & 6 / 8 & 8 / 8 & 8 / 7 \\
+Reasoning & 3 / 6 & 5 / 7 & 6 / 7 \\
+Summarization & 6 / 6 & 5 / 8 & 7 / 8 \\
+Coding & 4 / 8 & 8 / 6 & 8 / 7 \\
+\midrule
+Total (/40) & \textbf{25 / 35} & \textbf{34 / 37} & \textbf{37 / 37} \\
+Greedy total & 32 / 31 & 34 / 34 & 37 / 39 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \section{Discussion and Recommendation}
-For a local assistant that should answer short requests within about 10\,s, \qwen{} and \lfm{} are equally fast on this suite and fit comfortably in memory. Their total scores differ by one to three points, which a 20-prompt suite cannot distinguish; they fail differently, with \lfm{} making reasoning errors and \qwen{} missing explicit format constraints and looping under greedy decoding. \gemma{} gives clearly better answers at less than half the generation speed and nearly 3\,GB of memory, which matters on a board that also hosts other services. The personal recommendation is \lfm{} as the interactive default and \gemma{} for non-interactive or accuracy-critical requests. \qwen{} is preferable when inputs are long, since it processes prompts about 1.6$\times$ faster than \lfm{}; its recommended sampling removes the looping but cost three of nine code tests in the follow-up, so its decoding settings should be chosen per task.
+For a local assistant that should answer short requests within about 10\,s, \qwen{} and \lfm{} are equally fast on this suite and fit comfortably in memory. Under greedy decoding their totals differ by two correctness and three adherence points, which a 20-prompt suite cannot distinguish; they fail differently, with \lfm{} making reasoning errors and \qwen{} missing explicit format constraints and looping. \lfm{}'s correctness was also stable across greedy and vendor-recommended sampling (34 in both), whereas \qwen{}'s dropped to 25 under its recommended settings. \gemma{} gives clearly better answers at less than half the generation speed and nearly 3\,GB of memory, which matters on a board that also hosts other services. The personal recommendation is \lfm{} as the interactive default and \gemma{} for non-interactive or accuracy-critical requests. \qwen{} with greedy decoding remains a fast alternative when inputs are long, since it processes prompts about 1.6$\times$ faster than \lfm{}.
 
 \section{Limitations}
-The study uses one board, one runtime build, and one quantization per model; Q4\_0 for \gemma{} differs from Q4\_K\_M for the others, and sizes, architectures, and tokenizers differ, so no architectural effect is isolated. Twenty hand-written prompts with one answer each and a single scorer support descriptive, not statistical, comparisons. The first scoring pass was blind; the subsequent separation of correctness from adherence was performed after model identities were shown, although per-model correctness totals were identical in both passes. Greedy decoding is not every vendor's recommended setting, and the 128-token cap penalizes verbose step-by-step answers. Throughput is synthetic, warm, and single-request; answer times are non-streaming. Ambient temperature and electrical energy were not measured.
+The study uses one board, one runtime build, and one quantization per model; Q4\_0 for \gemma{} differs from Q4\_K\_M for the others, and sizes, architectures, and tokenizers differ, so no architectural effect is isolated. Twenty hand-written prompts with one answer each and a single scorer support descriptive, not statistical, comparisons. Scoring was not fully blind: the first pass was blind (correctness totals 38, 33, and 32 for \gemma{}, \lfm{}, and \qwen{}), and two later revisions (separating correctness from adherence, then re-scoring R02 and S01) were made with model identities known (final 37, 34, 32). In the vendor set, two \qwen{} coding answers were lowered to zero correctness after unblinding because they fail the executed tests, as the behaviour-based coding rubric requires. The vendor follow-up uses one seed and one answer per prompt, so it does not separate sampling variance from model differences. The 128-token cap penalizes verbose step-by-step answers. Throughput is synthetic, warm, and single-request; answer times are non-streaming. Ambient temperature and electrical energy were not measured. Every scoring version is preserved in the repository history.
 
 \section{Conclusion}
 On a 4\,GB Raspberry Pi~4B, all three candidates run with llama.cpp on the CPU without throttling. \lfm{} and \qwen{} deliver most short answers within 10\,s in under 0.8\,GB, while \gemma{} gives the best answers at 2.35 tokens/s and about 2.9\,GB. Feasibility, speed, memory, and quality must be read together: the most accurate model is not the most usable one under an interactive time budget on this hardware.

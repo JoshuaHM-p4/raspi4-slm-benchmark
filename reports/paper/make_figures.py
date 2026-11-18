@@ -35,7 +35,7 @@ def rows(name):
 
 
 def save(fig, name):
-    fig.savefig(OUT / name)
+    fig.savefig(OUT / name, metadata={"CreationDate": None})  # deterministic bytes across rebuilds
     plt.close(fig)
     print(OUT / name)
 
