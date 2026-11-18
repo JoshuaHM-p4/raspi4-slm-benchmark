@@ -16,7 +16,13 @@ The goal is a useful local text assistant on hardware already owned: a Raspberry
 - **Frozen protocol:** [docs/PROTOCOL_FREEZE.md](../docs/PROTOCOL_FREEZE.md), frozen after a two-prompt pilot and before any scored answer. Prompt set `data/prompts.jsonl`, SHA-256 `caec2891…cbb3b6`.
 - **Speed:** llama-bench via `scripts/benchmark.py`, 4 threads, batch/microbatch 128, excluded warm-up, then pp128, pp512, and tg64 with 3 repetitions each; `scripts/monitor.py` at 1 Hz; sessions run Qwen → LFM → Gemma, each starting at ≤ 45 °C.
 - **Answers:** `scripts/collect_answers.py` through llama-server (`-c 2048 -np 1 --jinja`, one model resident): one fresh single-turn chat per prompt containing only the prompt text, greedy decoding (temperature 0), at most 128 generated tokens, thinking disabled with `chat_template_kwargs` (verified in every saved rendered prompt), prompt cache off. Every request, rendered prompt, response, finish reason, token count, and wall time is in `results/raw/quality/<label>/`.
-- **Scoring:** one scorer (the author) on a blinded sheet (`scripts/score_tools.py`): answers grouped by prompt, shuffled behind random codes, rubric in [docs/EVALUATION.md](../docs/EVALUATION.md). Coding answers were executed against the prompts' test cases in a network-less throwaway container on a separate workstation; correctness for coding is behaviour-based, adherence is manual review.
+- **Scoring:** one scorer (the author) on a blinded sheet (`scripts/score_tools.py`): answers grouped by prompt, shuffled behind random codes. Each answer gets two scores from the rubric below (also in [docs/EVALUATION.md](../docs/EVALUATION.md)); a truncated answer is scored as received. Coding answers were executed against the prompts' test cases in a network-less throwaway container on a separate workstation; correctness for coding follows the executed tests, adherence is manual review.
+
+  | Score | Correctness | Instruction adherence |
+  | --- | --- | --- |
+  | 0 | Wrong core result, an unsupported claim central to the answer, or unusable code | Ignores the requested task or a major output constraint |
+  | 1 | Partly correct; a meaningful omission or error remains | Mostly follows the request, with one material constraint violation |
+  | 2 | Meets the reference facts or behaviour; equivalent wording or implementation accepted | Meets all explicit constraints |
 - **Deviations from the starter plan:** `-np 1` added after the feasibility gate (single request slot, matching the plan's one-request policy); web UI disabled at build time; answers collected through the API instead of the manual web UI; chat-server memory reported with the prompt-cache caveat in section 4.
 
 ## 3. Feasibility
@@ -126,7 +132,7 @@ Cells are correctness / adherence, each out of 8. Under its recommended sampling
 
 ## 8. Conclusion
 
-On a 4 GB Raspberry Pi 4B, all three candidates run with llama.cpp on the CPU. LFM2.5-1.2B-Instruct and Qwen3.5-0.8B deliver most short answers within 10 s in under 0.8 GB, while Gemma 4 E2B gives clearly better answers at less than half the generation speed and nearly 3 GB of RAM. The personal default is LFM2.5-1.2B for interactive use, with Gemma 4 E2B for accuracy-critical requests. The vendor-sampling follow-up (section 5a) showed that Qwen's looping is a decoding effect, fixed by its recommended presence penalty at some cost in code correctness. The most useful next experiment is several seeds per prompt under sampling, to separate sampling variance from model differences before drawing quality conclusions from a single sampled answer.
+On a 4 GB Raspberry Pi 4B, all three candidates run with llama.cpp on the CPU. LFM2.5-1.2B-Instruct and Qwen3.5-0.8B deliver most short answers within 10 s in under 0.8 GB, while Gemma 4 E2B achieved the highest correctness score on this suite, at less than half the generation speed and nearly 3 GB of RAM. The personal default is LFM2.5-1.2B for interactive use, with Gemma 4 E2B for accuracy-critical requests. The vendor-sampling follow-up (section 5a) showed that Qwen's looping is a decoding effect, fixed by its recommended presence penalty at some cost in code correctness. The most useful next experiment is several seeds per prompt under sampling, to separate sampling variance from model differences before drawing quality conclusions from a single sampled answer.
 
 ## References
 

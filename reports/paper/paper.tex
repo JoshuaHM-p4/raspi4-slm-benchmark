@@ -108,7 +108,23 @@ Fig.~\ref{fig:pipeline} shows the protocol. A \emph{feasibility gate} loaded eac
 
 \emph{Quality.} Twenty original prompts cover five categories (instruction following, extraction and classification, reasoning, summarization, small Python functions), four each. Each prompt was sent as a fresh single-turn chat containing only the prompt text, with the model's native template, greedy decoding (temperature 0), at most 128 generated tokens, thinking disabled through the template's \texttt{enable\_thinking} flag, and prompt caching off. Client-observed, non-streaming answer time was recorded; it includes prompt processing and generation and is not time to first token.
 
-\emph{Scoring.} One scorer graded every answer 0--2 for correctness and 0--2 for adherence against a reference and written criteria, on a sheet that grouped answers by prompt, shuffled models, and hid identities behind random codes. Coding answers were executed against the prompts' test cases in a network-less, read-only container on a separate machine, never on the Pi.
+\emph{Scoring.} One scorer graded every answer 0--2 for correctness and 0--2 for adherence against a reference and written criteria (Table~\ref{tab:rubric}), on a sheet that grouped answers by prompt, shuffled models, and hid identities behind random codes. Coding answers were executed against the prompts' test cases in a network-less, read-only container on a separate machine, never on the Pi; coding correctness follows the executed tests. A truncated answer is scored as received.
+
+\begin{table}[t]
+\caption{Scoring Rubric (Per Answer)}
+\label{tab:rubric}
+\centering
+\footnotesize
+\begin{tabular}{@{}cp{0.41\columnwidth}p{0.41\columnwidth}@{}}
+\toprule
+Score & Correctness & Instruction adherence \\
+\midrule
+0 & Wrong core result, an unsupported claim central to the answer, or unusable code & Ignores the requested task or a major output constraint \\
+1 & Partly correct; a meaningful omission or error remains & Mostly follows the request, with one material constraint violation \\
+2 & Meets the reference facts or behaviour; equivalent wording or implementation accepted & Meets all explicit constraints \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \section{Results}
 
@@ -184,7 +200,7 @@ Completed / truncated & 19 / 1 & 19 / 1 & 19 / 1 \\
 \end{figure}
 
 \subsection{Trade-off}
-Fig.~\ref{fig:tradeoff} combines the three dimensions. The smaller models sit inside the time budget with under 0.8\,GB of memory and similar quality; \gemma{} is clearly more accurate but outside the budget and close to the board's memory limit.
+Fig.~\ref{fig:tradeoff} combines the three dimensions. The smaller models sit inside the time budget with under 0.8\,GB of memory and similar quality; \gemma{} achieved the highest correctness score on this suite but is outside the budget and close to the board's memory limit.
 
 \begin{figure}[t]
 \centering
@@ -250,7 +266,7 @@ Greedy total & 32 / 31 & 34 / 34 & 37 / 39 \\
 \end{table}
 
 \section{Discussion and Recommendation}
-For a local assistant that should answer short requests within about 10\,s, \qwen{} and \lfm{} are equally fast on this suite and fit comfortably in memory. Under greedy decoding their totals differ by two correctness and three adherence points, which a 20-prompt suite cannot distinguish; they fail differently, with \lfm{} making reasoning errors and \qwen{} missing explicit format constraints and looping. \lfm{}'s correctness was also stable across greedy and vendor-recommended sampling (34 in both), whereas \qwen{}'s dropped to 25 under its recommended settings. \gemma{} gives clearly better answers at less than half the generation speed and nearly 3\,GB of memory, which matters on a board that also hosts other services. The personal recommendation is \lfm{} as the interactive default and \gemma{} for non-interactive or accuracy-critical requests. \qwen{} with greedy decoding remains a fast alternative when inputs are long, since it processes prompts about 1.6$\times$ faster than \lfm{}.
+For a local assistant that should answer short requests within about 10\,s, \qwen{} and \lfm{} are equally fast on this suite and fit comfortably in memory. Under greedy decoding their totals differ by two correctness and three adherence points, which a 20-prompt suite cannot distinguish; they fail differently, with \lfm{} making reasoning errors and \qwen{} missing explicit format constraints and looping. \lfm{}'s correctness was also stable across greedy and vendor-recommended sampling (34 in both), whereas \qwen{}'s dropped to 25 under its recommended settings. \gemma{} achieved the highest correctness score on this suite, at less than half the generation speed and nearly 3\,GB of memory, which matters on a board that also hosts other services. The personal recommendation is \lfm{} as the interactive default and \gemma{} for non-interactive or accuracy-critical requests. \qwen{} with greedy decoding remains a fast alternative when inputs are long, since it processes prompts about 1.6$\times$ faster than \lfm{}.
 
 \section{Limitations}
 The study uses one board, one runtime build, and one quantization per model; Q4\_0 for \gemma{} differs from Q4\_K\_M for the others, and sizes, architectures, and tokenizers differ, so no architectural effect is isolated. Twenty hand-written prompts with one answer each and a single scorer support descriptive, not statistical, comparisons. Scoring was not fully blind: the first pass was blind (correctness totals 38, 33, and 32 for \gemma{}, \lfm{}, and \qwen{}), and two later revisions (separating correctness from adherence, then re-scoring R02 and S01) were made with model identities known (final 37, 34, 32). In the vendor set, two \qwen{} coding answers were lowered to zero correctness after unblinding because they fail the executed tests, as the behaviour-based coding rubric requires. The vendor follow-up uses one seed and one answer per prompt, so it does not separate sampling variance from model differences. The 128-token cap penalizes verbose step-by-step answers. Throughput is synthetic, warm, and single-request; answer times are non-streaming. Ambient temperature and electrical energy were not measured. Every scoring version is preserved in the repository history.
